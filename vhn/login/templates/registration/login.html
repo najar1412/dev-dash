@@ -1,53 +1,31 @@
 {% extends "base.html" %}
-{% block title %}{% endblock %}
-{% block head %}{% endblock %}
 {% block content %}
 
+<br>
+<br>
+<br>
+<br>
 
+<div class="loginbanner">
 
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
 
-    <div class="userbanner">
-      <div class="panel panel-default">
-        <div class="panel-body">
-
-
-
-
-
-              {% if form.errors %}
-                  <p>Your username and password didn't match. Please try again.</p>
-              {% endif %}
-
-              <form method="post" action=".">{% csrf_token %}
-                  <table border="0">
-
-
-
-                      <tr><th><label for="id_username">Username:</label></th><td>{{ form.username }}</td></tr>
-
-
-
-
-                      <tr><th><label for="id_password">Password:</label></th><td>{{ form.password }}</td></tr>
-                  </table>
-                  <button type="submit" class="btn btn-default" value="Login" />Login</button>
-                  <input type="hidden" name="next" value="/home" />
-              </form>
-              <a href="/register">Register User</a>
-
-
-
-
+        <form method="post" action=".">{% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" id="id_username" maxlength="254" name="username" type="text" placeholder="Username" />
             </div>
-          </div>
 
-
-
-        </div>
-
-
-
-
-
+            <div class="form-group">
+                <input class="form-control" id="id_password" name="password" type="password" placeholder="Password" />
+            </div>
+                <center>
+                    <button type="submit" class="btn btn-default" value="Login" />Login</button>
+                    <input type="hidden" name="next" value="/home" />
+                    <a href="/register" class="btn btn-default">Sign Up</a>
+                </center>
+        </form>
+</div>
 
 {% endblock %}

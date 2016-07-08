@@ -1,7 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
-#views.py
 from login.forms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -9,6 +7,9 @@ from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
+
+# Create your views here.
+#views.py
 
 @csrf_protect
 def register(request):
@@ -32,10 +33,11 @@ def register(request):
     variables,
     )
 
+def profile(request):
+    return  render_to_response('profile.html')
+
 def register_success(request):
-    return render_to_response(
-    'registration/success.html',
-    )
+    return render_to_response('home.html')
 
 def logout_page(request):
     logout(request)
@@ -43,7 +45,4 @@ def logout_page(request):
 
 @login_required
 def home(request):
-    return render_to_response(
-    'home.html',
-    { 'user': request.user }
-    )
+    return render_to_response('home.html', { 'user': request.user })

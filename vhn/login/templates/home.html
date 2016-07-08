@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% block title %}vhn - dash{% endblock %}
-{% block head %}{% endblock %}
+{% load staticfiles %}
 
 {% block content %}
     <div class="imagebanner">
@@ -8,47 +7,25 @@
 
 
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Panel title</h3>
-  </div>
-  <div class="panel-body">
 
-          [bar: latest library uploads]<br>
-          [bar: latest completed images]<br>
-  </div>
-</div>
+      <a href="#" ><img src="{% static '/static/thumbs/01_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/02_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/03_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/04_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/05_thumbnail.png' %}" width="20%" height="20%"/></a>
 
-
+      <a href="#" ><img src="{% static '/static/thumbs/01_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/02_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/03_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/04_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/05_thumbnail.png' %}" width="20%" height="20%"/></a>
 
     </div>
-
-
-        <div class="userbanner">
-
-
-
+    <div class="userbanner">
           <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Panel title</h3>
-            </div>
             <div class="panel-body">
               [bar: User information 'card']<br>
-
-              <ul>
-              <li>name</li>
-              <li>holiday</li>
-              <li>health plan</li>
-              <li>dental</li>
-              <li>role</li>
-              <li>start date</li>
-              </ul>
+name<br>
+role<br>
+start date<br>
+holiday<br>
+<br>
+health plan<br>
+dental<br>
             </div>
           </div>
-
-
-
-
 
         </div>
 
@@ -57,14 +34,11 @@
 
 
   <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Panel title</h3>
-    </div>
     <div class="panel-body">
 
                   [current projects user is on]<br>
                   [current][signed off][next]<br>
-                  <br>
+                  <hr>
                   [current projects]<br>
 
     </div>
@@ -76,25 +50,44 @@
 
 
 
+  <div class="media">
+    <div class="media-left">
+      <a href="#">
+        <img class="media-object" src="..." alt="...">
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">Media heading</h4>
+      ...
+    </div>
+  </div>
+
+
+
     <div class="leftBanner">
+
+
+
+
+
 
 
 
       <div class="list-group">
         <a href="#" class="list-group-item active">
-          <h4 class="list-group-item-heading">scapped site</h4>
+          <h4 class="list-group-item-heading">cg architect</h4>
         </a>
         <a href="#" class="list-group-item">
-          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium  </p>
-        </a>
-        <a href="#" class="list-group-item">
-          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium </p>
+          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natusomnis iste natus error sit voluptatem accus error sit voluptatem accusantium doloremque laudantium  </p>
         </a>
         <a href="#" class="list-group-item">
           <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium </p>
         </a>
         <a href="#" class="list-group-item">
-          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium </p>
+          <p class="list-group-item-text">Sed ut perspiciatisomnis iste natus error sit voluptatem accusunde omnis isteomnis iste natus error sit voluptatem accus natus error sit voluptatem accusantium doloremque laudantium </p>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-text">Sed ut perspiciatis unde omnisomnis iste natus error sit voluptatem accus iste natus error sit voluptatem accusantium doloremque laudantium </p>
         </a>
       </div>
 
@@ -109,16 +102,16 @@
 
       <div class="list-group">
         <a href="#" class="list-group-item active">
-          <h4 class="list-group-item-heading">scapped site</h4>
+          <h4 class="list-group-item-heading">dezeen</h4>
         </a>
         <a href="#" class="list-group-item">
-          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium  </p>
-        </a>
-        <a href="#" class="list-group-item">
-          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium </p>
+          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremomnis iste natus error sit voluptatem accusque laudantium  </p>
         </a>
         <a href="#" class="list-group-item">
           <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium </p>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-text">Sed ut perspiciatis unde omnisomnis iste natus error sit voluptatem accus iste natus error sit voluptatem accusantium doloremque laudantium </p>
         </a>
         <a href="#" class="list-group-item">
           <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium </p>
@@ -135,16 +128,16 @@
 
       <div class="list-group">
         <a href="#" class="list-group-item active">
-          <h4 class="list-group-item-heading">scapped site</h4>
+          <h4 class="list-group-item-heading">evermotion</h4>
         </a>
         <a href="#" class="list-group-item">
           <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium  </p>
         </a>
         <a href="#" class="list-group-item">
-          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium </p>
+          <p class="list-group-item-text">Sed ut perspiciatis unde omniomnis iste natus error sit voluptatem accuss iste natus error sit voluptatem aomnis iste natus error sit voluptatem accusccusantium doloremque laudantium </p>
         </a>
         <a href="#" class="list-group-item">
-          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium </p>
+          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste nomnis iste natus error sit voluptatem accusatus error sit voluptatem aomnis iste natus error sit voluptatem accusccusantium doloremque laudantium </p>
         </a>
         <a href="#" class="list-group-item">
           <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium </p>
@@ -159,7 +152,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Panel title</h3>
+      <h3 class="panel-title">Comments</h3>
     </div>
     <div class="panel-body">
 

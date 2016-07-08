@@ -3,86 +3,76 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
-        <title>
-        {% block title %}{% endblock %}</title>
-
+        <title></title>
             <!-- Bootstrap -->
             <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
-        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+            <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     </head>
     <body>
-
-
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="#">
-
-              </a>
+        <div class="blended_grid">
+            <div class="infobar">
+                <div class="well">
+                    <a href="/home/" ><img src="{% static 'visualhouse.png' %}" width="25%" height="25%"/></a>
+                </div>
             </div>
-          </div>
-        </nav>
 
-                  {% if user.username != '' %}
+            <div class="dashnav">
+                {% if user.username != '' %}
+                    <div class="navbar">
+                        <ul class="nav nav-tabs">
+                            <li role="presentation"><a href="/home/">Dash</a></li>
+                            <li role="presentation"><a href="/profile/">Profile</a></li>
+                            <li role="presentation"><a href="#">Messages</a></li>
+                            <li role="presentation"><a href="/logout/">Logout</a></li>
+                        </ul>
 
+                        <div class="loginleft">
+                            .
+                        </div>
 
-
-                  <div class="navbar">
-                    <ul class="nav nav-tabs">
-                      <li role="presentation" class="active"><a href="#">Home</a></li>
-                      <li role="presentation"><a href="#">Profile</a></li>
-                      <li role="presentation"><a href="#">Messages</a></li>
-                      <li role="presentation"><a href="/logout/">Logout</a></li>
-
-
-                    </ul>
-
-
-                </div>
-<br>
-  <div class="well">
-
-                                        Welcome {{ user.username }} !!!<br>
-
-                                  [nav buttons]<br>
-                                  [box: Logged in information box]<br>
-
-
-                </div>
-
-
-                  {% endif %}
-
-                <div class="blended_grid">
-
-
-          {% block content %}
-
-
-          {% endblock %}
-
-
-
+                        <div class="loginright">
+                            Logged in as {{ user.username }}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
         </div>
+
+        <div class="blended_grid">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+                {% if user.username != '' %}
         <div class="infobar">
-
-
-  <div class="well">
-
+            <div class="well">
+                <div class="blended_grid">
+                    <div class="leftBanner">
                         social<br>
-                        contact<br>
+                        [Social links]
+                    </div>
+
+                    <div class="centerBanner">
+                        <address>
+  <strong>Visualhouse, NY</strong><br>
+  54 Thompson, Fl. 3<br>
+  New York, NY 10012<br>
+  <br>
+  <abbr title="Phone">P:</abbr> (123) 456-7890<br>
+  <abbr title="Email">E:</abbr> hello@visualhouse.co
+</address><br>
+                    </div>
+
+                    <div class="rightBanner">
                         bug<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-</div>
-
+                        [Report bug?]<br>
+                    </div>
+                </div>
+            <br>
+            <br>
+            </div>
         </div>
-
+        {% endif %}
 
     </body>
 </html>
