@@ -5,32 +5,55 @@
     <head>
         <title>
         {% block title %}{% endblock %}</title>
+
+            <!-- Bootstrap -->
+            <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
         <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     </head>
     <body>
-        <h1>
-          {% block head %}
-          {% endblock %}
-        </h1>
 
 
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">
 
-                <div class="navbar">
-
-[Nav Bar]
+              </a>
+            </div>
+          </div>
+        </nav>
 
                   {% if user.username != '' %}
-                  <br>
-                        ]Welcome {{ user.username }} !!!<br>
 
-                  [nav buttons]<br>
-                  [box: Logged in information box]<br>
 
-                  [<a href="/logout/">Logout</a>]
-                  {% endif %}
+
+                  <div class="navbar">
+                    <ul class="nav nav-tabs">
+                      <li role="presentation" class="active"><a href="#">Home</a></li>
+                      <li role="presentation"><a href="#">Profile</a></li>
+                      <li role="presentation"><a href="#">Messages</a></li>
+                      <li role="presentation"><a href="/logout/">Logout</a></li>
+
+
+                    </ul>
 
 
                 </div>
+<br>
+  <div class="well">
+
+                                        Welcome {{ user.username }} !!!<br>
+
+                                  [nav buttons]<br>
+                                  [box: Logged in information box]<br>
+
+
+                </div>
+
+
+                  {% endif %}
 
                 <div class="blended_grid">
 
@@ -44,9 +67,20 @@
 
         </div>
         <div class="infobar">
-          social<br>
-          contact<br>
-          bug<br>
+
+
+  <div class="well">
+
+                        social<br>
+                        contact<br>
+                        bug<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div>
+
         </div>
 
 
