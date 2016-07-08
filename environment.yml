@@ -1,0 +1,5 @@
+name: vhn_01-env
+dependencies:
+ - python=3.5
+ - django=1.9
+ - pip

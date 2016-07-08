@@ -1,0 +1,54 @@
+{% load staticfiles %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title>
+        {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    </head>
+    <body>
+        <h1>
+          {% block head %}
+          {% endblock %}
+        </h1>
+
+
+
+                <div class="navbar">
+
+[Nav Bar]
+
+                  {% if user.username != '' %}
+                  <br>
+                        ]Welcome {{ user.username }} !!!<br>
+
+                  [nav buttons]<br>
+                  [box: Logged in information box]<br>
+
+                  [<a href="/logout/">Logout</a>]
+                  {% endif %}
+
+
+                </div>
+
+                <div class="blended_grid">
+
+
+          {% block content %}
+
+
+          {% endblock %}
+
+
+
+        </div>
+        <div class="infobar">
+          social<br>
+          contact<br>
+          bug<br>
+        </div>
+
+
+    </body>
+</html>
