@@ -26,4 +26,7 @@ urlpatterns = patterns('',
     url(r'^register/success/$', register_success),
     url(r'^home/$', home),
     url(r'^profile/$', profile),
+    url(r'^project/$', project),
+    url(r'^comment/$', comment),
+    url(r'^media/$', media),
 )

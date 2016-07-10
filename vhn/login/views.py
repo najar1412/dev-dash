@@ -8,11 +8,23 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 
+from login.models import Personal, Project, Comment, Media
+
 # Create your views here.
 #views.py
 
 @csrf_protect
 def register(request):
+
+    """ Add employee to personal collection """
+    employee = Personal.objects.create(
+        email="free@delete.com",
+        first_name="From Register",
+        last_name="delete"
+    )
+    employee.save()
+
+
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -46,3 +58,39 @@ def logout_page(request):
 @login_required
 def home(request):
     return render_to_response('home.html', { 'user': request.user })
+
+def project(request):
+
+    """ Add project to project collection """
+    project = Project.objects.create(
+        email="free@delete.com",
+        first_name="From Register",
+        last_name="delete"
+    )
+    project.save()
+
+    return render_to_response('project.html')
+
+def comment(request):
+
+    """ Add comment to comment collection """
+    comment = Comment.objects.create(
+        email="free@delete.com",
+        first_name="From Register",
+        last_name="delete"
+    )
+    comment.save()
+
+    return render_to_response('comment.html')
+
+def media(request):
+
+    """ Add project to project collection """
+    media = Media.objects.create(
+        email="free@delete.com",
+        first_name="From Register",
+        last_name="delete"
+    )
+    media.save()
+
+    return render_to_response('media.html')
