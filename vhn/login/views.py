@@ -66,7 +66,21 @@ def new_project(request):
         form = NewProjectForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            print(form)
+            project_code = form.cleaned_data['project_code']
+            project_inc = form.cleaned_data['project_inc']
+            project_name = form.cleaned_data['project_name']
+            project_start = form.cleaned_data['project_start']
+            project_end = form.cleaned_data['project_end']
+            # user_id = form.cleaned_data['user_id']
+
+            print(
+                project_code,
+                project_inc,
+                project_name,
+                project_start,
+                project_end,
+                # user_id,
+            )
             return HttpResponseRedirect('/thanks/')
 
     # if a GET (or any other method) we'll create a blank form

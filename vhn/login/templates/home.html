@@ -293,6 +293,9 @@ dental<br>
                     <input class="form-control" id="id_project_name" maxlength="100" name="project_name" type="text" placeholder="Project Name" /><br>
                     <input class="form-control" id="id_project_start" maxlength="100" name="project_start" type="text" placeholder="Start Date" /><br>
                     <input class="form-control" id="id_project_end" maxlength="100" name="project_end" type="text" placeholder="Deadline" /><br>
+
+                    <input type="hidden" id="id_user_id" maxlength="255" name="user_id" value="{{ user.username }}" />
+
         <center>
             <button type="submit" class="btn btn-default" value="Submit" />Create Project</button>
       </center>
