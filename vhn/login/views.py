@@ -1,3 +1,6 @@
+import calendar
+import datetime
+
 from django.shortcuts import render
 
 from login.forms import *
@@ -52,8 +55,19 @@ def logout_page(request):
 
 @login_required
 def home(request):
+    today_date = str(datetime.date.today()).split('-')
+    week_num = datetime.date(int(today_date[0]), int(today_date[1]), int(today_date[2])).isocalendar()[1]
+    week_titles = calendar.weekheader(9)
+
     form = NewProjectForm()
-    return render(request, 'home.html', {'user': request.user, 'form': form})
+    return render(request, 'home.html', {
+        'user': request.user,
+        'form': form,
+        'today_date': today_date,
+        'week_num': week_num,
+        'week_titles': week_titles
+        }
+        )
 
 
 def project(request):
@@ -66,21 +80,26 @@ def new_project(request):
         form = NewProjectForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
+            # get data from form
             project_code = form.cleaned_data['project_code']
             project_inc = form.cleaned_data['project_inc']
             project_name = form.cleaned_data['project_name']
             project_start = form.cleaned_data['project_start']
             project_end = form.cleaned_data['project_end']
-            # user_id = form.cleaned_data['user_id']
+            creator_id = form.cleaned_data['creator_id']
 
-            print(
-                project_code,
-                project_inc,
-                project_name,
-                project_start,
-                project_end,
-                # user_id,
-            )
+            # append data to database
+            new_project = Project(
+                project_code=project_code,
+                project_inc=project_inc,
+                project_name=project_name,
+                project_start=project_start,
+                project_end=project_end,
+                creator_id=creator_id,
+                    )
+
+            new_project.save()
+
             return HttpResponseRedirect('/thanks/')
 
     # if a GET (or any other method) we'll create a blank form

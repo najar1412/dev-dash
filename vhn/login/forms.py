@@ -32,3 +32,9 @@ class NewProjectForm(forms.Form):
     project_name = forms.CharField(label='Project Name', max_length=100)
     project_start = forms.CharField(label='Start Date', max_length=100)
     project_end = forms.CharField(label='Deadline', max_length=100)
+
+    creator_id = forms.CharField(label='creator_id', max_length=100)
+    assigned_user_id = forms.CharField(label='assigned_user_id', max_length=500)
+    location = forms.CharField(label='location', max_length=1000)
+    signedoff = forms.BooleanField(label='signedoff')
+    flagdelete = forms.BooleanField(label='flagdelete')

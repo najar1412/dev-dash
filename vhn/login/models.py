@@ -15,9 +15,10 @@ class Project(Document):
     project_start = StringField(required=True, max_length=255)
     project_end = StringField(required=True, max_length=255)
 
-    user_id = StringField(max_length=255, default='0')
+    creator_id = StringField(max_length=255, default='0')
+    assigned_user_id = StringField(max_length=500)
 
-    location = StringField(max_length=1000)
+    location = StringField(max_length=1000, default='')
     signedoff = BooleanField(default=False)
     flagdelete = BooleanField(default=False)
 
