@@ -7,7 +7,6 @@
 
 
 
-
       <a href="#" ><img src="{% static '/static/thumbs/01_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/02_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/03_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/04_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/05_thumbnail.png' %}" width="20%" height="20%"/></a>
 
       <a href="#" ><img src="{% static '/static/thumbs/01_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/02_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/03_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/04_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/05_thumbnail.png' %}" width="20%" height="20%"/></a>
@@ -30,11 +29,24 @@ dental<br>
         </div>
 
 
+  <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Projects</h3>
+        </div>
+  <img src="{% static '/static/bar_Chart.png' %}" width='100%' height='400px'/><br>
+
+
+</div>
+
+
 <div class="userbanner">
 
 
   <div class="panel panel-default">
     <div class="panel-body">
+
+
+
 
                   [current projects user is on]<br>
                   [current][signed off][next]<br>
@@ -147,6 +159,101 @@ dental<br>
 
     </div>
 
+
+
+
+
+
+    <div class="leftBanner">
+
+
+
+
+
+
+
+
+      <div class="list-group">
+        <a href="#" class="list-group-item active">
+          <h4 class="list-group-item-heading">Arch viz site #4</h4>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-text">Sed ut  voluptatem accus error sit voluptatem accusantium doloremque laudantium  </p>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit  accusantium doloremque laudantium </p>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-text">Sed ut perspiciatisomnis iste natus error sit voluptatemtem accus natus error sit voluptatem accusantium doloremque laudantium </p>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-text">Sed ut perspiciatis unde omnisomnis iste oluptatem accusantium doloremque laudantium </p>
+        </a>
+      </div>
+
+
+
+    </div>
+
+
+
+    <div class="centerBanner">
+
+
+      <div class="list-group">
+        <a href="#" class="list-group-item active">
+          <h4 class="list-group-item-heading">Arch viz site #5</h4>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremomnis iste natus error sit voluptatem accusque laudantium  </p>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium </p>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-text">Sed ut perspiciatis unde omnisomnis iste natus error sit voluptatem accus iste natus error sit voluptatem accusantium doloremque laudantium </p>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium </p>
+        </a>
+      </div>
+
+
+    </div>
+
+
+
+    <div class="rightBanner">
+
+
+      <div class="list-group">
+        <a href="#" class="list-group-item active">
+          <h4 class="list-group-item-heading">Arch viz site #6</h4>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium  </p>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-text">Sed ut  iste natus error sit voluptatem aomnis iste natus error sit voluptatem accusccusantium doloremque laudantium </p>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste nomnis iste natus error sit voluptatem accusatus error sit voluptatem aomnis iste natus error sit voluptatem accusccusantium doloremque laudantium </p>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-text">Sed ut doloremque laudantium </p>
+        </a>
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
 <div class="userbanner">
 
 
@@ -165,6 +272,44 @@ dental<br>
 
 
   </div>
+
+
+
+
+  <div class="userbanner">
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+              <h3 class="panel-title">Project</h3>
+            </div>
+          <div class="panel-body">
+
+
+            <form action="/your-name/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input class="form-control" id="id_project_code" maxlength="100" name="project_code" type="text" placeholder="Project Code" /><br>
+                    <input class="form-control" id="id_project_inc" maxlength="100" name="project_inc" type="text" placeholder="Increment" /><br>
+                    <input class="form-control" id="id_project_name" maxlength="100" name="project_name" type="text" placeholder="Project Name" /><br>
+                    <input class="form-control" id="id_project_start" maxlength="100" name="project_start" type="text" placeholder="Start Date" /><br>
+                    <input class="form-control" id="id_project_end" maxlength="100" name="project_end" type="text" placeholder="Deadline" /><br>
+        <center>
+            <button type="submit" class="btn btn-default" value="Submit" />Create Project</button>
+      </center>
+                </div>
+
+
+            </form>
+
+
+
+
+
+          </div>
+        </div>
+
+      </div>
+
 
 
 

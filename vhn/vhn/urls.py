@@ -29,4 +29,9 @@ urlpatterns = patterns('',
     url(r'^project/$', project),
     url(r'^comment/$', comment),
     url(r'^media/$', media),
+    url(r'^test/$', project),
+    url(r'^your-name/$', get_name),
+    url(r'^thanks/$', home),
+    url(r'^post/new/$', project, name='post_new'),
+
 )

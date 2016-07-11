@@ -9,6 +9,8 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 
 from login.models import Personal, Project, Comment, Media
+from login.forms import NewProject, NameForm
+
 
 # Create your views here.
 #views.py
@@ -36,14 +38,9 @@ def register(request):
             return HttpResponseRedirect('/register/success/')
     else:
         form = RegistrationForm()
-    variables = RequestContext(request, {
-    'form': form
-    })
+    variables = RequestContext(request, {'form': form})
 
-    return render_to_response(
-    'registration/register.html',
-    variables,
-    )
+    return render_to_response('registration/register.html', variables)
 
 def profile(request):
     return  render_to_response('profile.html')
@@ -57,19 +54,65 @@ def logout_page(request):
 
 @login_required
 def home(request):
-    return render_to_response('home.html', { 'user': request.user })
 
+    form = NameForm()
+
+    return render(request, 'home.html', {'user': request.user, 'form': form})
+
+
+"""
 def project(request):
 
-    """ Add project to project collection """
+
+    ''' Add project to project collection'''
     project = Project.objects.create(
-        email="free@delete.com",
-        first_name="From Register",
-        last_name="delete"
+        project_code="RO-001",
+        project_inc="001",
+        project_name="1 Garret Pl",
+        project_start="The start date",
+        project_end="The end date"
     )
     project.save()
 
+
+
     return render_to_response('project.html')
+
+"""
+
+
+
+def project(request):
+    # if this is a POST request we need to process the form data
+    form = NewProject()
+    return render(request, 'project.html', {'form': form})
+
+
+
+
+
+
+from .forms import NameForm
+
+def get_name(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = NameForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            print(form)
+            return HttpResponseRedirect('/thanks/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = NameForm()
+
+    return render(request, 'name.html', {'form': form})
+
+
+
+
 
 def comment(request):
 
