@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import ModelForm
 from mongoengine import *
 
 # Create your models here.
@@ -9,7 +8,7 @@ class Personal(Document):
     first_name = StringField(max_length=50)
     last_name = StringField(max_length=50)
 
-class Project(ModelForm):
+class Project(Document):
     project_code = StringField(required=True, max_length=50)
     project_inc = StringField(required=True, max_length=50)
     project_name = StringField(required=True, max_length=255)

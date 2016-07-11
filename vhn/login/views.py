@@ -9,8 +9,7 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 
 from login.models import Personal, Project, Comment, Media
-from login.forms import NewProject, NameForm
-
+from login.forms import NewProjectForm
 
 # Create your views here.
 #views.py
@@ -38,15 +37,14 @@ def register(request):
             return HttpResponseRedirect('/register/success/')
     else:
         form = RegistrationForm()
-    variables = RequestContext(request, {'form': form})
 
-    return render_to_response('registration/register.html', variables)
+    return render(request, 'registration/register.html', {'form': form})
 
 def profile(request):
-    return  render_to_response('profile.html')
+    return  render(request, 'profile.html')
 
 def register_success(request):
-    return render_to_response('home.html')
+    return render(request, 'registration/success.html')
 
 def logout_page(request):
     logout(request)
@@ -54,51 +52,18 @@ def logout_page(request):
 
 @login_required
 def home(request):
-
-    form = NameForm()
-
+    form = NewProjectForm()
     return render(request, 'home.html', {'user': request.user, 'form': form})
 
 
-"""
 def project(request):
+    return render(request, 'project.html')
 
-
-    ''' Add project to project collection'''
-    project = Project.objects.create(
-        project_code="RO-001",
-        project_inc="001",
-        project_name="1 Garret Pl",
-        project_start="The start date",
-        project_end="The end date"
-    )
-    project.save()
-
-
-
-    return render_to_response('project.html')
-
-"""
-
-
-
-def project(request):
-    # if this is a POST request we need to process the form data
-    form = NewProject()
-    return render(request, 'project.html', {'form': form})
-
-
-
-
-
-
-from .forms import NameForm
-
-def get_name(request):
+def new_project(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = NameForm(request.POST)
+        form = NewProjectForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
             print(form)
@@ -106,12 +71,9 @@ def get_name(request):
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = NameForm()
+        form = NewProjectForm()
 
     return render(request, 'name.html', {'form': form})
-
-
-
 
 
 def comment(request):
@@ -124,7 +86,8 @@ def comment(request):
     )
     comment.save()
 
-    return render_to_response('comment.html')
+    return render(request, 'comment.html')
+
 
 def media(request):
 
@@ -136,4 +99,4 @@ def media(request):
     )
     media.save()
 
-    return render_to_response('media.html')
+    return render(request, 'media.html')

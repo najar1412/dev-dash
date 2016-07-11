@@ -1,10 +1,8 @@
 #files.py
 import re
 from django import forms
-from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from login.models import Project
 
 class RegistrationForm(forms.Form):
 
@@ -27,17 +25,9 @@ class RegistrationForm(forms.Form):
         return self.cleaned_data
 
 
-class NewProject(ModelForm):
-    pass
-    """
-    class Meta:
-        model = Project
-        fields = []
-    """
+class NewProjectForm(forms.Form):
 
-
-class NameForm(forms.Form):
-    project_code = forms.CharField(label='Project Code', max_length=100, widget=forms.TextInput)
+    project_code = forms.CharField(label='Project Code', max_length=100)
     project_inc = forms.CharField(label='Increment', max_length=100)
     project_name = forms.CharField(label='Project Name', max_length=100)
     project_start = forms.CharField(label='Start Date', max_length=100)
