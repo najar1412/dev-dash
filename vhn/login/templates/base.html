@@ -54,7 +54,7 @@
         <div class="blended_grid">
             <div class="infobar">
                 <div class="well">
-                    <a href="/home/" ><img src="{% static 'visualhouse.png' %}" width="25%" height="25%"/></a>
+                    <img src="{% static 'favicon.png' %}" width="30px" height="30px"/><a href="/home/" style="text-decoration: none"> &emsp; <img src="{% static 'visualhouse.png' %}" width="25%" height="25%"/></a>
                 </div>
             </div>
 
@@ -65,7 +65,6 @@
                             <li role="presentation"><a href="/home/">Dash</a></li>
                             <li role="presentation"><a href="/profile/">Profile</a></li>
                             <li role="presentation"><a href="#">Messages</a></li>
-                            <li role="presentation"><a href="/logout/">Logout</a></li>
                             <li role="presentation"><a href="/register/">+ employee</a></li>
                             <li role="presentation"><a href="/comment/">+ comment</a></li>
                             <li role="presentation"><a href="/media/">+ media</a></li>
@@ -74,9 +73,9 @@
                         <div class="loginleft">
                             .
                         </div>
-
                         <div class="loginright">
-                            Logged in as {{ user.username }}
+                            Logged in as {{ user.username }}<br>
+                            <a href="/logout/">Logout</a>
                         </div>
                     </div>
                 {% endif %}
@@ -85,9 +84,10 @@
 
         <div class="blended_grid">
             {% block content %}
+
+
             {% endblock %}
         </div>
-
                 {% if user.username != '' %}
         <div class="infobar">
             <div class="well">
