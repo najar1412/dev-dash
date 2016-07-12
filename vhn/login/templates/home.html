@@ -2,16 +2,98 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div class="imagebanner">
+
+<br>
+<h3>Notification</h3>
+<br>
 
 
+<div class="userbanner">
 
 
-      <a href="#" ><img src="{% static '/static/thumbs/01_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/02_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/03_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/04_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/05_thumbnail.png' %}" width="20%" height="20%"/></a>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Comments</h3>
+    </div>
 
-      <a href="#" ><img src="{% static '/static/thumbs/01_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/02_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/03_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/04_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/05_thumbnail.png' %}" width="20%" height="20%"/></a>
+    <div class="panel-body">
+
+
+        Announcements
+          - vh news
+          - network news
+          - assigned to project
+          - mentioned
+        notes
+          - network messaging system
+          - notes can be left on all most object_ids (users_is, media_, project_id)
+          - notes can be replied to.
+        <br>
 
     </div>
+  </div>
+
+
+
+  </div>
+
+
+
+
+
+<br>
+<h3>Project</h3>
+<br>
+<div class="userbanner">
+
+
+  <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <h3 class="panel-title">Current Projects</h3>
+      </div>
+    <div class="panel-body">
+
+
+
+<div id="chart_div"></div>
+
+
+    </div>
+
+  </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<h3>Media</h3>
+<br>
+    <div class="topBanner">
+
+      <a href="#" ><img src="{% static '/static/thumbs/01_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/02_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/03_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/04_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/05_thumbnail.png' %}" width="20%" height="20%"/></a><br>
+
+      <a href="#" ><img src="{% static '/static/thumbs/01_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/02_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/03_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/04_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/05_thumbnail.png' %}" width="20%" height="20%"/></a><br>
+
+    </div>
+    <br>
+    <br>
+    <h3>My information</h3>
+    <br>
+
+
+
+
     <div class="userbanner">
           <div class="panel panel-default">
             <div class="panel-body">
@@ -28,22 +110,9 @@ dental<br>
 
         </div>
 
-
-<div class="userbanner">
-
-
-  <div class="panel panel-default">
-    <div class="panel-body">
-
-<div id="chart_div"></div>
-
-
-    </div>
-
-  </div>
-
-  </div>
-
+  <br>
+  <h3>News</h3>
+  <br>
     <div class="leftBanner">
 
 
@@ -214,35 +283,15 @@ dental<br>
 
 
 
-
-
-<div class="userbanner">
-
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Comments</h3>
-    </div>
-    <div class="panel-body">
-
-
-        [comments?]<br>
-
-    </div>
-  </div>
-
-
-
-  </div>
-
-
-
+<br>
+<h3>Admin</h3>
+<br>
 
     <div class="userbanner">
         <div class="panel panel-default">
 
             <div class="panel-heading">
-              <h3 class="panel-title">Project</h3>
+              <h3 class="panel-title">Create Project</h3>
             </div>
             <div class="panel-body">
                 <form action="/new_project/" method="post">{% csrf_token %}

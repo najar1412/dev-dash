@@ -55,19 +55,8 @@ def logout_page(request):
 
 @login_required
 def home(request):
-    today_date = str(datetime.date.today()).split('-')
-    week_num = datetime.date(int(today_date[0]), int(today_date[1]), int(today_date[2])).isocalendar()[1]
-    week_titles = calendar.weekheader(9)
-
     form = NewProjectForm()
-    return render(request, 'home.html', {
-        'user': request.user,
-        'form': form,
-        'today_date': today_date,
-        'week_num': week_num,
-        'week_titles': week_titles
-        }
-        )
+    return render(request, 'home.html', {'user': request.user,'form': form})
 
 
 def project(request):
