@@ -1,5 +1,6 @@
 import calendar
 import datetime
+from collections import namedtuple
 
 from django.shortcuts import render
 
@@ -13,6 +14,7 @@ from django.template import RequestContext
 
 from login.models import Personal, Project, Comment, Media
 from login.forms import NewProjectForm
+
 
 # Create your views here.
 #views.py
@@ -28,7 +30,6 @@ def register(request):
     )
     employee.save()
 
-
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -43,24 +44,61 @@ def register(request):
 
     return render(request, 'registration/register.html', {'form': form})
 
+
 def profile(request):
     return  render(request, 'profile.html')
 
+
 def register_success(request):
     return render(request, 'registration/success.html')
+
 
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
 
+
 @login_required
 def home(request):
+
+    projects_list = []
+    project_datatable = "['row_label', 'bar_label', 's_date', 'e_date']"
+
+    # Get current projects
+    get_projects = [x.to_mongo() for x in Project.objects]
+
+    for projects in get_projects:
+        projects_list.append(projects.to_dict())
+
+    # build datatable from database
+    for project in projects_list:
+
+        start_date_format = []
+        end_date_format = []
+
+        #Clean start date
+        _date_start = project['project_start'].split('/')
+
+        start_date_format.append(_date_start[2])
+        start_date_format.append(_date_start[0])
+        start_date_format.append(_date_start[1])
+
+        #Clean end date
+        _date_end = project['project_end'].split('/')
+
+        end_date_format.append(_date_end[2])
+        end_date_format.append(_date_end[0])
+        end_date_format.append(_date_end[1])
+
+        project_datatable += ", [ '{}', '{}', new Date({}), new Date({}) ]".format(project['project_name'], project['project_name'], start_date_format, end_date_format)
+
     form = NewProjectForm()
-    return render(request, 'home.html', {'user': request.user,'form': form})
+    return render(request, 'home.html', {'user': request.user,'form': form, 'project_datatable' : project_datatable})
 
 
 def project(request):
     return render(request, 'project.html')
+
 
 def new_project(request):
     # if this is a POST request we need to process the form data

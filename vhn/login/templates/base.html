@@ -3,57 +3,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
-        <title></title>
+        <title>Network</title>
+
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+
             <!-- Bootstrap -->
             <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
             <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
             <script type="text/javascript">
-              google.charts.load('current', {'packages':['gantt']});
-              google.charts.setOnLoadCallback(drawChart);
-
-              function drawChart() {
-
-                var data = new google.visualization.DataTable();
-                data.addColumn('string', 'Task ID');
-                data.addColumn('string', 'Task Name');
-                data.addColumn('string', 'Resource');
-                data.addColumn('date', 'Start Date');
-                data.addColumn('date', 'End Date');
-                data.addColumn('number', 'Duration');
-                data.addColumn('number', 'Percent Complete');
-                data.addColumn('string', 'Dependencies');
-
-                data.addRows([
-                  ['2014Spring', 'Project #01', 'creative',
-                   new Date(2016, 1, 1), new Date(2016, 3, 20), null, 0, null],
-                  ['2014Summer', 'Project #002', 'film',
-                   new Date(2016, 2, 21), new Date(2016, 3, 10), null, 0, null],
-                  ['2014Autumn', 'Project #003', 'still',
-                   new Date(2016, 4, 10), new Date(2016, 5, 10), null, 0, null],
-                  ['2014Winter', 'Project #004', 'mixed',
-                   new Date(2016, 3, 5), new Date(2016, 6, 3), null, 0, null]
-                ]);
+                google.charts.load('current', {'packages':['timeline']});
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                var container = document.getElementById('timeline');
+                var chart = new google.visualization.Timeline(container);
+                var dataTable = google.visualization.arrayToDataTable([
+                    {{ project_datatable|safe }},
+                    ],
+                    false); // 'false' means that the first row contains labels, not data.
 
                 var options = {
-                  height: 170,
-                  gantt: {
-                    trackHeight: 27
-                  }
+                    colors: ['#0087FF', '#FFEA30'],
+                    timeline: { showRowLabels: false },
+                    avoidOverlappingGridLines: false,
+                    forceIFrame: false,
                 };
 
-                var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
-
-                chart.draw(data, options);
-              }
+                chart.draw(dataTable, options);
+                }
             </script>
 
 
 
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+            <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+            <script>
+            $( function() {
+                $( "#datepicker_start" ).datepicker();
+                } );
+            $( function() {
+                $( "#datepicker_end" ).datepicker();
+                } );
+            </script>
 
     </head>
     <body>
+
         <div class="blended_grid">
             <div class="infobar">
                 <div class="well">
@@ -102,13 +99,13 @@
 
                     <div class="centerBanner">
                         <address>
-  <strong>Visualhouse, NY </strong><br>
-  54 Thompson, Fl. 3<br>
-  New York, NY 10012<br>
-  <br>
-  <abbr title="Phone">P:</abbr> (123) 456-7890<br>
-  <abbr title="Email">E:</abbr> hello@visualhouse.co
-</address><br>
+                            <strong>Visualhouse, NY </strong><br>
+                            54 Thompson, Fl. 3<br>
+                            New York, NY 10012<br>
+                            <br>
+                            <abbr title="Phone">P:</abbr> (123) 456-7890<br>
+                            <abbr title="Email">E:</abbr> hello@visualhouse.co
+                        </address><br>
                     </div>
 
                     <div class="rightBanner">
