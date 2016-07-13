@@ -47,6 +47,12 @@ class Media(Document):
     last_name = StringField(max_length=50)
 
 class Comment(Document):
-    email = StringField(required=True)
-    first_name = StringField(max_length=50)
-    last_name = StringField(max_length=50)
+    # make post
+    op_id = StringField(required=True)
+    item_id = StringField(required=True)
+    subject = StringField(required=True)
+    content = StringField(default='N/a')
+    rate = StringField(default='N/a')
+
+    #reply to post
+    parent_id = StringField()

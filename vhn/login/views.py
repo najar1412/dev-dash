@@ -13,7 +13,7 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 
 from login.models import Personal, Project, Comment, Media
-from login.forms import NewProjectForm
+from login.forms import NewProjectForm, NewCommentForm
 
 
 # Create your views here.
@@ -129,16 +129,35 @@ def home(request):
                 user.dent_provider,
                 user.dent_plan,
                 user.curr_project,
-                user.email
+                user.email,
                 ]
 
+    # Get user messages
+    user_message = {}
+    user_message_count = 0
+    for note in Comment.objects:
+        if str(note.item_id) == str(request.user):
+            user_message[user_message_count] = [
+                    note.op_id,
+                    note.item_id,
+                    note.subject,
+                    note.content,
+                    note.parent_id,
+                    ]
+
+
+            user_message_count += 1
+
     form = NewProjectForm()
+    comment_form = NewCommentForm()
 
     return render(request, 'home.html', {
         'user': request.user,
         'form': form,
+        'comment_form': comment_form,
         'project_datatable' :project_datatable,
-        'loggedin_user_info': loggedin_user_info
+        'loggedin_user_info': loggedin_user_info,
+        'user_message': user_message
         }
         )
 
@@ -183,17 +202,41 @@ def new_project(request):
     return render(request, 'name.html', {'form': form})
 
 
+
+
 def comment(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = NewCommentForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
 
-    """ Add comment to comment collection """
-    comment = Comment.objects.create(
-        email="free@delete.com",
-        first_name="From Register",
-        last_name="delete"
-    )
-    comment.save()
+            op_id = form.cleaned_data['op_id']
+            item_id = form.cleaned_data['item_id']
+            subject = form.cleaned_data['subject']
+            content = form.cleaned_data['content']
+            rate = form.cleaned_data['rate']
 
-    return render(request, 'comment.html')
+            # append data to database
+            new_comment = Comment(
+                op_id=op_id,
+                item_id=item_id,
+                subject=subject,
+                content=content,
+                rate=rate,
+                    )
+
+            new_comment.save()
+
+            return HttpResponseRedirect('/thanks/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = NewCommentForm()
+
+    return render(request, 'name.html', {'form': form})
+
 
 
 def media(request):

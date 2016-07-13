@@ -38,3 +38,12 @@ class NewProjectForm(forms.Form):
     location = forms.CharField(label='location', max_length=1000)
     signedoff = forms.BooleanField(label='signedoff')
     flagdelete = forms.BooleanField(label='flagdelete')
+
+class NewCommentForm(forms.Form):
+    op_id = forms.CharField(label='op_id', max_length=100)
+    item_id = forms.CharField(label='item_id', max_length=100)
+    subject = forms.CharField(label='subject')
+    content = forms.CharField(label='content')
+    rate = forms.CharField(label='rate')
+
+    parent_id = forms.CharField(label='parent_id')
