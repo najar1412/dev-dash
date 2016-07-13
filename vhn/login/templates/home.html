@@ -2,7 +2,6 @@
 {% load staticfiles %}
 
 {% block content %}
-
 <h3>Notification</h3>
 <br>
 
@@ -64,26 +63,30 @@
     <div class="userbanner">
         <div class="panel panel-default">
             <div class="panel-body">
-               [bar: User information 'card']<br>
-                name<br>
-                role<br>
-                start date<br>
-                holiday<br>
+                <small><b>Name: </b></small>&emsp;{{ loggedin_user_info.1 }} {{ loggedin_user_info.2 }}<br>
+                <small><b>Birthday: </b></small>&emsp;{{ loggedin_user_info.4 }}<br>
+                <small><b>Role: </b></small>&emsp;{{ loggedin_user_info.3 }}<br>
+                <small><b>Start Date: </b></small>&emsp;[IMP]<br>
+                <small><b>Holiday: </b></small>&emsp;{{ loggedin_user_info.5 }}<br>
                 <br>
-                health plan<br>
-                dental<br>
+                <small><b>Current Projects: </b></small>&emsp;{{ loggedin_user_info.10 }}<br>
+                <br>
+                <small><b>Health Provider: </b></small>&emsp;{{ loggedin_user_info.6 }}<br>
+                <small><b>Health Plan: </b></small>&emsp;{{ loggedin_user_info.7 }}<br>
+                <small><b>Dental Provider: </b></small>&emsp;{{ loggedin_user_info.8 }}<br>
+                <small><b>Dental Plan: </b></small>&emsp;{{ loggedin_user_info.9 }}<br>
+                <br>
+                <a href="" class="btn btn-default">Edit</a>
+                <br>
             </div>
         </div>
-
-        </div>
+    </div>
 
   <br>
   <h3>News</h3>
   <br>
 
 <div class="leftBanner">
-
-
     <div class="list-group">
         <a href="#" class="list-group-item active">
             <h4 class="list-group-item-heading">cg architect</h4>
@@ -241,5 +244,38 @@
     </div>
 </div>
 
+
+<div class="userbanner">
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">New User</h3>
+        </div>
+        <div class="panel-body">
+
+    <form method="post" action="/register/">{% csrf_token %}
+
+      <div class="form-group">
+
+          <input class="form-control" id="id_username" max_length="30" name="username" type="text" placeholder="Username" required />
+          <input class="form-control" id="id_email" max_length="30" name="email" type="text" placeholder="Email" required />
+          <input class="form-control" id="id_password1" max_length="30" name="password1" type="password" placeholder="Password" required />
+          <input class="form-control" id="id_password2" max_length="30" name="password2" type="password" placeholder="Repeat Password" required />
+
+      </div>
+
+
+<center>
+<button type="submit" class="btn btn-default" value="Register" />Register</button>
+<input type="hidden" name="next" value="/home" />
+
+<a href="/home" class="btn btn-default">Login</a>
+</center>
+
+    </form>
+</div>
+</div>
+</div>
 
 {% endblock %}

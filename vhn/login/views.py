@@ -22,22 +22,36 @@ from login.forms import NewProjectForm
 @csrf_protect
 def register(request):
 
-    """ Add employee to personal collection """
-    employee = Personal.objects.create(
-        email="free@delete.com",
-        first_name="From Register",
-        last_name="delete"
-    )
-    employee.save()
-
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
+
         if form.is_valid():
+
+            """ Figure out where django saves User.object """
             user = User.objects.create_user(
-            username=form.cleaned_data['username'],
-            password=form.cleaned_data['password1'],
-            email=form.cleaned_data['email']
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password1'],
+                email=form.cleaned_data['email']
             )
+
+            """ Add employee to personal collection """
+            employee = Personal.objects.create(
+                email = form.cleaned_data['email'],
+                username = form.cleaned_data['username'],
+                first_name = "Gen - first name",
+                last_name = "Gen - last name",
+                dob = "Gen - dob",
+                hols = "Gen - hols",
+                med_provider = "Gen - med_provider",
+                med_plan = "Gen - men_plan",
+                dent_provider = "Gen - dent_provider",
+                dent_plan = "Gen - dent_plan",
+                curr_project = "Gen - curr_project",
+                pre_project = "Gen - pre_project",
+                role = "Gen - Role"
+            )
+            employee.save()
+
             return HttpResponseRedirect('/register/success/')
     else:
         form = RegistrationForm()
@@ -61,6 +75,7 @@ def logout_page(request):
 @login_required
 def home(request):
 
+
     projects_list = []
     project_datatable = "['row_label', 'bar_label', 's_date', 'e_date']"
 
@@ -76,24 +91,56 @@ def home(request):
         start_date_format = []
         end_date_format = []
 
-        #Clean start date
+        # Clean start date
         _date_start = project['project_start'].split('/')
 
         start_date_format.append(_date_start[2])
         start_date_format.append(_date_start[0])
         start_date_format.append(_date_start[1])
 
-        #Clean end date
+        # Clean end date
         _date_end = project['project_end'].split('/')
 
         end_date_format.append(_date_end[2])
         end_date_format.append(_date_end[0])
         end_date_format.append(_date_end[1])
 
-        project_datatable += ", [ '{}', '{}', new Date({}), new Date({}) ]".format(project['project_name'], project['project_name'], start_date_format, end_date_format)
+        # append data table for current project chart
+        project_datatable += ", [ '{}', '{}', new Date({}), new Date({}) ]".format(
+            project['project_name'],
+            project['project_name'],
+            start_date_format,
+            end_date_format
+            )
+
+    # user information
+    loggedin_user_info = {}
+    for user in Personal.objects:
+        if str(request.user) == user.username:
+            loggedin_user_info = [
+                user.id,
+                user.first_name,
+                user.last_name,
+                user.role,
+                user.dob,
+                user.hols,
+                user.med_provider,
+                user.med_plan,
+                user.dent_provider,
+                user.dent_plan,
+                user.curr_project,
+                user.email
+                ]
 
     form = NewProjectForm()
-    return render(request, 'home.html', {'user': request.user,'form': form, 'project_datatable' : project_datatable})
+
+    return render(request, 'home.html', {
+        'user': request.user,
+        'form': form,
+        'project_datatable' :project_datatable,
+        'loggedin_user_info': loggedin_user_info
+        }
+        )
 
 
 def project(request):

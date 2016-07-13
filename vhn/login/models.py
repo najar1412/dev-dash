@@ -4,9 +4,28 @@ from mongoengine import *
 # Create your models here.
 
 class Personal(Document):
+    # Person
+    username = StringField(required=True)
     email = StringField(required=True)
     first_name = StringField(max_length=50)
     last_name = StringField(max_length=50)
+    role = StringField(max_length=50)
+    dob = StringField(max_length=50)
+
+    # Benifit
+    hols = StringField(max_length=50)
+
+    # Health
+    med_provider = StringField(max_length=50)
+    med_plan = StringField(max_length=50)
+    dent_provider = StringField(max_length=50)
+    dent_plan = StringField(max_length=50)
+
+    # Project
+    curr_project = StringField(max_length=50)
+    pre_project = StringField(max_length=50)
+
+    # Comment
 
 class Project(Document):
     project_code = StringField(required=True, max_length=50)
