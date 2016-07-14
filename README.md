@@ -1,4 +1,4 @@
-# network
+# vhn
 Personal, module based, database driven 'intranet' for small to medium businesses.
 Each users dashboard can be customized with desired modules.
 
