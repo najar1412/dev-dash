@@ -152,13 +152,16 @@ def home(request):
     form = NewProjectForm()
     comment_form = NewCommentForm()
 
+    project_count = len(projects_list)
+
     return render(request, 'home.html', {
         'user': request.user,
         'form': form,
         'comment_form': comment_form,
         'project_datatable' :project_datatable,
         'loggedin_user_info': loggedin_user_info,
-        'user_message': user_message
+        'user_message': user_message,
+        'project_count': project_count,
         }
         )
 
