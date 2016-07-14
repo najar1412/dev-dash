@@ -2,110 +2,143 @@
 {% load staticfiles %}
 
 {% block content %}
-<h3>Notification</h3>
-<br>
 
-<div class="userbanner">
 
-    <div class="panel panel-default">
+
+<div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Note</h3>
+        <h3 class="panel-title">
+            [<a title="show/hide" id="exp1468505665_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505665');"  style="text-decoration: none; color: #000000; ">−</a>]
+              Notes
+        </h3>
     </div>
-
     <div class="panel-body">
-        {% for message in user_message.items %}
-        <div>
-            <img src="{% static 'ico_message.jpg' %}"/><b>{{ message.1.3 }}</b> - <i>{{ message.1.1 }}</i><br>
-            <h6>{{ message.1.4 }}<br>
-
-            <form method="post" action="/del_note/">{% csrf_token %}
-              <input type="hidden" id="id_id_to_del" maxlength="255" name="id_to_del" value="{{ message.1.0 }}" />
-              <button type="submit" class="btn btn-secondary btn-sm" value="delete" />Delete</button><b> | Reply | Resource</b>
-            </form>
-
-            </h6><br>
-        </div>
-        {% endfor %}
-
-        {% comment %}
-        <img src="{% static 'ico_ann.jpg' %}"/><img src="{% static 'ico_message.jpg' %}"/><img src="{% static 'ico_comment.jpg' %}"/><br>
-        <br>
-        Announcements
-          - vh news
-          - network news
-          - assigned to project
-          - mentioned
-        notes
-          - network messaging system
-          - notes can be left on all most object_ids (users_id, media_, project_id)
-          - notes can be replied to.
-        <br>
-{% endcomment %}
-    </div>
-    </div>
-</div>
+        <div id="exp1468505665" style="padding: 3px;">
 
 
+            {% for message in user_message.items %}
+            <div>
+                <img src="{% static 'ico_message.jpg' %}"/><b>{{ message.1.3 }}</b> - <i>{{ message.1.1 }}</i><br>
+                <h6>{{ message.1.4 }}<br>
 
-<div class="userbanner">
-    <div class="panel panel-default">
+                <form method="post" action="/del_note/">{% csrf_token %}
+                  <input type="hidden" id="id_id_to_del" maxlength="255" name="id_to_del" value="{{ message.1.0 }}" />
+                  <button type="submit" class="btn btn-secondary btn-sm" value="delete" />Delete</button><b> | Reply | Resource</b>
+                </form>
 
-        <div class="panel-heading">
-            <h3 class="panel-title">Send Note</h3>
-        </div>
-        <div class="panel-body">
-            <form action="/comment/" method="post">{% csrf_token %}
-                <div class="form-group" style="width:392px">
-                    <div class="form-inline">
-                        <input type="hidden" id="id_op_id" maxlength="255" name="op_id" value="{{ user.username }}" />
-                        <input type="hidden" id="id_parent_id" maxlength="255" name="parent_id" value="None" />
-                        <input type="hidden" id="id_rate" maxlength="255" name="rate" value="None" />
-                        <input class="form-control" id="id_item_id" maxlength="100" name="item_id" type="text" placeholder="Recipient" />
-                        <input class="form-control" id="id_subject" maxlength="255" name="subject" type="text" placeholder="Subject" />
-                        <input class="form-control" id="id_content" maxlength="100" name="content" type="text" placeholder="Message..." />
-                    </div>
-                    <button type="submit" class="btn btn-default" value="Submit" />Send</button>
+                </h6><br>
+            </div>
+
+            {% endfor %}
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">Send Note</h3>
                 </div>
-            </form>
+                <div class="panel-body">
+                    <form action="/comment/" method="post">{% csrf_token %}
+                        <div class="form-group" style="width:392px">
+                            <div class="form-inline">
+                                <input type="hidden" id="id_op_id" maxlength="255" name="op_id" value="{{ user.username }}" />
+                                <input type="hidden" id="id_parent_id" maxlength="255" name="parent_id" value="None" />
+                                <input type="hidden" id="id_rate" maxlength="255" name="rate" value="None" />
+                                <input class="form-control" id="id_item_id" maxlength="100" name="item_id" type="text" placeholder="Recipient" />
+                                <input class="form-control" id="id_subject" maxlength="255" name="subject" type="text" placeholder="Subject" />
+                                <input class="form-control" id="id_content" maxlength="100" name="content" type="text" placeholder="Message..." />
+                            </div>
+                            <button type="submit" class="btn btn-default" value="Submit" />Send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+            {% comment %}
+
+            <img src="{% static 'ico_ann.jpg' %}"/><img src="{% static 'ico_message.jpg' %}"/><img src="{% static 'ico_comment.jpg' %}"/><br>
+            <br>
+            Announcements
+              - vh news
+              - network news
+              - assigned to project
+              - mentioned
+            notes
+              - network messaging system
+              - notes can be left on all most object_ids (users_id, media_, project_id)
+              - notes can be replied to.
+            <br>
+    {% endcomment %}
+
+        </div>
+<!-- Make Box init hidden -->
+<script language="javascript">toggle(getObject('exp1468505665_link'), 'exp1468505665');</script>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            [<a title="show/hide" id="exp1468505666_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505666');"  style="text-decoration: none; color: #000000; ">−</a>]
+              Project
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div id="exp1468505666" style="padding: 3px;">
+
+            <div class="panel-body" style="height:100%">
+                <div id="timeline" style="height:220px"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            [<a title="show/hide" id="exp1468505667_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505667');"  style="text-decoration: none; color: #000000; ">−</a>]
+              Media
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div id="exp1468505667" style="padding: 3px;">
+            <div class="userbanner">
+              <a href="#" ><img src="{% static '/static/thumbs/01_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/02_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/03_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/04_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/05_thumbnail.png' %}" width="20%" height="20%"/></a><br>
+              <a href="#" ><img src="{% static '/static/thumbs/01_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/02_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/03_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/04_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/05_thumbnail.png' %}" width="20%" height="20%"/></a><br>
+            </div>
+
+            <!-- Make Box init hidden -->
+            <script language="javascript">toggle(getObject('exp1468505667_link'), 'exp1468505667');</script>
+
+
         </div>
     </div>
 </div>
 
 
 
-<br>
-<h3>Project</h3>
-<br>
 
-<div class="userbanner">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Current Projects</h3>
-        </div>
-        <div class="panel-body" style="height:100%">
-            <div id="timeline" style="height:220px"></div>
-        </div>
 
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            [<a title="show/hide" id="exp1468505668_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505668');"  style="text-decoration: none; color: #000000; ">−</a>]
+              My Information
+        </h3>
     </div>
-
-</div>
-
-<br>
-<h3>Media</h3>
-<br>
-
-    <div class="topBanner">
-      <a href="#" ><img src="{% static '/static/thumbs/01_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/02_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/03_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/04_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/05_thumbnail.png' %}" width="20%" height="20%"/></a><br>
-      <a href="#" ><img src="{% static '/static/thumbs/01_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/02_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/03_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/04_thumbnail.jpg' %}" width="20%" height="20%"/></a><a href="#" ><img src="{% static '/static/thumbs/05_thumbnail.png' %}" width="20%" height="20%"/></a><br>
-    </div>
-
-<br>
-<h3>My Information</h3>
-<br>
-
-<div class="userbanner">
-    <div class="panel panel-default">
-        <div class="panel-body">
+    <div class="panel-body">
+        <div id="exp1468505668" style="padding: 3px;">
             <small><b>Name: </b></small>&emsp;{{ loggedin_user_info.1 }} {{ loggedin_user_info.2 }}<br>
             <small><b>Birthday: </b></small>&emsp;{{ loggedin_user_info.4 }}<br>
             <small><b>Role: </b></small>&emsp;{{ loggedin_user_info.3 }}<br>
@@ -120,12 +153,15 @@
             <small><b>Dental Plan: </b></small>&emsp;{{ loggedin_user_info.9 }}<br>
             <br>
             <a href="" class="btn btn-default">Edit</a>
-            <br>
         </div>
+
+        <!-- Make Box init hidden -->
+        <script language="javascript">toggle(getObject('exp1468505668_link'), 'exp1468505668');</script>
+
+
     </div>
 </div>
 
-<br>
 <h3>News</h3>
 <br>
 

@@ -5,6 +5,7 @@
     <head>
         <title>Network</title>
 
+
             <meta name="viewport" content="width=device-width, initial-scale=1">
 
             <!-- Bootstrap -->
@@ -48,6 +49,23 @@
                 } );
             </script>
 
+
+
+            <!-- flooble Expandable Content header start -->
+            <script language="javascript">
+            var ie4 = false; if(document.all) { ie4 = true; }
+            function getObject(id) { if (ie4) { return document.all[id]; } else { return document.getElementById(id); } }
+            function toggle(link, divId) { var lText = link.innerHTML; var d = getObject(divId);
+             if (lText == '+') { link.innerHTML = '−'; d.style.display = 'block'; }
+             else { link.innerHTML = '+'; d.style.display = 'none'; } }
+            </script>
+            <!-- flooble Expandable Content header end   -->
+
+
+
+
+
+
     </head>
     <body>
 
@@ -65,7 +83,6 @@
                             <li role="presentation"><a href="/home/">Dash</a></li>
                             <li role="presentation"><a href="/profile/">Profile</a></li>
                             <li role="presentation"><a href="#">Messages</a></li>
-                            <li role="presentation"><a href="/media/">+ media</a></li>
                         </ul>
 
                         <div class="loginleft">

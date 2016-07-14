@@ -45,6 +45,7 @@ class NewCommentForm(forms.Form):
     subject = forms.CharField(label='subject')
     content = forms.CharField(label='content')
     rate = forms.CharField(label='rate')
+    # read = forms.BooleanField(label='read')
 
     parent_id = forms.CharField(label='parent_id')
 

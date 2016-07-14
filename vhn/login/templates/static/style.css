@@ -1,12 +1,4 @@
-*{
-padding : 0;
-margin : 0;
-border : 0;
-}
-body{
-background-image : url(' bi-background-light-blue.png ');
-background-attachment : fixed;
-background-size : 100% auto;
+body {
 }
 .blended_grid{
 display : block;
@@ -14,48 +6,33 @@ width : 1050px;
 overflow : auto;
 margin : 100px auto 0 auto;
 }
-.topBanner{
-background-color : rgba(255,255,255, 0.5);
+.userbanner{
 float : left;
 clear : none;
-height : 200px;
-width : 1050px;
-}
-.middleBanner{
-background-color : rgba(255,255,255, 0.5);
-float : left;
-clear : none;
-height : 450px;
+height : 1000px;
 width : 1050px;
 }
 .leftBanner{
 float : left;
 clear : none;
 height : 350px;
-width : 350px;
+width : 348px;
 }
 .centerBanner{
 float : left;
 clear : none;
 height : 350px;
-width : 350px;
+width : 348px;
 }
 .rightBanner{
 float : left;
 clear : none;
 height : 350px;
-width : 350px;
+width : 348px;
 }
 .bottomBanner{
-background-color : rgba(255,255,255, 0.5);
 float : left;
 clear : none;
 height : 100px;
-width : 1050px;
-}
-.userbanner{
-float : left;
-clear : none;
-height : 1000px;
 width : 1050px;
 }
