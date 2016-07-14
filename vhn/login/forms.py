@@ -47,3 +47,7 @@ class NewCommentForm(forms.Form):
     rate = forms.CharField(label='rate')
 
     parent_id = forms.CharField(label='parent_id')
+
+
+class DelNote(forms.Form):
+    id_to_del = forms.CharField(label='id_to_del', widget=forms.HiddenInput())

@@ -13,7 +13,7 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 
 from login.models import Personal, Project, Comment, Media
-from login.forms import NewProjectForm, NewCommentForm
+from login.forms import NewProjectForm, NewCommentForm, DelNote
 
 
 # Create your views here.
@@ -138,6 +138,7 @@ def home(request):
     for note in Comment.objects:
         if str(note.item_id) == str(request.user):
             user_message[user_message_count] = [
+                    note.pk,
                     note.op_id,
                     note.item_id,
                     note.subject,
@@ -237,7 +238,24 @@ def comment(request):
 
     return render(request, 'name.html', {'form': form})
 
+def del_note(request):
 
+
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = DelNote(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            id_to_del = form.cleaned_data['id_to_del']
+            print(id_to_del)
+
+            doc_to_del = Comment(pk=id_to_del)
+            doc_to_del.delete()
+
+
+
+    return HttpResponseRedirect('/thanks/')
 
 def media(request):
 
