@@ -59,8 +59,58 @@ def register(request):
     return render(request, 'registration/register.html', {'form': form})
 
 
-def profile(request):
-    return  render(request, 'profile.html')
+@login_required
+def stat(request):
+
+    loggedin_user_info = {}
+    for user in Personal.objects:
+        if str(request.user) == user.username:
+            loggedin_user_info = [
+                user.id,
+                user.first_name,
+                user.last_name,
+                user.role,
+                user.dob,
+                user.hols,
+                user.med_provider,
+                user.med_plan,
+                user.dent_provider,
+                user.dent_plan,
+                user.curr_project,
+                user.email,
+                ]
+
+    return  render(request, 'stat.html', {
+        'loggedin_user_info': loggedin_user_info,
+        'user': request.user
+        })
+
+
+@login_required
+def setting(request):
+
+    loggedin_user_info = {}
+    for user in Personal.objects:
+        if str(request.user) == user.username:
+            loggedin_user_info = [
+                user.id,
+                user.first_name,
+                user.last_name,
+                user.role,
+                user.dob,
+                user.hols,
+                user.med_provider,
+                user.med_plan,
+                user.dent_provider,
+                user.dent_plan,
+                user.curr_project,
+                user.email,
+                ]
+
+    return  render(request, 'setting.html', {
+        'loggedin_user_info': loggedin_user_info,
+        'user': request.user
+        })
 
 
 def register_success(request):

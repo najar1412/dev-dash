@@ -84,7 +84,7 @@
                     <div class="navbar">
                         <ul class="nav nav-tabs">
                             <li role="presentation"><a href="/home/">Dash</a></li>
-                            <li role="presentation"><a href="/profile/">Profile</a></li>
+                            <li role="presentation"><a href="/stat/">Stats</a></li>
                             <li role="presentation"><a href="#">Messages</a></li>
                         </ul>
 
@@ -94,6 +94,7 @@
                         <div class="loginright">
                             <b>{{ loggedin_user_info.1 }} {{ loggedin_user_info.2 }}</b><br>
                             {{ loggedin_user_info.11 }}<br>
+                            <img src="{% static 'ico_setting.jpg' %}" width="15px" height="15px"/>&ensp;<a href="/setting/">Settings</a><br>
                             <a href="/logout/">Logout</a>
                         </div>
                     </div>

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Personal information</h3>
+    </div>
+    <div class="panel-body">
+
+        <div style="width:48%; float:left;">
+            <form action="/setting/" method="post">{% csrf_token %}
+                <div class="form-group">
+                    <div>
+                        <small>Username:</small>
+                        <input class="form-control" id="id_username" maxlength="100" name="username" type="text" placeholder="Username" /><br>
+                        <small>Email:</small>
+                        <input class="form-control" id="id_email" maxlength="100" name="email" type="text" placeholder="Email" /><br>
+                    </div>
+                    <div>
+                        <small>First Name:</small>
+                        <input class="form-control" id="id_first_name" maxlength="100" name="first_name" type="text" placeholder="First name" /><br>
+                        <small>Second Name:</small>
+                        <input class="form-control" id="id_last_name" maxlength="100" name="last_name" type="text" placeholder="Last name" /><br>
+                        <small>Cakeday:</small>
+                        <input class="form-control" id="datepicker_start" maxlength="100" name="dob" type="text" placeholder="Cakeday" /><br>
+                    </div>
+                </div>
+                        <button type="submit" class="btn btn-default" value="Submit" />Update</button>
+        </div>
+
+        <div style="width:48%; float:right;">
+            <div>
+                <small>Medical Provider:</small>
+                <input class="form-control" id="id_med_provider" maxlength="100" name="med_provider" type="text" placeholder="Medical Provider" /><br>
+                <small>Medical Plan:</small>
+                <input class="form-control" id="id_med_plan" maxlength="100" name="med_plan" type="text" placeholder="Medical Plan" /><br>
+            </div>
+            <div>
+                <small>Dental/Vision Provider:</small>
+                <input class="form-control" id="id_dent_provider" maxlength="100" name="dent_provider" type="text" placeholder="Dental/Vision Provider" /><br>
+                <small>Dental/Vision Plan</small>
+                <input class="form-control" id="id_dent_plan" maxlength="100" name="dent_plan" type="text" placeholder="Dental/Vision Plan" /><br>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Projects</h3>
+    </div>
+    <div class="panel-body">
+        Assign user to project<br>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Dash</h3>
+    </div>
+    <div class="panel-body">
+        Enable/disable modules<br>
+        Rearrange modules<br>
+        Theme<br>
+    </div>
+</div>
+<br>
+{% endblock %}
+
+
+
+
+
+
+
+# Project
+curr_project = StringField(max_length=50)
+pre_project = StringField(max_length=50)
