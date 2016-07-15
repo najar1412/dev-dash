@@ -79,6 +79,7 @@ def stat(request):
                 user.dent_plan,
                 user.curr_project,
                 user.email,
+                user.user_image,
                 ]
 
     return  render(request, 'stat.html', {
@@ -106,6 +107,7 @@ def setting(request):
                 user.dent_plan,
                 user.curr_project,
                 user.email,
+                user.user_image,
                 ]
 
     return  render(request, 'setting.html', {
@@ -258,6 +260,34 @@ def new_project(request):
     return render(request, 'name.html', {'form': form})
 
 
+def update_user(request):
+
+    print(request.user)
+    Personal.objects(username=str(request.user)).update(
+        **{'first_name': 'Rory'
+        })
+
+    # user information
+    loggedin_user_info = {}
+    for user in Personal.objects:
+        if str(request.user) == user.username:
+            loggedin_user_info = [
+                user.id,
+                user.first_name,
+                user.last_name,
+                user.role,
+                user.dob,
+                user.hols,
+                user.med_provider,
+                user.med_plan,
+                user.dent_provider,
+                user.dent_plan,
+                user.curr_project,
+                user.email,
+                user.user_image,
+                ]
+
+    return HttpResponseRedirect('/thank/')
 
 
 def comment(request):
@@ -292,6 +322,7 @@ def comment(request):
         form = NewCommentForm()
 
     return render(request, 'name.html', {'form': form})
+
 
 def del_note(request):
 

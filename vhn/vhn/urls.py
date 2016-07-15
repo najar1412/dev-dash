@@ -33,5 +33,8 @@ urlpatterns = patterns('',
     url(r'^project/$', project),
     url(r'^del_note/$', del_note),
     url(r'^setting/$', setting),
+    url(r'^update_user/$', update_user),
+    url(r'^thank/$', setting),
+
 
 )

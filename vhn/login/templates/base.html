@@ -64,15 +64,12 @@
              if (lText == '+') { link.innerHTML = '−'; d.style.display = 'block'; }
              else { link.innerHTML = '+'; d.style.display = 'none'; } }
             </script>
-            <!-- flooble Expandable Content header end   -->
-
-
-
-
-
-
     </head>
     <body>
+
+
+
+
 
 
         <div class="blended_grid">
@@ -91,20 +88,19 @@
                             <li role="presentation"><a href="#">Messages</a></li>
                         </ul>
 
-                        <div class="loginleft">
-                          <br>
+                        <div align="center" style="float:right;">
+                          &emsp;<img src="{% static loggedin_user_info.12 %}"  width="100px" height="100px"/>
 
-
-
-                            <img src="{% static loggedin_user_info.12 %}"  width="100px" height="100px"/>
 
                         </div>
-                        <div class="loginright">
+                        <div style='float:right; text-align:right;'>
+
                             <b>{{ loggedin_user_info.1 }} {{ loggedin_user_info.2 }}</b><br>
                             {{ loggedin_user_info.11 }}<br>
                             <img src="{% static 'ico_setting.jpg' %}" width="15px" height="15px"/>&ensp;<a href="/setting/">Settings</a><br>
                             <a href="/logout/">Logout</a>
                         </div>
+
                     </div>
                 {% endif %}
             </div>
