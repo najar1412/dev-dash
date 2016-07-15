@@ -48,7 +48,8 @@ def register(request):
                 dent_plan = "Gen - dent_plan",
                 curr_project = "Gen - curr_project",
                 pre_project = "Gen - pre_project",
-                role = "Gen - Role"
+                role = "Gen - Role",
+                user_image = "user_.jpg"
             )
             employee.save()
 
@@ -180,6 +181,7 @@ def home(request):
                 user.dent_plan,
                 user.curr_project,
                 user.email,
+                user.user_image,
                 ]
 
     # Get user messages

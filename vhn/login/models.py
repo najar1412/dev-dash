@@ -5,6 +5,7 @@ from mongoengine import *
 
 class Personal(Document):
     # Person
+    user_image = StringField(max_length=255)
     username = StringField(required=True)
     email = StringField(required=True)
     first_name = StringField(max_length=50)
