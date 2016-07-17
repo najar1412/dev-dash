@@ -304,8 +304,66 @@ def update_user(request):
 
     return HttpResponseRedirect('/thank/')
 
+def note(request):
 
-def comment(request):
+    loggedin_sent_note = {}
+    for note in Comment.objects(op_id=str(request.user)):
+
+        loggedin_sent_note[note.pk] = {
+        'note_id': note.pk,
+        'op_id': note['op_id'],
+        'item_id': note['item_id'],
+        'subject': note['subject'],
+        'content': note['content'],
+        'rate': note['rate']
+        }
+
+
+    loggedin_recv_note = {}
+    for note in Comment.objects(item_id=str(request.user)):
+
+        loggedin_recv_note[note.pk] = {
+        'note_id': note.pk,
+        'op_id': note['op_id'],
+        'item_id': note['item_id'],
+        'subject': note['subject'],
+        'content': note['content'],
+        'rate': note['rate']
+        }
+
+
+    # user information
+    loggedin_user_info = {}
+    for user in Personal.objects:
+        if str(request.user) == user.username:
+            loggedin_user_info = [
+                user.id,
+                user.first_name,
+                user.last_name,
+                user.role,
+                user.dob,
+                user.start_date,
+                user.hols,
+                user.med_provider,
+                user.med_plan,
+                user.dent_provider,
+                user.dent_plan,
+                user.curr_project,
+                user.email,
+                user.user_image,
+                ]
+
+
+    return render(request, 'note.html', {
+        'loggedin_user_info': loggedin_user_info,
+        'loggedin_sent_note': loggedin_sent_note,
+        'loggedin_recv_note': loggedin_recv_note
+        })
+
+
+
+
+def send_note(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -330,7 +388,7 @@ def comment(request):
 
             new_comment.save()
 
-            return HttpResponseRedirect('/thanks/')
+            return HttpResponseRedirect('/note/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -341,14 +399,16 @@ def comment(request):
 
 def del_note(request):
 
-
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
+
         # create a form instance and populate it with data from the request:
         form = DelNote(request.POST)
         # check whether it's valid:
         if form.is_valid():
+            print('whaaa')
             id_to_del = form.cleaned_data['id_to_del']
+            print('----')
             print(id_to_del)
 
             doc_to_del = Comment(pk=id_to_del)
@@ -356,7 +416,7 @@ def del_note(request):
 
 
 
-    return HttpResponseRedirect('/thanks/')
+    return HttpResponseRedirect('/note/')
 
 def media(request):
 

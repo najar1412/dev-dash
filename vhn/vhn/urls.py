@@ -26,7 +26,7 @@ urlpatterns = patterns('',
     url(r'^register/success/$', register_success),
     url(r'^home/$', home),
     url(r'^stat/$', stat),
-    url(r'^comment/$', comment),
+    url(r'^send_note/$', send_note),
     url(r'^media/$', media),
     url(r'^new_project/$', new_project),
     url(r'^thanks/$', home),
@@ -35,6 +35,7 @@ urlpatterns = patterns('',
     url(r'^setting/$', setting),
     url(r'^update_user/$', update_user),
     url(r'^thank/$', setting),
+    url(r'^note/$', note),
 
 
 )
