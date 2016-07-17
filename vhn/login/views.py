@@ -203,10 +203,15 @@ def home(request):
                     note.subject,
                     note.content,
                     note.parent_id,
+                    len(Comment.objects(item_id=str(request.user))), # one of these will be filterd with 'if read:'
+                    len(Comment.objects(item_id=str(request.user)))
                     ]
 
 
+
             user_message_count += 1
+
+    print(user_message)
 
     form = NewProjectForm()
     comment_form = NewCommentForm()

@@ -69,9 +69,6 @@
 
 
 
-
-
-
         <div class="blended_grid">
             <div class="infobar">
                 <div class="well">
@@ -85,10 +82,10 @@
                         <ul class="nav nav-tabs">
                             <li role="presentation"><a href="/home/">Dash</a></li>
                             <li role="presentation"><a href="/stat/">Stats</a></li>
-                            <li role="presentation"><a href="/note/">Notes</a></li>
                         </ul>
 
                         <div align="center" style="float:right;">
+                          <br>
                           &emsp;<img src="{% static loggedin_user_info.13 %}"  width="100px" height="100px"/>
 
 
@@ -97,6 +94,9 @@
 
                             <h3>{{ loggedin_user_info.1 }} {{ loggedin_user_info.2 }}
                             {{ loggedin_user_info.11 }}</h3>
+                            <a href="/note/">Notes</a> (New({{ user_message.0.6 }}), Read({{ user_message.0.7 }}))<br>
+
+
                             <img src="{% static 'ico_setting.jpg' %}" width="15px" height="15px"/>&ensp;<a href="/setting/">Settings</a><br>
                             <a href="/logout/">Logout</a>
                         </div>
