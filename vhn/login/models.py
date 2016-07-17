@@ -11,7 +11,13 @@ class Personal(Document):
     first_name = StringField(max_length=50)
     last_name = StringField(max_length=50)
     role = StringField(max_length=50)
+
+    # TODO: dob and cakeday need to be one entity? But it wont let me only use
+    # TODO: one of them :/
     dob = StringField(max_length=50)
+    cakeday = StringField(max_length=50)
+
+    start_date = StringField(max_length=50)
 
     # Benifit
     hols = StringField(max_length=50)

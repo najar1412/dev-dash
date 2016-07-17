@@ -52,3 +52,12 @@ class NewCommentForm(forms.Form):
 
 class DelNote(forms.Form):
     id_to_del = forms.CharField(label='id_to_del', widget=forms.HiddenInput())
+
+class UpdateRegistrationForm(forms.Form):
+    first_name = forms.CharField(label='first_name', max_length=100, required=False)
+    last_name = forms.CharField(label='last_name', max_length=100, required=False)
+    dob = forms.CharField(label='dob', max_length=100, required=False)
+    med_provider = forms.CharField(label='med_provider', max_length=100, required=False)
+    med_plan = forms.CharField(label='med_plan', max_length=100, required=False)
+    dent_provider = forms.CharField(label='dent_provider', max_length=100, required=False)
+    dent_plan = forms.CharField(label='dent_plan', max_length=100, required=False)

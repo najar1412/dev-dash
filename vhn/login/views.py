@@ -11,9 +11,10 @@ from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
+from django.utils import timezone
 
 from login.models import Personal, Project, Comment, Media
-from login.forms import NewProjectForm, NewCommentForm, DelNote
+from login.forms import NewProjectForm, NewCommentForm, DelNote, UpdateRegistrationForm
 
 
 # Create your views here.
@@ -38,17 +39,18 @@ def register(request):
             employee = Personal.objects.create(
                 email = form.cleaned_data['email'],
                 username = form.cleaned_data['username'],
-                first_name = "Gen - first name",
-                last_name = "Gen - last name",
-                dob = "Gen - dob",
-                hols = "Gen - hols",
-                med_provider = "Gen - med_provider",
-                med_plan = "Gen - men_plan",
-                dent_provider = "Gen - dent_provider",
-                dent_plan = "Gen - dent_plan",
-                curr_project = "Gen - curr_project",
-                pre_project = "Gen - pre_project",
-                role = "Gen - Role",
+                first_name = "",
+                last_name = "",
+                dob = "",
+                start_date = str(timezone.now())[:10],
+                hols = "",
+                med_provider = "",
+                med_plan = "",
+                dent_provider = "",
+                dent_plan = "",
+                curr_project = "",
+                pre_project = "",
+                role = "",
                 user_image = "user_.jpg"
             )
             employee.save()
@@ -72,6 +74,7 @@ def stat(request):
                 user.last_name,
                 user.role,
                 user.dob,
+                user.start_date,
                 user.hols,
                 user.med_provider,
                 user.med_plan,
@@ -100,6 +103,7 @@ def setting(request):
                 user.last_name,
                 user.role,
                 user.dob,
+                user.start_date,
                 user.hols,
                 user.med_provider,
                 user.med_plan,
@@ -176,6 +180,7 @@ def home(request):
                 user.last_name,
                 user.role,
                 user.dob,
+                user.start_date,
                 user.hols,
                 user.med_provider,
                 user.med_plan,
@@ -262,10 +267,19 @@ def new_project(request):
 
 def update_user(request):
 
-    print(request.user)
-    Personal.objects(username=str(request.user)).update(
-        **{'first_name': 'Rory'
-        })
+    if request.method == 'POST':
+        form = UpdateRegistrationForm(request.POST)
+        if form.is_valid():
+            field_update = []
+
+
+            for item in form.cleaned_data:
+                if form.cleaned_data[item] != '':
+                    field_update.append(str(item))
+                    Personal.objects(username=str(request.user)).update(
+                        **{item: form.cleaned_data[item]
+                        })
+
 
     # user information
     loggedin_user_info = {}
@@ -277,6 +291,7 @@ def update_user(request):
                 user.last_name,
                 user.role,
                 user.dob,
+                user.start_date,
                 user.hols,
                 user.med_provider,
                 user.med_plan,
