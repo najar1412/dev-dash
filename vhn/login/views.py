@@ -211,8 +211,6 @@ def home(request):
 
             user_message_count += 1
 
-    print(user_message)
-
     form = NewProjectForm()
     comment_form = NewCommentForm()
 
@@ -231,7 +229,70 @@ def home(request):
 
 
 def project(request):
-    return render(request, 'project.html')
+
+
+    project_collect = {}
+    for project in Project.objects:
+
+        project_collect[project.pk] = {
+            'p_code': project['project_code'],
+            'p_inc': project['project_inc'],
+            'p_name': project['project_name'],
+            'p_start': project['project_start'],
+            'p_end': project['project_end'],
+            'creator_id': project['creator_id'],
+            'assigned_user_id': project['assigned_user_id'],
+            'location': project['location'],
+            'signedoff': project['signedoff'],
+            'flagdelete': project['flagdelete'],
+            'p_id': project.pk,
+
+        }
+
+    loggedin_user_info = {}
+    for user in Personal.objects:
+        if str(request.user) == user.username:
+            loggedin_user_info = [
+                user.id,
+                user.first_name,
+                user.last_name,
+                user.role,
+                user.dob,
+                user.start_date,
+                user.hols,
+                user.med_provider,
+                user.med_plan,
+                user.dent_provider,
+                user.dent_plan,
+                user.curr_project,
+                user.email,
+                user.user_image,
+                ]
+
+
+    return render(request, 'project.html', {
+        'loggedin_user_info': loggedin_user_info,
+        'project_collect': project_collect,
+        })
+
+
+
+def del_project(request):
+
+
+    id_to_del = []
+    for key in request.POST:
+
+        id_to_del.append(request.POST['delete'])
+
+    id_to_del = list(set(id_to_del))[0]
+    print(id_to_del)
+
+    doc_to_del = Project(pk=id_to_del)
+    doc_to_del.delete()
+
+
+    return HttpResponseRedirect('/project/')
 
 
 def new_project(request):
@@ -261,7 +322,7 @@ def new_project(request):
 
             new_project.save()
 
-            return HttpResponseRedirect('/thanks/')
+            return HttpResponseRedirect('/project/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
