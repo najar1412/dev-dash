@@ -32,6 +32,7 @@ class Personal(Document):
     curr_project = StringField(max_length=50)
     pre_project = StringField(max_length=50)
 
+    rate = StringField(max_length=50)
     # Comment
 
 class Project(Document):

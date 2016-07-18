@@ -1,7 +1,6 @@
 import calendar
 import datetime
 from collections import namedtuple
-
 from django.shortcuts import render
 
 from login.forms import *
@@ -51,7 +50,8 @@ def register(request):
                 curr_project = "",
                 pre_project = "",
                 role = "",
-                user_image = "user_.jpg"
+                user_image = "user_.jpg",
+                rate = "100"
             )
             employee.save()
 
@@ -83,11 +83,32 @@ def stat(request):
                 user.curr_project,
                 user.email,
                 user.user_image,
+                user.rate
                 ]
+
+
+
+    # Get user messages
+    user_message = {}
+    user_message_count = 0
+    for note in Comment.objects:
+        if str(note.item_id) == str(request.user):
+            user_message[user_message_count] = [
+                    note.pk,
+                    note.op_id,
+                    note.item_id,
+                    note.subject,
+                    note.content,
+                    note.parent_id,
+                    len(Comment.objects(item_id=str(request.user))), # one of these will be filterd with 'if read:'
+                    len(Comment.objects(item_id=str(request.user)))
+                    ]
+
 
     return  render(request, 'stat.html', {
         'loggedin_user_info': loggedin_user_info,
-        'user': request.user
+        'user': request.user,
+        'user_message': user_message
         })
 
 
@@ -112,6 +133,7 @@ def setting(request):
                 user.curr_project,
                 user.email,
                 user.user_image,
+                user.rate
                 ]
 
     return  render(request, 'setting.html', {
@@ -189,7 +211,9 @@ def home(request):
                 user.curr_project,
                 user.email,
                 user.user_image,
+                user.rate,
                 ]
+
 
     # Get user messages
     user_message = {}
@@ -206,8 +230,6 @@ def home(request):
                     len(Comment.objects(item_id=str(request.user))), # one of these will be filterd with 'if read:'
                     len(Comment.objects(item_id=str(request.user)))
                     ]
-
-
 
             user_message_count += 1
 
@@ -267,12 +289,30 @@ def project(request):
                 user.curr_project,
                 user.email,
                 user.user_image,
+                user.rate
                 ]
+
+    # Get user messages
+    user_message = {}
+    user_message_count = 0
+    for note in Comment.objects:
+        if str(note.item_id) == str(request.user):
+            user_message[user_message_count] = [
+                    note.pk,
+                    note.op_id,
+                    note.item_id,
+                    note.subject,
+                    note.content,
+                    note.parent_id,
+                    len(Comment.objects(item_id=str(request.user))), # one of these will be filterd with 'if read:'
+                    len(Comment.objects(item_id=str(request.user)))
+                    ]
 
 
     return render(request, 'project.html', {
         'loggedin_user_info': loggedin_user_info,
         'project_collect': project_collect,
+        'user_message': user_message
         })
 
 
@@ -366,9 +406,75 @@ def update_user(request):
                 user.curr_project,
                 user.email,
                 user.user_image,
+                user.rate
                 ]
 
     return HttpResponseRedirect('/thank/')
+
+def almanac(request):
+
+    personal_collect = {}
+    for x in Personal.objects:
+        print(x['first_name'])
+
+        personal_collect[x.pk] = {
+            'first_name': x['first_name'],
+            'last_name': x['last_name'],
+            'user_image': x['user_image'],
+            'username': x['username'],
+            'email': x['email'],
+            'rate': x['rate']
+
+        }
+
+    print(personal_collect)
+
+    # user information
+    loggedin_user_info = {}
+    for user in Personal.objects:
+        if str(request.user) == user.username:
+            loggedin_user_info = [
+                user.id,
+                user.first_name,
+                user.last_name,
+                user.role,
+                user.dob,
+                user.start_date,
+                user.hols,
+                user.med_provider,
+                user.med_plan,
+                user.dent_provider,
+                user.dent_plan,
+                user.curr_project,
+                user.email,
+                user.user_image,
+                user.rate
+                ]
+
+    # Get user messages
+    user_message = {}
+    user_message_count = 0
+    for note in Comment.objects:
+        if str(note.item_id) == str(request.user):
+            user_message[user_message_count] = [
+                    note.pk,
+                    note.op_id,
+                    note.item_id,
+                    note.subject,
+                    note.content,
+                    note.parent_id,
+                    len(Comment.objects(item_id=str(request.user))), # one of these will be filterd with 'if read:'
+                    len(Comment.objects(item_id=str(request.user)))
+                    ]
+
+            user_message_count += 1
+
+
+    return render(request, 'almanac.html', {
+        'loggedin_user_info': loggedin_user_info,
+        'user_message': user_message,
+        'personal_collect': personal_collect
+        })
 
 def note(request):
 
@@ -419,11 +525,31 @@ def note(request):
                 user.user_image,
                 ]
 
+    # Get user messages
+    user_message = {}
+    user_message_count = 0
+    for note in Comment.objects:
+        if str(note.item_id) == str(request.user):
+            user_message[user_message_count] = [
+                    note.pk,
+                    note.op_id,
+                    note.item_id,
+                    note.subject,
+                    note.content,
+                    note.parent_id,
+                    len(Comment.objects(item_id=str(request.user))), # one of these will be filterd with 'if read:'
+                    len(Comment.objects(item_id=str(request.user)))
+                    ]
+
+            user_message_count += 1
+
+
 
     return render(request, 'note.html', {
         'loggedin_user_info': loggedin_user_info,
         'loggedin_sent_note': loggedin_sent_note,
-        'loggedin_recv_note': loggedin_recv_note
+        'loggedin_recv_note': loggedin_recv_note,
+        'user_message': user_message
         })
 
 

@@ -68,7 +68,6 @@
     <body>
 
 
-
         <div class="blended_grid">
             <div class="infobar">
                 <div class="well">
@@ -82,7 +81,7 @@
                         <ul class="nav nav-tabs">
                             <li role="presentation"><a href="/home/">Dash</a></li>
                             <li role="presentation"><a href="/project/">Projects</a></li>
-                            <li role="presentation"><a href="/stat/">Stats</a></li>
+                            <li role="presentation"><a href="/almanac/">Almanac</a></li>
                         </ul>
 
                         <div align="center" style="float:right;">
@@ -92,10 +91,9 @@
 
                         </div>
                         <div style='float:right; text-align:right;'>
-
-                            <h3>{{ loggedin_user_info.1 }} {{ loggedin_user_info.2 }}
+                            <h3><img src="{% static 'ico_rate.jpg' %}" width="8%" height="8%"/><a href="/stat/">{{ loggedin_user_info.14 }}</a> | {{ loggedin_user_info.1 }} {{ loggedin_user_info.2 }}
                             {{ loggedin_user_info.11 }}</h3>
-                            <a href="/note/">Notes</a> (New({{ user_message.0.6 }}), Read({{ user_message.0.7 }}))<br>
+                            <a href="/note/">Notes</a> (New({{ user_message.0.6 }}), Read({{ user_message.0.13 }}))<br>
 
 
                             <img src="{% static 'ico_setting.jpg' %}" width="15px" height="15px"/>&ensp;<a href="/setting/">Settings</a><br>

@@ -37,6 +37,8 @@ urlpatterns = patterns('',
     url(r'^update_user/$', update_user),
     url(r'^thank/$', setting),
     url(r'^note/$', note),
+    url(r'^almanac/$', almanac),
+
 
 
 )
