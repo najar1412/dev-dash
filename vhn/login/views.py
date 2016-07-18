@@ -523,6 +523,7 @@ def note(request):
                 user.curr_project,
                 user.email,
                 user.user_image,
+                user.rate
                 ]
 
     # Get user messages
