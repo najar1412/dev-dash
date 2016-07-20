@@ -18,6 +18,53 @@ from login.forms import NewProjectForm, NewCommentForm, DelNote, UpdateRegistrat
 
 # Create your views here.
 #views.py
+def upload_media(request):
+    media_return = {}
+
+    if request.method == 'POST':
+        form = UploadMedia(request.POST)
+
+        if form.is_valid():
+            media = Media.objects.create(
+                op_id='dummy_var',
+                media_type=form.cleaned_data['media_type'],
+                media_name=form.cleaned_data['media_name'],
+                media_pname=form.cleaned_data['media_pname'],
+                media_pname_thumb=form.cleaned_data['media_pname_thumb'],
+            )
+            media.save()
+
+
+            for attri in Media.objects(id=media.pk):
+                media_return[attri.pk] = {
+                    'op_id': attri.op_id,
+                    'media_type': attri.media_type,
+                    'media_pname': attri.media_pname,
+                    'media_pname_thumb': attri.media_pname_thumb,
+                    'note_id': attri.note_id
+                }
+
+
+    return render(request, 'media.html', {
+        'media': media_return
+    })
+
+def media(request):
+
+    media_return = {}
+    for attri in Media.objects(id='578ee685d804411af42ab1f5'):
+        media_return[attri.pk] = {
+            'op_id': attri.op_id,
+            'media_type': attri.media_type,
+            'media_pname': attri.media_pname,
+            'media_pname_thumb': attri.media_pname_thumb,
+            'note_id': attri.note_id
+        }
+
+    return render(request, 'media.html', {
+    'media': media_return
+        })
+
 
 @csrf_protect
 def register(request):
@@ -590,6 +637,64 @@ def send_note(request):
     return render(request, 'name.html', {'form': form})
 
 
+
+def post_note(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = NewCommentForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+
+            op_id = form.cleaned_data['op_id']
+            item_id = form.cleaned_data['item_id']
+            subject = form.cleaned_data['subject']
+            content = form.cleaned_data['content']
+            rate = form.cleaned_data['rate']
+
+            # append data to database
+            new_comment = Comment(
+                op_id=op_id,
+                item_id=item_id,
+                subject=subject,
+                content=content,
+                rate=rate,
+                    )
+
+            new_comment.save()
+
+            append_media = Media.objects(id=item_id)
+
+            append_media.update(add_to_set__note_id=[new_comment.pk])
+
+    note_return = {}
+    for note in Comment.objects(item_id=item_id):
+        note_return[note.pk] = {
+            'op_id': note.op_id,
+            'item_id': note.item_id,
+            'subject': note.subject,
+            'content': note.content,
+            'rate': note.rate,
+            'parent_id': note.parent_id
+        }
+
+    media_return = {}
+    for attri in Media.objects(id='578ee685d804411af42ab1f5'):
+        media_return[attri.pk] = {
+            'op_id': attri.op_id,
+            'media_type': attri.media_type,
+            'media_pname': attri.media_pname,
+            'media_pname_thumb': attri.media_pname_thumb,
+            'note_id': attri.note_id
+        }
+
+    return render(request, 'media.html', {
+    'media': media_return,
+    'note': note_return
+        })
+
+
+
 def del_note(request):
 
     # if this is a POST request we need to process the form data
@@ -608,17 +713,4 @@ def del_note(request):
             doc_to_del.delete()
 
 
-
     return HttpResponseRedirect('/note/')
-
-def media(request):
-
-    """ Add project to project collection """
-    media = Media.objects.create(
-        email="free@delete.com",
-        first_name="From Register",
-        last_name="delete"
-    )
-    media.save()
-
-    return render(request, 'media.html')

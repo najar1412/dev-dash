@@ -1,1 +1,120 @@
-media page
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+
+
+{% comment %}
+<img src="{{ STATIC_URL }}/static/media/{{attri.1.media_pname}}"/><br>
+{% endcomment %}
+
+{% comment %}
+<img src="{{ STATIC_URL }}/static/media/{{attri.1.media_pname_thumb}}"/><br>
+{% endcomment %}
+
+
+
+{% for attri in media.items %}
+
+<small><b>ID</b>:{{ attri.0 }}</small>
+<h3><b>Name:</b> {{ attri.1.media_name }}</h3>
+<small><b>File Type:</b> { type field }</small><br>
+<small><b>Category:</b> {{ attri.1.media_type }}</small><br>
+<br>
+<img src="{{ STATIC_URL }}/static/media/57792195e52c2362609759a2.jpg"/><br>
+{{ attri.1.op_id }} on {Generic Date} | Comments : {0}<br>
+<br>
+NOTES:<br>
+note_id: {{ attri.1.note_id }}<br>
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+<br>
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <h3 class="panel-title">Post</h3>
+    </div>
+    <div class="panel-body">
+        <form action="/post_note/" method="post">{% csrf_token %}
+            <div class="form-group" style="width:392px">
+                <div class="form-inline">
+
+      {% for key, value in media.items %}
+                    <input type="hidden" id="id_op_id" maxlength="255" name="op_id" value="{{ user.username }}" />
+                    <input type="hidden" id="id_parent_id" maxlength="255" name="parent_id" value="{{ key }}" />
+                    <input type="hidden" id="id_rate" maxlength="255" name="rate" value="None" />
+                    <input type="hidden" id="id_item_id" maxlength="100" name="item_id" value="{{ key }}" />
+                    <input class="form-control" id="id_subject" maxlength="255" name="subject" type="text" placeholder="Subject" />
+                    <input class="form-control" id="id_content" maxlength="100" name="content" type="text" placeholder="Message..." />
+
+{% endfor %}
+                </div>
+                <button type="submit" class="btn btn-default" value="Submit" />Post</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+{% for attri in note.items %}
+
+
+
+
+<div class="panel panel-default">
+
+
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ attri.1.rate }} | {{ attri.1.subject }} | {{ attri.1.op_id }}</h3>
+    </div>
+    <div class="panel-body">
+
+
+
+
+
+      {{ attri.1.content}}
+      <hr>
+<form method="post" action="/del_note/">{% csrf_token %}
+
+
+
+<small>edit | <button type="submit" class="btn btn-secondary btn-sm" value="delete" />Delete</button> | up vote | down vote</small>
+
+
+<input type="hidden" id="id_id_to_del" maxlength="255" name="id_to_del" value="{{ note.1.note_id }}" />
+</form>
+
+
+
+
+
+</div>
+</div>
+
+{% endfor %}
+
+<br>
+<hr>
+<br>
+<img src="{{ STATIC_URL }}/static/media/57792195e52c2362609759a2_thumbnail.jpg"/><br>
+
+{% endfor %}
+
+
+
+
+
+{% endblock %}

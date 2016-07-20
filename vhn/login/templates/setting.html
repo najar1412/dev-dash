@@ -1,5 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Upload asset</h3>
+    </div>
+    <div class="panel-body">
+
+
+
+      <form action="/upload_media/" method="post">{% csrf_token %}
+          <div class="form-group">
+              <div>
+                <small>media_type:</small><br><br>
+                  <div style="float:right; width:90%;">
+                  <input class="form-control" id="id_name_type" maxlength="100" name="media_type" type="text" placeholder="media_type" /><br>
+                </div><br><br>
+                  <small>media_name:</small><br><br>
+                    <div style="float:right; width:90%;">
+                    <input class="form-control" id="id_media_name" maxlength="100" name="media_name" type="text" placeholder="media_name" /><br>
+                  </div><br><br>
+                  <small>media_pname:</small><br><br>
+                    <div style="float:right; width:90%;">
+                    <input class="form-control" id="id_media_pname" maxlength="100" name="media_pname" type="text" placeholder="media_pname" /><br>
+                  </div><br><br>
+                  <small>media_pname_thumb:</small><br><br>
+                    <div style="float:right; width:90%;">
+                    <input class="form-control" id="id_media_pname_thumb" maxlength="100" name="media_pname_thumb" type="text" placeholder="media_pname_thumb" /><br>
+                  </div><br><br>
+                  <button type="submit" class="btn btn-default" value="Submit" />Upload</button>
+
+
+                </div>
+            </div>
+      </form>
+
+</div>
+
+</div>
+
+
+
+
+
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Personal information</h3>

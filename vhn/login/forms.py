@@ -61,3 +61,11 @@ class UpdateRegistrationForm(forms.Form):
     med_plan = forms.CharField(label='med_plan', max_length=100, required=False)
     dent_provider = forms.CharField(label='dent_provider', max_length=100, required=False)
     dent_plan = forms.CharField(label='dent_plan', max_length=100, required=False)
+
+class UploadMedia(forms.Form):
+    op_id = forms.CharField(label='op_id', max_length=100, required=False)
+    media_type = forms.CharField(label='media_type', max_length=100, required=False)
+    media_name = forms.CharField(label='media_name', max_length=100, required=False)
+    media_pname = forms.CharField(label='media_pname', max_length=100, required=False)
+    media_pname_thumb = forms.CharField(label='media_pname_thumb', max_length=100, required=False)
+    note_id = forms.CharField(label='note_id', max_length=100, required=False)

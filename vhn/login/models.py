@@ -50,9 +50,13 @@ class Project(Document):
     flagdelete = BooleanField(default=False)
 
 class Media(Document):
-    email = StringField(required=True)
-    first_name = StringField(max_length=50)
-    last_name = StringField(max_length=50)
+    op_id = StringField(max_length=100)
+    media_type = StringField(max_length=100)
+    media_name = StringField(max_length=100)
+    media_pname = StringField(max_length=100)
+    media_pname_thumb = StringField(max_length=100)
+    note_id = ListField(StringField(max_length=300))
+
 
 class Comment(Document):
     # make post
