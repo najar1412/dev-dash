@@ -61,8 +61,63 @@ def media(request):
             'note_id': attri.note_id
         }
 
+    loggedin_user_info = {}
+    for user in Personal.objects:
+        if str(request.user) == user.username:
+            loggedin_user_info = [
+                user.id,
+                user.first_name,
+                user.last_name,
+                user.role,
+                user.dob,
+                user.start_date,
+                user.hols,
+                user.med_provider,
+                user.med_plan,
+                user.dent_provider,
+                user.dent_plan,
+                user.curr_project,
+                user.email,
+                user.user_image,
+                user.rate
+                ]
+
+    # Get user messages
+    user_message = {}
+    user_message_count = 0
+    for note in Comment.objects:
+        if str(note.item_id) == str(request.user):
+            user_message[user_message_count] = [
+                    note.pk,
+                    note.op_id,
+                    note.item_id,
+                    note.subject,
+                    note.content,
+                    note.parent_id,
+                    len(Comment.objects(item_id=str(request.user))), # one of these will be filterd with 'if read:'
+                    len(Comment.objects(item_id=str(request.user)))
+                    ]
+
+            user_message_count += 1
+
+    # TODO: remove hardcore
+    note_return = {}
+    for note in Comment.objects(item_id='578ee685d804411af42ab1f5'):
+        note_return[note.pk] = {
+            'op_id': note.op_id,
+            'item_id': note.item_id,
+            'subject': note.subject,
+            'content': note.content,
+            'rate': note.rate,
+            'parent_id': note.parent_id
+        }
+
+
     return render(request, 'media.html', {
-    'media': media_return
+    'media': media_return,
+    'loggedin_user_info': loggedin_user_info,
+    'user_message': user_message,
+    'note': note_return
         })
 
 
@@ -688,9 +743,54 @@ def post_note(request):
             'note_id': attri.note_id
         }
 
+
+    loggedin_user_info = {}
+    for user in Personal.objects:
+        if str(request.user) == user.username:
+            loggedin_user_info = [
+                user.id,
+                user.first_name,
+                user.last_name,
+                user.role,
+                user.dob,
+                user.start_date,
+                user.hols,
+                user.med_provider,
+                user.med_plan,
+                user.dent_provider,
+                user.dent_plan,
+                user.curr_project,
+                user.email,
+                user.user_image,
+                user.rate
+                ]
+
+
+    # Get user messages
+    user_message = {}
+    user_message_count = 0
+    for note in Comment.objects:
+        if str(note.item_id) == str(request.user):
+            user_message[user_message_count] = [
+                    note.pk,
+                    note.op_id,
+                    note.item_id,
+                    note.subject,
+                    note.content,
+                    note.parent_id,
+                    len(Comment.objects(item_id=str(request.user))), # one of these will be filterd with 'if read:'
+                    len(Comment.objects(item_id=str(request.user)))
+                    ]
+
+            user_message_count += 1
+
+
+
     return render(request, 'media.html', {
     'media': media_return,
-    'note': note_return
+    'note': note_return,
+    'loggedin_user_info': loggedin_user_info,
+    'user_message': user_message
         })
 
 
@@ -704,13 +804,10 @@ def del_note(request):
         form = DelNote(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            print('whaaa')
-            id_to_del = form.cleaned_data['id_to_del']
-            print('----')
-            print(id_to_del)
 
+            id_to_del = form.cleaned_data['id_to_del']
             doc_to_del = Comment(pk=id_to_del)
             doc_to_del.delete()
 
 
-    return HttpResponseRedirect('/note/')
+    return HttpResponseRedirect('/media/')

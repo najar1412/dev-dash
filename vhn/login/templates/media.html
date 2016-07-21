@@ -22,24 +22,10 @@
 <small><b>Category:</b> {{ attri.1.media_type }}</small><br>
 <br>
 <img src="{{ STATIC_URL }}/static/media/57792195e52c2362609759a2.jpg"/><br>
-{{ attri.1.op_id }} on {Generic Date} | Comments : {0}<br>
-<br>
-NOTES:<br>
-note_id: {{ attri.1.note_id }}<br>
-
-
+<b>{{ attri.1.op_id }}</b> on {Generic Date} | Notes: {{ attri.1.note_id|length }}<br>
+{% endfor %}
 <br>
 
-
-
-
-
-
-
-
-
-
-<br>
 <div class="panel panel-default">
 
     <div class="panel-heading">
@@ -50,7 +36,8 @@ note_id: {{ attri.1.note_id }}<br>
             <div class="form-group" style="width:392px">
                 <div class="form-inline">
 
-      {% for key, value in media.items %}
+                    {% for key, value in media.items %}
+
                     <input type="hidden" id="id_op_id" maxlength="255" name="op_id" value="{{ user.username }}" />
                     <input type="hidden" id="id_parent_id" maxlength="255" name="parent_id" value="{{ key }}" />
                     <input type="hidden" id="id_rate" maxlength="255" name="rate" value="None" />
@@ -58,7 +45,8 @@ note_id: {{ attri.1.note_id }}<br>
                     <input class="form-control" id="id_subject" maxlength="255" name="subject" type="text" placeholder="Subject" />
                     <input class="form-control" id="id_content" maxlength="100" name="content" type="text" placeholder="Message..." />
 
-{% endfor %}
+                    {% endfor %}
+
                 </div>
                 <button type="submit" class="btn btn-default" value="Submit" />Post</button>
             </div>
@@ -67,54 +55,40 @@ note_id: {{ attri.1.note_id }}<br>
 </div>
 
 
+<hr>
+<h2>Notes</h2>
+
+
+
+
+
+
+
+
+<br>
+
+
+
 
 {% for attri in note.items %}
 
-
-
-
-<div class="panel panel-default">
-
-
+<form method="post" action="/del_note/">{% csrf_token %}
+  <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">{{ attri.1.rate }} | {{ attri.1.subject }} | {{ attri.1.op_id }}</h3>
+      <h3 class="panel-title">{{ attri.1.rate }} | {{ attri.1.subject }} | {{ attri.1.op_id }}</h3>
     </div>
     <div class="panel-body">
-
-
-
-
-
       {{ attri.1.content}}
       <hr>
-<form method="post" action="/del_note/">{% csrf_token %}
-
-
-
-<small>edit | <button type="submit" class="btn btn-secondary btn-sm" value="delete" />Delete</button> | up vote | down vote</small>
-
-
-<input type="hidden" id="id_id_to_del" maxlength="255" name="id_to_del" value="{{ note.1.note_id }}" />
+      <small>edit | <button type="submit" class="btn btn-secondary btn-sm" value="{{ attri.0 }}" />Delete</button> | up vote | down vote</small>
+      <input type="hidden" id="id_id_to_del" maxlength="255" name="id_to_del" value="{{ attri.0 }}" />
+    </div>
+</div>
 </form>
 
-
-
-
-
-</div>
-</div>
-
 {% endfor %}
 
 <br>
-<hr>
 <br>
-<img src="{{ STATIC_URL }}/static/media/57792195e52c2362609759a2_thumbnail.jpg"/><br>
-
-{% endfor %}
-
-
-
-
 
 {% endblock %}
