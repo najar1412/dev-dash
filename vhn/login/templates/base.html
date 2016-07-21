@@ -6,13 +6,13 @@
 
 <html>
     <head>
-        <title>Network</title>
+        <title>Dash</title>
 
 
             <meta name="viewport" content="width=device-width, initial-scale=1">
 
             <!-- Bootstrap -->
-            <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+            <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
             <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -67,44 +67,61 @@
     </head>
     <body>
 
+  {% if user.username != '' %}
 
-        <div class="blended_grid">
-            <div class="infobar">
-                <div class="well">
-                    <img src="{% static 'favicon.png' %}" width="30px" height="30px"/><a href="/home/" style="text-decoration: none"> &emsp; <img src="{% static 'visualhouse.png' %}" width="25%" height="25%"/></a>
-                </div>
-            </div>
-
-            <div class="dashnav">
-                {% if user.username != '' %}
-                    <div class="navbar">
-                        <ul class="nav nav-tabs">
-                            <li role="presentation"><a href="/home/">Dash</a></li>
-                            <li role="presentation"><a href="/project/">Projects</a></li>
-                            <li role="presentation"><a href="/almanac/">Almanac</a></li>
-                            <li role="presentation"><a href="/media/">Media</a></li>
-                        </ul>
-
-                        <div align="center" style="float:right;">
-                          <br>
-                          &emsp;<img src="{% static loggedin_user_info.13 %}"  width="100px" height="100px"/>
+<div class="blended_grid">
 
 
-                        </div>
-                        <div style='float:right; text-align:right;'>
-                            <h3><img src="{% static 'ico_rate.jpg' %}" width="8%" height="8%"/><a href="/stat/">{{ loggedin_user_info.14 }}</a> | {{ loggedin_user_info.1 }} {{ loggedin_user_info.2 }}
-                            {{ loggedin_user_info.11 }}</h3>
-                            <a href="/note/">Notes</a> (New({{ user_message.0.6 }}), Read({{ user_message.0.13 }}))<br>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/home/">Dash</a>
+          </div>
 
 
-                            <img src="{% static 'ico_setting.jpg' %}" width="15px" height="15px"/>&ensp;<a href="/setting/">Settings</a><br>
-                            <a href="/logout/">Logout</a>
-                        </div>
 
-                    </div>
-                {% endif %}
-            </div>
-        </div>
+
+
+      <div style="float:right;">
+
+        <ul class="nav navbar-nav">
+            <li><a href="/project/">Projects</a></li>
+            <li><a href="/media/">Media</a></li>
+            <li><a href="/almanac/">Almanac</a></li>
+        </ul>
+
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group" style="float:right;">
+            <input type="text" class="form-control" placeholder="|">
+            <button type="submit" class="btn btn-default">Search</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div align="center" style="float:right;">
+    &emsp;<img src="{% static loggedin_user_info.13 %}"  width="125px" height="125px"/>
+  </div>
+
+  <div style='float:right; text-align:right;'>
+    <h4><img src="{% static 'ico_rate.jpg' %}" width="8%" height="8%"/><a href="/stat/">{{ loggedin_user_info.14 }}</a> | {{ loggedin_user_info.1 }} {{ loggedin_user_info.2 }} {{ loggedin_user_info.11 }}</h4>
+    <a href="/note/">Notes</a> (New({{ user_message.0.6 }}), Read({{ user_message.0.13 }}))<br>
+    <img src="{% static 'ico_setting.jpg' %}" width="15px" height="15px"/>&ensp;<a href="/setting/">Settings</a><br>
+    <a href="/logout/">Logout</a>
+  </div>
+
+
+
+
+</div>
+    <hr>
+  {% endif %}
+
 
         <div class="blended_grid">
             {% block content %}
@@ -112,7 +129,7 @@
 
             {% endblock %}
         </div>
-                {% if user.username != '' %}
+        {% if user.username != '' %}
         <div class="infobar">
             <div class="well">
                 <div class="blended_grid">
@@ -140,8 +157,8 @@
             <br>
             <br>
             </div>
-        </div>
-        {% endif %}
+          </div>
+          {% endif %}
 
     </body>
 </html>

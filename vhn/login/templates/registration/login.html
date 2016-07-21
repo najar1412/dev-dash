@@ -5,35 +5,41 @@
 <br>
 <br>
 <br>
+<br>
 
 <div class="loginbanner">
 
+  <form method="post" action=".">{% csrf_token %}
 
-    {% if form.errors %}
-    <div class="panel panel-danger">
-        Your username and password didn't match. Please try again.
+    <div class="form-group">
+      <input class="form-control" id="id_username" maxlength="254" name="username" type="text" placeholder="Username" />
+    </div>
+    <div class="form-group">
+      <input class="form-control" id="id_password" name="password" type="password" placeholder="Password" />
+    </div>
+    <center>
+      <button type="submit" class="btn btn-default" value="Login" />Login</button>
+      <input type="hidden" name="next" value="/home" />
+      <a href="/register" class="btn btn-default">Sign Up</a>
+    </center>
+
+  </form>
+<br>
+
+  {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+      Nah.
+    </div>
+  {% endif %}
+
+
 </div>
-    {% endif %}
 
-        <form method="post" action=".">{% csrf_token %}
-            <div class="form-group">
-                <input class="form-control" id="id_username" maxlength="254" name="username" type="text" placeholder="Username" />
-            </div>
 
-            <div class="form-group">
-                <input class="form-control" id="id_password" name="password" type="password" placeholder="Password" />
-            </div>
-                <center>
-                    <button type="submit" class="btn btn-default" value="Login" />Login</button>
-                    <input type="hidden" name="next" value="/home" />
-                    <a href="/register" class="btn btn-default">Sign Up</a>
-                </center>
-        </form>
-</div>
-<br>
-<br>
-<br>
-<br>
 
+
+
+<br>
+<br>
 
 {% endblock %}

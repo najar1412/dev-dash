@@ -26,7 +26,7 @@ def upload_media(request):
 
         if form.is_valid():
             media = Media.objects.create(
-                op_id='dummy_var',
+                op_id=request.user,
                 media_type=form.cleaned_data['media_type'],
                 media_name=form.cleaned_data['media_name'],
                 media_pname=form.cleaned_data['media_pname'],
@@ -51,8 +51,9 @@ def upload_media(request):
 
 def media(request):
 
+    # TODO: remove hardcore
     media_return = {}
-    for attri in Media.objects(id='578ee685d804411af42ab1f5'):
+    for attri in Media.objects(id='5790d868c1d6231cc0afc34f'):
         media_return[attri.pk] = {
             'op_id': attri.op_id,
             'media_type': attri.media_type,
@@ -102,7 +103,7 @@ def media(request):
 
     # TODO: remove hardcore
     note_return = {}
-    for note in Comment.objects(item_id='578ee685d804411af42ab1f5'):
+    for note in Comment.objects(item_id='5790d868c1d6231cc0afc34f'):
         note_return[note.pk] = {
             'op_id': note.op_id,
             'item_id': note.item_id,
@@ -144,7 +145,7 @@ def register(request):
                 last_name = "",
                 dob = "",
                 start_date = str(timezone.now())[:10],
-                hols = "",
+                hols = "21",
                 med_provider = "",
                 med_plan = "",
                 dent_provider = "",
@@ -517,7 +518,6 @@ def almanac(request):
 
     personal_collect = {}
     for x in Personal.objects:
-        print(x['first_name'])
 
         personal_collect[x.pk] = {
             'first_name': x['first_name'],
@@ -528,8 +528,6 @@ def almanac(request):
             'rate': x['rate']
 
         }
-
-    print(personal_collect)
 
     # user information
     loggedin_user_info = {}
@@ -733,8 +731,9 @@ def post_note(request):
             'parent_id': note.parent_id
         }
 
+    # TODO: remove hardcore
     media_return = {}
-    for attri in Media.objects(id='578ee685d804411af42ab1f5'):
+    for attri in Media.objects(id='5790d868c1d6231cc0afc34f'):
         media_return[attri.pk] = {
             'op_id': attri.op_id,
             'media_type': attri.media_type,
