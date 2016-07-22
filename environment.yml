@@ -1,5 +1,6 @@
-name: vhn_01-env
+name: dash-env
 dependencies:
- - python=3.5
- - django=1.9
+ - python=3.5.2
+ - django=1.9.8
+ - mongoengine=0.10.6
  - pip
