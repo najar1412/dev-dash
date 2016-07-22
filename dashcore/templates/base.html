@@ -76,7 +76,7 @@
     <div class="container-fluid">
 
       <div class="navbar-header">
-        <a class="navbar-brand" href="/home/">Dash</a>
+        <a class="navbar-brand" href="/dash/">Dash</a>
           </div>
 
 
@@ -93,7 +93,7 @@
 
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group" style="float:right;">
-            <input type="text" class="form-control" placeholder="|">
+            <input type="text" class="form-control">
             <button type="submit" class="btn btn-default">Search</button>
           </div>
         </form>
@@ -102,28 +102,30 @@
     </div>
   </nav>
 
+{% for attri in loggedin_user.items %}
 
 
-  <div align="center" style="float:right;">
-    &emsp;<img src="{% static loggedin_user_info.13 %}"  width="125px" height="125px"/>
+  <div style="float:right;">
+    &emsp;<img src="{% static 'ico/'|add:attri.1.user_image %}"  width="125px" height="125px"/>
   </div>
 
   <div style='float:right; text-align:right;'>
-    <h4><img src="{% static 'ico_rate.jpg' %}" width="8%" height="8%"/><a href="/stat/">{{ loggedin_user_info.14 }}</a> | {{ loggedin_user_info.1 }} {{ loggedin_user_info.2 }} {{ loggedin_user_info.11 }}</h4>
-    <a href="/note/">Notes</a> (New({{ user_message.0.6 }}), Read({{ user_message.0.13 }}))<br>
-    <img src="{% static 'ico_setting.jpg' %}" width="15px" height="15px"/>&ensp;<a href="/setting/">Settings</a><br>
+    <h4><img src="{% static 'ico/ico_rate.jpg' %}" width="5%" height="5%"/><a href="/stat/">{{ attri.1.rate }}</a> | {{ attri.1.first_name }} {{ attri.1.last_name }}</h4>
+    <a href="/note/">Notes</a> (New({{ attri.1.recv_note }}), Read({{ attri.1.recv_note }}))<br>
+    <img src="{% static 'ico/ico_setting.jpg' %}" width="15px" height="15px"/>&ensp;<a href="/setting/">Settings</a><br>
     <a href="/logout/">Logout</a>
-  </div>
 
+  </div>
+{% endfor %}
 
 
 
 </div>
-    <hr>
   {% endif %}
 
 
         <div class="blended_grid">
+          <hr>
             {% block content %}
 
 

@@ -15,16 +15,15 @@ import os
 import django.contrib.auth
 from mongoengine import connect
 
-
-django.contrib.auth.LOGIN_URL = '/'
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
+
+#  The utility of this two lines is if a user want to access a method that that requires login and the user is not logged in then it will redirect the user to login page.
+django.contrib.auth.LOGIN_URL = '/'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '5=qrg+tb5xn0gkvk1@kmdqbt5ko3k8ce1u-nlqe^(4^q@%o)xv'
