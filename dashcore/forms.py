@@ -22,3 +22,12 @@ class RegistrationForm(forms.Form):
             if self.cleaned_data['password1'] != self.cleaned_data['password2']:
                 raise forms.ValidationError(_("The two password fields did not match."))
         return self.cleaned_data
+
+class UpdateRegistrationForm(forms.Form):
+    first_name = forms.CharField(label='first_name', max_length=100, required=False)
+    last_name = forms.CharField(label='last_name', max_length=100, required=False)
+    cakeday = forms.CharField(label='cakeday', max_length=100, required=False)
+    med_provider = forms.CharField(label='med_provider', max_length=100, required=False)
+    med_plan = forms.CharField(label='med_plan', max_length=100, required=False)
+    dent_provider = forms.CharField(label='dent_provider', max_length=100, required=False)
+    dent_plan = forms.CharField(label='dent_plan', max_length=100, required=False)

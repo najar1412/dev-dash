@@ -74,7 +74,7 @@
 
 </div>
 
-<form action="/update_user/" method="post">{% csrf_token %}
+<form action="/update_person/" method="post">{% csrf_token %}
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Personal information</h3>
@@ -109,11 +109,11 @@
                         </div><br><br>
                         <small>Last Name:</small><br>
                         <div style="float:right; width:90%;">
-                        <input class="form-control" id="id_first_name" maxlength="100" name="first_name" type="text" placeholder="{{ attri.1.first_name }}" /><br>
+                        <input class="form-control" id="id_last_name" maxlength="100" name="last_name" type="text" placeholder="{{ attri.1.last_name }}" /><br>
                         </div><br><br>
                         <small>Cakeday:</small><br>
                         <div style="float:right; width:90%;">
-                        <input class="form-control" id="datepicker_start" maxlength="100" name="dob" type="text" placeholder="{{ attri.1.cakeday }}" /><br>
+                        <input class="form-control" id="datepicker_start" maxlength="100" name="cakeday" type="text" placeholder="{{ attri.1.cakeday }}" /><br>
                         </div><br><br>
                     </div>
                 </div>

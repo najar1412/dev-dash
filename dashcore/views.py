@@ -11,7 +11,7 @@ from django.utils import timezone
 
 from dashcore.personal import DB_Personal
 from dashcore.models import Personal
-from dashcore.forms import RegistrationForm
+from dashcore.forms import RegistrationForm, UpdateRegistrationForm
 
 
 @csrf_protect
@@ -26,16 +26,8 @@ def register(request):
             email=form.cleaned_data['email']
                 )
 
-
             person = DB_Personal(form.cleaned_data['username'], form.cleaned_data['email'])
             person.make_person()
-
-            """
-            person = Personal.objects.create(
-                username='someone',
-                email='email@someone.come'
-                    )
-            """
 
             return HttpResponseRedirect('/register/success/')
 
@@ -64,6 +56,28 @@ def logout_page(request):
 
     return HttpResponseRedirect('/')
 
+
+def update_person(request):
+
+    if request.method == 'POST':
+        form = UpdateRegistrationForm(request.POST)
+        if form.is_valid():
+            field_update = []
+
+            for item in form.cleaned_data:
+                if form.cleaned_data[str(item)] != '':
+                    field_update.append(str(item))
+                    Personal.objects(username=str(request.user)).update(
+                        **{item: form.cleaned_data[item]
+                        })
+
+
+            user = '57926f28c1d6231e303861ca'
+            loggedin_user = DB_Personal.find_person(user)
+
+            return render(request, 'setting.html', {
+                'loggedin_user': loggedin_user
+                })
 
 @login_required
 def dash(request):

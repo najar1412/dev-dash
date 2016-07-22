@@ -27,6 +27,7 @@ urlpatterns = patterns('',
     url(r'^register/success/$', register_success),
     url(r'^dash/$', dash),
     url(r'^setting/$', setting),
+    url(r'^update_person/$', update_person),
 )
 
 
@@ -45,7 +46,7 @@ url(r'^media/$', media),
 url(r'^project/$', project),
 url(r'^del_note/$', del_note),
 url(r'^setting/$', setting),
-url(r'^update_user/$', update_user),
+
 url(r'^thank/$', setting),
 url(r'^note/$', note),
 url(r'^almanac/$', almanac),
