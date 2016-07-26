@@ -1,0 +1,80 @@
+*{
+padding : 0;
+margin : 0;
+border : 0;
+}
+.blended_grid{
+display : block;
+width : 1050px;
+overflow : auto;
+margin : 0 auto;
+}
+.dashnav{
+background-color : rgba(255,255,255, 0.5);
+float : left;
+clear : none;
+height : 100%;
+width : 100%;
+}
+.infobar{
+background-color : rgba(255,255,255, 0.5);
+float : left;
+clear : none;
+height : 100%;
+width : 100%;
+}
+.imagebanner{
+float : left;
+clear : none;
+height : 100%;
+width : 1050px;
+}
+.userbanner{
+background-color : rgba(255,255,255, 0.5);
+float : left;
+clear : none;
+height : 100%;
+width : 1050px;
+}
+.loginbanner{
+float : None;
+clear : none;
+height : 100%;
+width : 300px;
+margin: 0 auto;
+}
+.leftBanner{
+float : left;
+clear : none;
+height : 100%;
+width : 350px;
+text-align : center;
+}
+.centerBanner{
+float : left;
+clear : none;
+height : 100%;
+width : 350px;
+text-align : center;
+}
+.rightBanner{
+float : left;
+clear : none;
+height : 100%;
+width : 350px;
+text-align : center;
+}
+.loginleft{
+color: white;
+float : left;
+clear : none;
+height : 100%;
+width : 50%;
+}
+.loginright{
+float : left;
+clear : none;
+height : 100%;
+width : 50%;
+text-align : right;
+}
