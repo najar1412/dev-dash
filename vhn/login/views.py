@@ -26,7 +26,7 @@ def upload_media(request):
 
         if form.is_valid():
             media = Media.objects.create(
-                op_id=str(request.user),
+                op_id='test_op',
                 media_type=form.cleaned_data['media_type'],
                 media_name=form.cleaned_data['media_name'],
                 media_pname=form.cleaned_data['media_pname'],
