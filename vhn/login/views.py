@@ -26,7 +26,7 @@ def upload_media(request):
 
         if form.is_valid():
             media = Media.objects.create(
-                op_id=request.user,
+                op_id=str(request.user),
                 media_type=form.cleaned_data['media_type'],
                 media_name=form.cleaned_data['media_name'],
                 media_pname=form.cleaned_data['media_pname'],
@@ -51,9 +51,9 @@ def upload_media(request):
 
 def media(request):
 
-    # TODO: remove hardcore
+    # TODO: remove hardcode
     media_return = {}
-    for attri in Media.objects(id='5790d868c1d6231cc0afc34f'):
+    for attri in Media.objects(media_pname='57792195e52c2362609759a2.jpg'):
         media_return[attri.pk] = {
             'op_id': attri.op_id,
             'media_type': attri.media_type,
@@ -733,7 +733,7 @@ def post_note(request):
 
     # TODO: remove hardcore
     media_return = {}
-    for attri in Media.objects(id='5790d868c1d6231cc0afc34f'):
+    for attri in Media.objects(media_pname='57792195e52c2362609759a2.jpg'):
         media_return[attri.pk] = {
             'op_id': attri.op_id,
             'media_type': attri.media_type,
