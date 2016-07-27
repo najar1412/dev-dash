@@ -1,12 +1,10 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
 from mongoengine import *
 
 # Create your models here.
 
-class Personal(Document):
+
+class Member(Document):
     # Person
     username = StringField(required=True)
     email = StringField(required=True)
@@ -16,7 +14,7 @@ class Personal(Document):
     start_date = StringField(max_length=50)
     cakeday = StringField(max_length=50)
     role = StringField(max_length=50)
-    rate = StringField(max_length=50)
+    rank = StringField(max_length=50)
 
     # Benifit
     holiday = StringField(max_length=50)
@@ -31,6 +29,8 @@ class Personal(Document):
     curr_project = StringField(max_length=50)
     pre_project = StringField(max_length=50)
 
+    # asset
+    assign_asset = StringField(max_length=1000)
 
     # Comment
     sent_note = StringField(max_length=200)

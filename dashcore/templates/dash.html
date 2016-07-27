@@ -2,7 +2,10 @@
 {% block title %}Welcome to Django{% endblock %}
 {% block head %}Welcome to Django{% endblock %}
 {% block content %}
-    <p>Welcome {{ user.username }} !!!</p>
+
+{% for attri in logged_member.items %}
+    <p>Welcome {{ attri.1.first_name }}.</p>
+{% endfor %}
     <br>
     <br>
 {% endblock %}

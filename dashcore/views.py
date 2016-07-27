@@ -9,9 +9,9 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.utils import timezone
 
-from dashcore.personal import DB_Personal
-from dashcore.models import Personal
 from dashcore.forms import RegistrationForm, UpdateRegistrationForm
+from dashcore.dash_member import DashMember
+from dashcore.models import Member
 
 
 @csrf_protect
@@ -26,8 +26,8 @@ def register(request):
             email=form.cleaned_data['email']
                 )
 
-            person = DB_Personal(form.cleaned_data['username'], form.cleaned_data['email'])
-            person.make_person()
+            member = DashMember(form.cleaned_data['username'], form.cleaned_data['email'])
+            member.new()
 
             return HttpResponseRedirect('/register/success/')
 
@@ -57,7 +57,7 @@ def logout_page(request):
     return HttpResponseRedirect('/')
 
 
-def update_person(request):
+def update_member(request):
 
     if request.method == 'POST':
         form = UpdateRegistrationForm(request.POST)
@@ -67,35 +67,34 @@ def update_person(request):
             for item in form.cleaned_data:
                 if form.cleaned_data[str(item)] != '':
                     field_update.append(str(item))
-                    Personal.objects(username=str(request.user)).update(
+                    Member.objects(username=str(request.user)).update(
                         **{item: form.cleaned_data[item]
                         })
 
 
-            user = '57926f28c1d6231e303861ca'
-            loggedin_user = DB_Personal.find_person(user)
+            member_id = DashMember.get_id(str(request.user))
+            logged_member = DashMember.find(member_id)
 
             return render(request, 'setting.html', {
-                'loggedin_user': loggedin_user
+                'logged_member': logged_member
                 })
 
 @login_required
 def dash(request):
-    user = '57926f28c1d6231e303861ca'
-    loggedin_user = DB_Personal.find_person(user)
+    member_id = DashMember.get_id(str(request.user))
+    logged_member = DashMember.find(member_id)
 
     return render_to_response(
         'dash.html', {
-            'user': request.user,
-            'loggedin_user': loggedin_user
+            'logged_member': logged_member
             }
         )
 
 def setting(request):
-    user = '57926f28c1d6231e303861ca'
-    loggedin_user = DB_Personal.find_person(user)
+    member_id = DashMember.get_id(str(request.user))
+    logged_member = DashMember.find(member_id)
 
 
     return render(request, 'setting.html', {
-        'loggedin_user': loggedin_user
+        'logged_member': logged_member
         })

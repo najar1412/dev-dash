@@ -27,7 +27,7 @@ urlpatterns = patterns('',
     url(r'^register/success/$', register_success),
     url(r'^dash/$', dash),
     url(r'^setting/$', setting),
-    url(r'^update_person/$', update_person),
+    url(r'^update_member/$', update_member),
 )
 
 

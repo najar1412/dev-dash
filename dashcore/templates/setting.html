@@ -2,85 +2,21 @@
 {% block content %}
 
 
-{% for attri in loggedin_user.items %}
+{% for attri in logged_member.items %}
+
+
+
+
+<form action="/update_member/" method="post">{% csrf_token %}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Request Hoilday</h3>
+        <h3 class="panel-title">
+[<a title="show/hide" id="exp09823745_link" href="javascript: void(0);" onclick="toggle(this, 'exp09823745');"  style="text-decoration: none; color: #000000; ">−</a>]
+          Personal information</h3>
     </div>
     <div class="panel-body">
 
-      <form action="" method="post">{% csrf_token %}
-          <div class="form-group">
-            <div>
-              Remaining Hoilday: <b>{{ attri.1.holiday }}</b>
-              <br>
-              <br>
-            </div>
-              <div>
-                <small>Start Date:</small><br>
-                  <div style="float:right; width:90%;">
-                  <input class="form-control" id="id_start_date" maxlength="100" name="start_date" type="text" placeholder="datepicker" /><br>
-                </div><br><br>
-                  <small>End Date:</small><br>
-                    <div style="float:right; width:90%;">
-                    <input class="form-control" id="id_end_date" maxlength="100" name="end_date" type="text" placeholder="datepicker" /><br>
-                  </div><br><br>
-
-                  <button type="submit" class="btn btn-default" value="Submit" />Upload</button>
-
-
-                </div>
-            </div>
-      </form>
-
-</div>
-
-</div>
-
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Upload Media</h3>
-    </div>
-    <div class="panel-body">
-
-      <form action="/upload_media/" method="post">{% csrf_token %}
-          <div class="form-group">
-              <div>
-                <small>media_type:</small><br><br>
-                  <div style="float:right; width:90%;">
-                  <input class="form-control" id="id_name_type" maxlength="100" name="media_type" type="text" placeholder="media_type" /><br>
-                </div><br><br>
-                  <small>media_name:</small><br><br>
-                    <div style="float:right; width:90%;">
-                    <input class="form-control" id="id_media_name" maxlength="100" name="media_name" type="text" placeholder="media_name" /><br>
-                  </div><br><br>
-                  <small>media_pname:</small><br><br>
-                    <div style="float:right; width:90%;">
-                    <input class="form-control" id="id_media_pname" maxlength="100" name="media_pname" type="text" placeholder="media_pname" /><br>
-                  </div><br><br>
-                  <small>media_pname_thumb:</small><br><br>
-                    <div style="float:right; width:90%;">
-                    <input class="form-control" id="id_media_pname_thumb" maxlength="100" name="media_pname_thumb" type="text" placeholder="media_pname_thumb" /><br>
-                  </div><br><br>
-                  <button type="submit" class="btn btn-default" value="Submit" />Upload</button>
-
-
-                </div>
-            </div>
-      </form>
-
-</div>
-
-</div>
-
-<form action="/update_person/" method="post">{% csrf_token %}
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Personal information</h3>
-    </div>
-    <div class="panel-body">
-
+  <div id="exp09823745" style="padding: 3px;">
 
 
         <div style="width:48%; float:left;">
@@ -144,40 +80,145 @@
             </div>
 
         </div>
+
+      </div>
     </div>
 </div>
     </form>
 
+
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+[<a title="show/hide" id="exp1468505650_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505650');"  style="text-decoration: none; color: #000000; ">−</a>]
+              Warning</h3>
+        </div>
+        <div class="panel-body">
+          <div id="exp1468505650" style="padding: 3px;">
+            change email<br>
+            change password<br>
+            delete account<br>
+            <script language="javascript">toggle(getObject('exp1468505650_link'), 'exp1468505650');</script>
+          </div>
+        </div>
+    </div>
+
+
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Projects</h3>
+        <h3 class="panel-title">
+          [<a title="show/hide" id="exp1468505690_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505690');"  style="text-decoration: none; color: #000000; ">−</a>]
+
+Projects</h3>
     </div>
     <div class="panel-body">
+      <div id="exp1468505690" style="padding: 3px;">
         Assign user to project<br>
+        <script language="javascript">toggle(getObject('exp1468505690_link'), 'exp1468505690');</script>
+      </div>
     </div>
 </div>
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Dash</h3>
+        <h3 class="panel-title">
+          [<a title="show/hide" id="exp1468505100_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505100');"  style="text-decoration: none; color: #000000; ">−</a>]
+
+          Dash</h3>
     </div>
     <div class="panel-body">
+      <div id="exp1468505100" style="padding: 3px;">
         Enable/disable modules<br>
         Rearrange modules<br>
         Theme<br>
+        <script language="javascript">toggle(getObject('exp1468505100_link'), 'exp1468505100');</script>
+
+      </div>
     </div>
 </div>
-<br>
 
-<div class="panel panel-danger">
+
+
+<div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Warning</h3>
+        <h3 class="panel-title">
+[<a title="show/hide" id="exp1468505667_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505667');"  style="text-decoration: none; color: #000000; ">−</a>]
+          Request Hoilday</h3>
     </div>
     <div class="panel-body">
-        change email<br>
-        change password<br>
-        delete account<br>
+      <div id="exp1468505667" style="padding: 3px;">
+
+
+      <form action="" method="post">{% csrf_token %}
+          <div class="form-group">
+            <div>
+              Remaining Hoilday: <b>{{ attri.1.holiday }}</b>
+              <br>
+              <br>
+            </div>
+              <div>
+                <small>Start Date:</small><br>
+                  <div style="float:right; width:90%;">
+                  <input class="form-control" id="id_start_date" maxlength="100" name="start_date" type="text" placeholder="datepicker" /><br>
+                </div><br><br>
+                  <small>End Date:</small><br>
+                    <div style="float:right; width:90%;">
+                    <input class="form-control" id="id_end_date" maxlength="100" name="end_date" type="text" placeholder="datepicker" /><br>
+                  </div><br><br>
+
+                  <button type="submit" class="btn btn-default" value="Submit" />Upload</button>
+
+
+                </div>
+            </div>
+      </form>
+
+      <!-- Make Box init hidden -->
+      <script language="javascript">toggle(getObject('exp1468505667_link'), 'exp1468505667');</script>
+</div>
+</div>
+
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+[<a title="show/hide" id="exp1468505630_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505630');"  style="text-decoration: none; color: #000000; ">−</a>]
+          Upload Media</h3>
     </div>
+    <div class="panel-body">
+      <div id="exp1468505630" style="padding: 3px;">
+
+      <form action="/upload_media/" method="post">{% csrf_token %}
+          <div class="form-group">
+              <div>
+                <small>media_type:</small><br><br>
+                  <div style="float:right; width:90%;">
+                  <input class="form-control" id="id_name_type" maxlength="100" name="media_type" type="text" placeholder="media_type" /><br>
+                </div><br><br>
+                  <small>media_name:</small><br><br>
+                    <div style="float:right; width:90%;">
+                    <input class="form-control" id="id_media_name" maxlength="100" name="media_name" type="text" placeholder="media_name" /><br>
+                  </div><br><br>
+                  <small>media_pname:</small><br><br>
+                    <div style="float:right; width:90%;">
+                    <input class="form-control" id="id_media_pname" maxlength="100" name="media_pname" type="text" placeholder="media_pname" /><br>
+                  </div><br><br>
+                  <small>media_pname_thumb:</small><br><br>
+                    <div style="float:right; width:90%;">
+                    <input class="form-control" id="id_media_pname_thumb" maxlength="100" name="media_pname_thumb" type="text" placeholder="media_pname_thumb" /><br>
+                  </div><br><br>
+                  <button type="submit" class="btn btn-default" value="Submit" />Upload</button>
+
+
+                </div>
+            </div>
+      </form>
+      <script language="javascript">toggle(getObject('exp1468505630_link'), 'exp1468505630');</script>
+</div>
+</div>
+
 </div>
 
 {% endfor %}
