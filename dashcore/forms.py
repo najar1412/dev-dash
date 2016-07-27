@@ -35,3 +35,11 @@ class UpdateRegistrationForm(forms.Form):
 class ProjectNewForm(forms.Form):
     code = forms.CharField(label='code', max_length=200)
     inc = forms.CharField(label='inc', max_length=10)
+
+class AssetForm(forms.Form):
+    collection = forms.CharField(label='collection', max_length=100)
+    project_id = forms.CharField(label='project_id', max_length=100, required=False)
+    name = forms.CharField(label='name', max_length=100, required=False)
+    item = forms.CharField(label='item', max_length=100, required=False)
+    item_thumb = forms.CharField(label='item_thumb', max_length=100, required=False)
+    tag = forms.CharField(label='tag', max_length=500, required=False)

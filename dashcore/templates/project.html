@@ -81,12 +81,22 @@
 <div>
   <br>
 
+
+
    <button type="button" class="btn btn-primary btn-sm">Update</button>
    <button type="button" class="btn btn-primary btn-sm">Assign Personal</button>
+
+   <form action="/project_asset/" method="post">{% csrf_token %}
+     <input type="hidden" name="collection" value="True" />
+     <input type="hidden" name="project_id" value="{{ project.0 }}" />
+     <button type="submit" class="btn btn-primary btn-sm" name="addasset" value="{{ project.0 }}" />Add Asset</button>
+   </form>
+
    <button type="button" class="btn btn-primary btn-sm">Sign off</button><br><br>
 
-   <form action="/project_del/" method="post">{% csrf_token %}
-    <button type="submit" class="btn btn-danger" name="delete" value="{{ project.0 }}" />Delete</button></form>
+  <form action="/project_del/" method="post">{% csrf_token %}
+    <button type="submit" class="btn btn-danger" name="delete" value="{{ project.0 }}" />Delete</button>
+  </form>
 </div>
 
 <hr>

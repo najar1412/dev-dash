@@ -3,16 +3,17 @@ from django.shortcuts import render, HttpResponse
 from dashcore.forms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.utils import timezone
 
-from dashcore.forms import RegistrationForm, UpdateRegistrationForm
+from dashcore.forms import RegistrationForm, UpdateRegistrationForm, AssetForm
 from dashcore.dash_member import DashMember
 from dashcore.dash_project import DashProject
-from dashcore.models import Member, Project
+from dashcore.dash_asset import DashAsset
+from dashcore.models import Member, Project, Asset
 
 
 # TODO: Refactor register to Member db
@@ -145,7 +146,23 @@ def project_new(request):
             })
 
 def project_del(request):
-    DashProject.delete(request)
+    if request.method == 'POST':
+        DashProject.delete(request)
+
+        return HttpResponseRedirect('/project/')
+
+def project_asset(request):
+    if request.method == 'POST':
+        form = AssetForm(request.POST)
+
+        if form.is_valid():
+
+            print(form.cleaned_data['project_id'])
+            asset = DashAsset.new(
+            collection=form.cleaned_data['collection'],
+            project_id=str(form.cleaned_data['project_id'])
+                )
+
 
     return HttpResponseRedirect('/project/')
 
@@ -159,6 +176,7 @@ def rank(request):
         'logged_member': logged_member
         })
 
+@csrf_exempt
 def asset(request):
     # Get member details
     member_id = DashMember.get_id(str(request.user))
@@ -167,3 +185,23 @@ def asset(request):
     return render(request, 'asset.html', {
         'logged_member': logged_member
         })
+
+@csrf_exempt
+def asset_new(request):
+
+    if request.method == 'POST':
+        form = AssetForm(request.POST)
+
+        if form.is_valid():
+            asset = DashAsset.new(
+                collection=form.cleaned_data['collection']
+            )
+
+
+        # Get member details
+        member_id = DashMember.get_id(str(request.user))
+        logged_member = DashMember.find(member_id)
+
+        return render(request, 'asset.html', {
+            'logged_member': logged_member
+            })

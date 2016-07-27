@@ -51,3 +51,12 @@ class Project(Document):
     location = StringField(max_length=1000, default='')
     signedoff = BooleanField(default=False)
     flagdelete = BooleanField(default=False)
+
+class Asset(Document):
+    # Asset
+    collection = StringField(required=False, max_length=100, default='False')
+    project_id = StringField(required=False, max_length=100)
+    name = StringField(required=False, max_length=100)
+    item = StringField(required=False, max_length=100)
+    item_thumb = StringField(required=False, max_length=100)
+    tag = StringField(required=False, max_length=100)

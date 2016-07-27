@@ -16,24 +16,24 @@
     <div class="panel-body">
       <div id="exp1468505630" style="padding: 3px;">
 
-      <form action="/upload_media/" method="post">{% csrf_token %}
+      <form action="/asset_new/" method="post">{% csrf_token %}
           <div class="form-group">
               <div>
-                <small>media_type:</small><br><br>
+                <small>collection:</small><br><br>
                   <div style="float:right; width:90%;">
-                  <input class="form-control" id="id_name_type" maxlength="100" name="media_type" type="text" placeholder="media_type" /><br>
+                  <input class="form-control" id="id_collection" maxlength="100" name="collection" type="text" placeholder="collection" /><br>
                 </div><br><br>
-                  <small>media_name:</small><br><br>
+                  <small>project_id:</small><br><br>
                     <div style="float:right; width:90%;">
-                    <input class="form-control" id="id_media_name" maxlength="100" name="media_name" type="text" placeholder="media_name" /><br>
+                    <input class="form-control" id="id_project_id" maxlength="100" name="project_id" type="text" placeholder="project_id" /><br>
                   </div><br><br>
-                  <small>media_pname:</small><br><br>
+                  <small>item:</small><br><br>
                     <div style="float:right; width:90%;">
-                    <input class="form-control" id="id_media_pname" maxlength="100" name="media_pname" type="text" placeholder="media_pname" /><br>
+                    <input class="form-control" id="id_item" maxlength="100" name="item" type="text" placeholder="item" /><br>
                   </div><br><br>
-                  <small>media_pname_thumb:</small><br><br>
+                  <small>item_thumb:</small><br><br>
                     <div style="float:right; width:90%;">
-                    <input class="form-control" id="id_media_pname_thumb" maxlength="100" name="media_pname_thumb" type="text" placeholder="media_pname_thumb" /><br>
+                    <input class="form-control" id="id_item_thumb" maxlength="100" name="item_thumb" type="text" placeholder="item_thumb" /><br>
                   </div><br><br>
                   <button type="submit" class="btn btn-default" value="Submit" />Upload</button>
 

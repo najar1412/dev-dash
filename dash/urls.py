@@ -31,30 +31,9 @@ urlpatterns = patterns('',
     url(r'^project/$', project),
     url(r'^project_new/$', project_new),
     url(r'^project_del/$', project_del),
+    url(r'^project_asset/$', project_asset),
     url(r'^rank/$', rank),
     url(r'^asset/$', asset),
+    url(r'^asset_new/$', asset_new),
 
 )
-
-
-
-"""
-
-
-
-url(r'^home/$', home),
-url(r'^stat/$', stat),
-url(r'^send_note/$', send_note),
-url(r'^post_note/$', post_note),
-url(r'^new_project/$', new_project),
-url(r'^del_project/$', del_project),
-url(r'^media/$', media),
-url(r'^project/$', project),
-url(r'^del_note/$', del_note),
-url(r'^setting/$', setting),
-
-url(r'^thank/$', setting),
-url(r'^note/$', note),
-url(r'^almanac/$', almanac),
-url(r'^upload_media/$', upload_media),
-"""
