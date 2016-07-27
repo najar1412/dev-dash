@@ -18,4 +18,4 @@ class DashAsset:
             )
         asset.save()
 
-        return True
+        return asset.id

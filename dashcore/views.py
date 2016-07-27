@@ -156,12 +156,19 @@ def project_asset(request):
         form = AssetForm(request.POST)
 
         if form.is_valid():
-
-            print(form.cleaned_data['project_id'])
             asset = DashAsset.new(
             collection=form.cleaned_data['collection'],
             project_id=str(form.cleaned_data['project_id'])
                 )
+
+
+            Project.objects(pk=form.cleaned_data['project_id']).update(
+                                    **{'asset': str(asset)
+                                    })
+
+
+
+
 
 
     return HttpResponseRedirect('/project/')
