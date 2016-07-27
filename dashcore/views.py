@@ -11,9 +11,11 @@ from django.utils import timezone
 
 from dashcore.forms import RegistrationForm, UpdateRegistrationForm
 from dashcore.dash_member import DashMember
-from dashcore.models import Member
+from dashcore.dash_project import DashProject
+from dashcore.models import Member, Project
 
 
+# TODO: Refactor register to Member db
 @csrf_protect
 def register(request):
     if request.method == 'POST':
@@ -58,7 +60,6 @@ def logout_page(request):
 
 
 def update_member(request):
-
     if request.method == 'POST':
         form = UpdateRegistrationForm(request.POST)
         if form.is_valid():
@@ -96,5 +97,73 @@ def setting(request):
 
 
     return render(request, 'setting.html', {
+        'logged_member': logged_member
+        })
+
+def project(request):
+
+    member_id = DashMember.get_id(str(request.user))
+    logged_member = DashMember.find(member_id)
+
+    project = DashProject.find_all()
+
+    return render(request, 'project.html', {
+        'logged_member': logged_member,
+        'project': project
+        })
+
+def project_new(request):
+
+    if request.method == 'POST':
+        form = ProjectNewForm(request.POST)
+
+        if form.is_valid():
+            project = DashProject.new(
+            code=form.cleaned_data['code'],
+            inc=form.cleaned_data['inc']
+                )
+
+        # Get member details
+        member_id = DashMember.get_id(str(request.user))
+        logged_member = DashMember.find(member_id)
+
+        project = DashProject.find_all()
+
+        return render(request, 'project.html', {
+            'logged_member': logged_member,
+            'project': project
+            })
+    else:
+        # TODO: Error Catching
+
+        # Get member details
+        member_id = DashMember.get_id(str(request.user))
+        logged_member = DashMember.find(member_id)
+
+        return render(request, 'project.html', {
+            'logged_member': logged_member
+            })
+
+def project_del(request):
+    DashProject.delete(request)
+
+    return HttpResponseRedirect('/project/')
+
+def rank(request):
+
+    # Get member details
+    member_id = DashMember.get_id(str(request.user))
+    logged_member = DashMember.find(member_id)
+
+    return render(request, 'rank.html', {
+        'logged_member': logged_member
+        })
+
+def asset(request):
+    # Get member details
+    member_id = DashMember.get_id(str(request.user))
+    logged_member = DashMember.find(member_id)
+
+    return render(request, 'asset.html', {
         'logged_member': logged_member
         })

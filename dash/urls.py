@@ -28,6 +28,12 @@ urlpatterns = patterns('',
     url(r'^dash/$', dash),
     url(r'^setting/$', setting),
     url(r'^update_member/$', update_member),
+    url(r'^project/$', project),
+    url(r'^project_new/$', project_new),
+    url(r'^project_del/$', project_del),
+    url(r'^rank/$', rank),
+    url(r'^asset/$', asset),
+
 )
 
 

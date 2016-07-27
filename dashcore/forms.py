@@ -31,3 +31,7 @@ class UpdateRegistrationForm(forms.Form):
     med_plan = forms.CharField(label='med_plan', max_length=100, required=False)
     dent_provider = forms.CharField(label='dent_provider', max_length=100, required=False)
     dent_plan = forms.CharField(label='dent_plan', max_length=100, required=False)
+
+class ProjectNewForm(forms.Form):
+    code = forms.CharField(label='code', max_length=200)
+    inc = forms.CharField(label='inc', max_length=10)

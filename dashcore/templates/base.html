@@ -87,7 +87,7 @@
 
         <ul class="nav navbar-nav">
             <li><a href="/project/">Projects</a></li>
-            <li><a href="/media/">Media</a></li>
+            <li><a href="/asset/">Asset</a></li>
             <li><a href="/almanac/">Almanac</a></li>
         </ul>
 
@@ -110,7 +110,7 @@
   </div>
 
   <div style='float:right; text-align:right;'>
-    <h4><img src="{% static 'ico/ico_rate.jpg' %}" width="5%" height="5%"/><a href="/stat/">{{ attri.1.rank }}</a> | {{ attri.1.first_name }} {{ attri.1.last_name }}</h4>
+    <h4><img src="{% static 'ico/ico_rate.jpg' %}" width="5%" height="5%"/><a href="/rank/">{{ attri.1.rank }}</a> | {{ attri.1.first_name }} {{ attri.1.last_name }}</h4>
     <a href="/note/">Notes</a> (New({{ attri.1.recv_note }}), Read({{ attri.1.recv_note }}))<br>
     <img src="{% static 'ico/ico_setting.jpg' %}" width="15px" height="15px"/>&ensp;<a href="/setting/">Settings</a><br>
     <a href="/logout/">Logout</a>
