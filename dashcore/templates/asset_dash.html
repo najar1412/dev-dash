@@ -11,38 +11,4 @@
 {% endfor %}
 
 
-{% for asset in asset_collect.items %}
-
-<div class="panel panel-default">
-
-    <div class="panel-heading">
-        <h3 class="panel-title">{{ asset.1.name }}</h3>
-    </div>
-    <div class="panel-body">
-
-<div>
-  <div  style="float: left; width: 30%;">
-    <small>
-    Collection:<br>
-    item_thumbnail link: <br>
-    item_id:<br>
-    </small>
-  </div>
-<div sytle="float: right">
-<small>
-
-{{ asset.1.collection }}<br>
-{{ asset.1.item_thumb }}<br>
-<a href="/asset?query_name={{ asset.0|urlencode }}">{{ asset.0 }}</a><br>
-<br>
-</small>
-  </div>
-</div>
-
-</div>
-</div>
-{% endfor %}
-
-
-
 {% endblock %}

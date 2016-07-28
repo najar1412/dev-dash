@@ -101,19 +101,38 @@ def setting(request):
         'logged_member': logged_member
         })
 
-def project(request):
+def project_dash(request):
 
     member_id = DashMember.get_id(str(request.user))
     logged_member = DashMember.find(member_id)
 
     project = DashProject.find_all()
 
-    return render(request, 'project.html', {
+    return render(request, 'project_dash.html', {
         'logged_member': logged_member,
         'project': project
         })
 
+
+def project(request):
+
+    # Get asset details using id
+    project_detail = DashProject.find(request.GET.get('query_name'))
+
+    # Get member details using request.user
+    # TODO: remove request.user call, and member id from somewhere
+    member_id = DashMember.get_id(str(request.user))
+    logged_member = DashMember.find(member_id)
+
+    return render(request, 'project.html', {
+        'logged_member': logged_member,
+        'project': project_detail
+        })
+
+
+
 def project_new(request):
+
 
     if request.method == 'POST':
         form = ProjectNewForm(request.POST)
@@ -124,19 +143,14 @@ def project_new(request):
             inc=form.cleaned_data['inc']
                 )
 
-        # Get member details
-        member_id = DashMember.get_id(str(request.user))
-        logged_member = DashMember.find(member_id)
+            # Get member details
+            member_id = DashMember.get_id(str(request.user))
+            logged_member = DashMember.find(member_id)
 
-        project = DashProject.find_all()
+            return HttpResponseRedirect('/project?query_name={}'.format(str(project)))
 
-        return render(request, 'project.html', {
-            'logged_member': logged_member,
-            'project': project
-            })
     else:
         # TODO: Error Catching
-
         # Get member details
         member_id = DashMember.get_id(str(request.user))
         logged_member = DashMember.find(member_id)
@@ -145,35 +159,31 @@ def project_new(request):
             'logged_member': logged_member
             })
 
+
 def project_del(request):
     if request.method == 'POST':
         DashProject.delete(request)
 
-        return HttpResponseRedirect('/project/')
+        return HttpResponseRedirect('/project_dash/')
 
 def project_asset(request):
     # TODO: Refactor to DashAsset
+    # TODO: Figure out list fields within django models
+
+    """
+    Project.objects(id=request.POST['project_id']).update_one(push__asset='nosql')
+
+    # DashAsset.to_project(request.POST['project_id'])
+    """
+
     if request.method == 'POST':
         form = AssetForm(request.POST)
 
         if form.is_valid():
-            asset = DashAsset.new(
-            collection=form.cleaned_data['collection'],
-            project_id=str(form.cleaned_data['project_id']),
-            member_id='Not Set'
-                )
+            asset = DashAsset.to_project(request.POST['project_id'])
 
+            return HttpResponseRedirect('/project?query_name={}'.format(request.POST['project_id']))
 
-            Project.objects(pk=form.cleaned_data['project_id']).update(
-                                    **{'asset': str(asset)
-                                    })
-
-
-
-
-
-
-    return HttpResponseRedirect('/project/')
 
 def rank(request):
 
@@ -195,7 +205,6 @@ def asset_dash(request):
             'project_id': asset['project_id'],
             'item_thumb': asset['item_thumb']
             }
-    print(asset_collect)
 
     # Get member details using request.user
     # TODO: remove request.user call, and member id from somewhere
@@ -206,9 +215,6 @@ def asset_dash(request):
         'logged_member': logged_member,
         'asset_collect': asset_collect
         })
-
-
-
 
 
 @csrf_exempt

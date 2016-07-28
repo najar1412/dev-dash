@@ -25,10 +25,28 @@ class DashProject:
 
         project.save()
 
-    def find_one():
-        project_detail = {}
+        return project.id
 
-        return 'mock project'
+    def find(project_id):
+        project = {}
+
+        project_items = Project.objects(id=project_id)
+        for item in project_items:
+            project[item['id']] = {
+                'code': item['code'],
+                'inc': item['inc'],
+                'name': item['name'],
+                'start': item['start'],
+                'end': item['end'],
+                'creator_id': item['creator_id'],
+                'assigned_user_id': item['assigned_user_id'],
+                'asset': item['asset'],
+                'location': item['location'],
+                'signedoff': item['signedoff'],
+                'flagdelete': item['flagdelete'],
+                }
+
+        return project
 
     def find_all():
         project_all = {}

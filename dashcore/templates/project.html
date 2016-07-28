@@ -1,142 +1,89 @@
 {% extends "base.html" %}
+
 {% load staticfiles %}
 {% block content %}
-
-<div class="panel panel-default">
-
-    <div class="panel-heading">
-        <h3 class="panel-title">
-          [<a title="show/hide" id="exp38904759834_link" href="javascript: void(0);" onclick="toggle(this, 'exp38904759834');"  style="text-decoration: none; color: #000000; ">−</a>]
-
-          Create Project</h3>
-    </div>
-    <div class="panel-body">
-      <div id="exp38904759834" style="padding: 3px;">
-
-        <form action="/project_new/" method="post">{% csrf_token %}
-            <div class="form-group" style="width:392px">
-                <div class="form-inline">
-                    <input class="form-control" id="id_code" maxlength="100" name="code" type="text" placeholder="Project Code" />
-                    <input class="form-control" id="id_inc" maxlength="100" name="inc" type="text" placeholder="Increment" />
-                </div>
-                    <br>
-                <button type="submit" class="btn btn-default" value="Submit" />Create Project</button>
-            </div>
-        </form>
-        <script language="javascript">toggle(getObject('exp38904759834_link'), 'exp38904759834');</script>
-
-      </div>
-    </div>
-</div>
-
-
-
-<b>NY</b> | LN | MI | LA | ALL
-<br>
-<br>
-
-<div class="panel panel-default">
-
-    <div class="panel-heading">
-        <h3 class="panel-title">Current Projects</h3>
-    </div>
-    <div class="panel-body">
 
 
 
 {% for project in project.items %}
 
-<h2>{{ project.1.name }}</h2><br>
 
-
-
-
-
-<div>
-
-
-
-
-
-
-
-
-
-  <div  style="float: left; width: 30%;">
-    <small>
-    Project Code:<br>
-    Project Increment:<br>
-    Project Start: <br>
-    Project End:<br>
-    Assets:<br>
-    Created by:<br>
-    Users:<br>
-    Directory:<br>
-    Signed off:<br>
-    flagged for Deletion:<br><br>
-    </small>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{ project.1.name }}</h3>
   </div>
-<div sytle="float: right">
-<small>
 
-{{ project.1.code }}<br>
-{{ project.1.inc }}<br>
-{{ project.1.start }}<br>
-{{ project.1.end }}<br>
-<a href="/asset?query_name={{ project.1.asset|urlencode }}">{{ project.1.asset }}</a><br>
-{{ project.1.creator_id }}<br>
-{{ project.1.assigned_user_id }}<br>
-{{ project.1.location }}<br>
-{{ project.1.signedoff }}<br>
-{{ project.1.flagdelete }}<br>
-</small>
-  </div>
-</div>
+  <div class="panel-body">
+    <div>
+      <div  style="float: left; width: 30%;">
+        <small>
+        Project Code:<br>
+        Project Increment:<br>
+        Project Start: <br>
+        Project End:<br>
+        Assets:<br>
+        Created by:<br>
+        Users:<br>
+        Directory:<br>
+        Signed off:<br>
+        flagged for Deletion:<br><br>
+        </small>
+      </div>
 
+      <div sytle="float: right">
+        <small>
+        {{ project.1.code }}<br>
+        {{ project.1.inc }}<br>
+        {{ project.1.start }}<br>
+        {{ project.1.end }}<br>
+        <a href="/asset?query_name={{ project.1.asset|urlencode }}">{{ project.1.asset }}</a><br>
+        {{ project.1.creator_id }}<br>
+        {{ project.1.assigned_user_id }}<br>
+        {{ project.1.location }}<br>
+        {{ project.1.signedoff }}<br>
+        {{ project.1.flagdelete }}<br>
+        </small>
+      </div>
+    </div>
+    <br>
+    <div>
+       <button type="button" class="btn btn-primary btn-sm">Update</button>
+       <button type="button" class="btn btn-primary btn-sm">Assign Personal</button>
 
-
-<div>
-  <br>
-
-
-
-   <button type="button" class="btn btn-primary btn-sm">Update</button>
-   <button type="button" class="btn btn-primary btn-sm">Assign Personal</button>
-
-   <form action="/project_asset/" method="post">{% csrf_token %}
-     <input type="hidden" name="collection" value="True" />
-     <input type="hidden" name="project_id" value="{{ project.0 }}" />
-     <button type="submit" class="btn btn-primary btn-sm" name="addasset" value="{{ project.0 }}" />Add Asset</button>
-   </form>
-
-   <button type="button" class="btn btn-primary btn-sm">Sign off</button><br><br>
-
-  <form action="/project_del/" method="post">{% csrf_token %}
-    <button type="submit" class="btn btn-danger" name="delete" value="{{ project.0 }}" />Delete</button>
-  </form>
-</div>
+       <form action="/project_asset/" method="post">{% csrf_token %}
+         <input type="hidden" name="collection" value="True" />
+         <input type="hidden" name="project_id" value="{{ project.0 }}" />
+         <button type="submit" class="btn btn-primary btn-sm" name="addasset" value="{{ project.0 }}" />Add Asset</button>
+       </form>
+       <button type="button" class="btn btn-primary btn-sm">Sign off</button><br><br>
+       <form action="/project_del/" method="post">{% csrf_token %}
+         <button type="submit" class="btn btn-danger" name="delete" value="{{ project.0 }}" />Delete</button>
+       </form>
+     </div>
 
 {% if project.1.asset != 'Not Set' %}
 {% for x in project.1.asset %}
 {% endfor %}
-<hr>
+<br>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Assets</h3>
+  </div>
+
+  <div class="panel-body">
 
 <a href="/asset?query_name={{ project.1.asset|urlencode }}">
 <img src="{% static 'ico/user.jpg' %}" width="100px" height="100px"/>
 </a>
 
+</div>
+</div>
+
 {% endif %}
 <hr>
-
-
-
-
+</div>
+</div>
 {% endfor %}
-
-</div>
-</div>
-
-
-
 
 {% endblock %}
