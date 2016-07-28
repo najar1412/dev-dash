@@ -51,19 +51,20 @@ class DashProject:
     def find_all():
         project_all = {}
 
-        for attri in Project.objects:
-            project_all[attri.pk] = {
-                'code':attri.code,
-                'inc':attri.inc,
-                'name':attri.name,
-                'start':attri.start,
-                'end':attri.end,
-                'creator_id' :attri.creator_id,
-                'assigned_user_id' :attri.assigned_user_id,
-                'asset':attri.asset,
-                'location' :attri.location,
-                'signedoff' :attri.signedoff,
-                'flagdelete' :attri.flagdelete
+        project = Project.objects.all()
+        for item in range(len(project)):
+            project_all[project[item].pk] = {
+                'code': project[item].code,
+                'inc': project[item].inc,
+                'name': project[item].name,
+                'start': project[item].start,
+                'end': project[item].end,
+                'creator_id': project[item].creator_id,
+                'assigned_user_id': project[item].assigned_user_id,
+                'asset': project[item].asset,
+                'location': project[item].location,
+                'signedoff': project[item].signedoff,
+                'flagdelete': project[item].flagdelete
                 }
 
         return project_all

@@ -84,8 +84,8 @@ def update_member(request):
 
 @login_required
 def dash(request):
+    # Member information
     logged_member = DashMember.find(request.user)
-
     return render_to_response('dash.html', {'logged_member': logged_member}
         )
 
@@ -100,35 +100,34 @@ def setting(request):
 
 def project_dash(request):
 
-    member_id = DashMember.get_id(str(request.user))
-    logged_member = DashMember.find(member_id)
+    # Current project information
+    project_all = DashProject.find_all()
 
-    project = DashProject.find_all()
-
-    return render(request, 'project_dash.html', {
+    # Member information
+    logged_member = DashMember.find(request.user)
+    return render_to_response('project_dash.html', {
         'logged_member': logged_member,
-        'project': project
+        'project': project_all
         })
 
 
 def project(request):
 
     # Get asset details using id
-    project_detail = DashProject.find(request.GET.get('query_name'))
+    # project_detail = DashProject.find(request.GET.get('query_name'))
+    print(request.POST['query_name'])
 
-    # Get member details using request.user
-    # TODO: remove request.user call, and member id from somewhere
-    member_id = DashMember.get_id(str(request.user))
-    logged_member = DashMember.find(member_id)
+    # project = Project.objects.get(pk=request.POST['query_name'])
+    # print(project)
 
-    return render(request, 'project.html', {
-        'logged_member': logged_member,
-        'project': project_detail
+    # Member information
+    logged_member = DashMember.find(request.user)
+    return render_to_response('project.html', {
+        'logged_member': logged_member
         })
 
 
 def project_new(request):
-
 
     if request.method == 'POST':
         form = ProjectNewForm(request.POST)
@@ -184,34 +183,19 @@ def project_asset(request):
 
 
 def rank(request):
-
-    # Get member details
-    member_id = DashMember.get_id(str(request.user))
-    logged_member = DashMember.find(member_id)
-
-    return render(request, 'rank.html', {
+    # Member information
+    logged_member = DashMember.find(request.user)
+    return render_to_response('rank.html', {
         'logged_member': logged_member
         })
 
+
 def asset_dash(request):
-    asset_collect = {}
 
-    for asset in Asset.objects():
-        asset_collect[asset['id']] = {
-            'name': asset['name'],
-            'collection': asset['collection'],
-            'project_id': asset['project_id'],
-            'item_thumb': asset['item_thumb']
-            }
-
-    # Get member details using request.user
-    # TODO: remove request.user call, and member id from somewhere
-    member_id = DashMember.get_id(str(request.user))
-    logged_member = DashMember.find(member_id)
-
-    return render(request, 'asset_dash.html', {
-        'logged_member': logged_member,
-        'asset_collect': asset_collect
+    # Member information
+    logged_member = DashMember.find(request.user)
+    return render_to_response('asset_dash.html', {
+        'logged_member': logged_member
         })
 
 
