@@ -152,13 +152,15 @@ def project_del(request):
         return HttpResponseRedirect('/project/')
 
 def project_asset(request):
+    # TODO: Refactor to DashAsset
     if request.method == 'POST':
         form = AssetForm(request.POST)
 
         if form.is_valid():
             asset = DashAsset.new(
             collection=form.cleaned_data['collection'],
-            project_id=str(form.cleaned_data['project_id'])
+            project_id=str(form.cleaned_data['project_id']),
+            member_id='Not Set'
                 )
 
 
@@ -183,14 +185,46 @@ def rank(request):
         'logged_member': logged_member
         })
 
+def asset_dash(request):
+    asset_collect = {}
+
+    for asset in Asset.objects():
+        asset_collect[asset['id']] = {
+            'name': asset['name'],
+            'collection': asset['collection'],
+            'project_id': asset['project_id'],
+            'item_thumb': asset['item_thumb']
+            }
+    print(asset_collect)
+
+    # Get member details using request.user
+    # TODO: remove request.user call, and member id from somewhere
+    member_id = DashMember.get_id(str(request.user))
+    logged_member = DashMember.find(member_id)
+
+    return render(request, 'asset_dash.html', {
+        'logged_member': logged_member,
+        'asset_collect': asset_collect
+        })
+
+
+
+
+
 @csrf_exempt
 def asset(request):
-    # Get member details
+
+    # Get asset details using id
+    asset_detail = DashAsset.find(request.GET.get('query_name'))
+
+    # Get member details using request.user
+    # TODO: remove request.user call, and member id from somewhere
     member_id = DashMember.get_id(str(request.user))
     logged_member = DashMember.find(member_id)
 
     return render(request, 'asset.html', {
-        'logged_member': logged_member
+        'logged_member': logged_member,
+        'asset_detail': asset_detail
         })
 
 @csrf_exempt

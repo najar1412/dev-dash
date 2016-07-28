@@ -43,3 +43,4 @@ class AssetForm(forms.Form):
     item = forms.CharField(label='item', max_length=100, required=False)
     item_thumb = forms.CharField(label='item_thumb', max_length=100, required=False)
     tag = forms.CharField(label='tag', max_length=500, required=False)
+    member_id = forms.CharField(label='member_id', max_length=1000, required=False)

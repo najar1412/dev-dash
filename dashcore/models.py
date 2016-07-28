@@ -60,3 +60,4 @@ class Asset(Document):
     item = StringField(required=False, max_length=100)
     item_thumb = StringField(required=False, max_length=100)
     tag = StringField(required=False, max_length=100)
+    member_id = StringField(required=False, max_length=1000)

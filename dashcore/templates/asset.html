@@ -1,5 +1,69 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+
 {% block content %}
+
+{{ asset_detail }}
+{% for detail in asset_detail.items %}
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ detail.1.name }}</h3>
+    </div>
+    <div class="panel-body">
+
+<div>
+  <div  style="float: left; width: 30%;">
+    <small>
+    asset_id:<br>
+    collection:<br>
+    project_id:<br>
+    name: <br>
+    item:<br>
+    item_thumb:<br>
+    tag:<br>
+    member_id:<br>
+    </small>
+  </div>
+<div sytle="float: right">
+<small>
+{{ detail.0 }}<br>
+{{ detail.1.collection }}<br>
+
+
+<a href="/project?query_name={{ detail.1.project_id|urlencode }}">
+{{ detail.1.project_id }}<br>
+</a>
+
+
+{{ detail.1.name }}<br>
+{{ detail.1.item }}<br>
+{{ detail.1.item_thumb }}<br>
+{{ detail.1.tag }}<br>
+{{ detail.1.member_id }}<br>
+</small>
+  </div>
+</div>
+<div>
+  <br>
+
+</div>
+
+<img src="{% static 'ico/user.jpg' %}" width="600px" height="600px"/>
+
+
+<hr>
+<br>
+
+
+</div>
+</div>
+{% endfor %}
+
+
+
+
+
 
 
 {% endblock %}
