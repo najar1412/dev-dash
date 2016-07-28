@@ -78,3 +78,32 @@ height : 100%;
 width : 50%;
 text-align : right;
 }
+
+/* DivTable.com */
+.divTable{
+	display: table;
+	width: 100%;
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableHeading {
+	background-color: #EEE;
+}
+.divTableCell, .divTableHead {
+	/* border: 1px solid #999999; */
+	display: table-cell;
+	padding: 0px 0px;
+  vertical-align: top;
+}
+.divTableHeading {
+	background-color: #EEE;
+	font-weight: bold;
+}
+.divTableFoot {
+	background-color: #blue;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}

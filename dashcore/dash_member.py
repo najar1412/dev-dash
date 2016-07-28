@@ -44,33 +44,33 @@ class DashMember:
         member.save()
 
 
-    def find(member):
-        member_detail = {}
+    def find(member_id):
+        logged_member = {}
+        # memberr = Member.objects.filter(username=member_id)
+        member = Member.objects.get(username=member_id)
+        logged_member[member.pk] = {
+            'username': member.username,
+            'email': member.email,
+            'user_image': member.user_image,
+            'first_name': member.first_name,
+            'last_name': member.last_name,
+            'start_date': member.start_date,
+            'cakeday': member.cakeday,
+            'role': member.role,
+            'holiday': member.holiday,
+            'med_provider': member.med_provider,
+            'med_plan': member.med_plan,
+            'dent_provider': member.dent_provider,
+            'dent_plan': member.dent_plan,
+            'curr_project': member.curr_project,
+            'pre_project': member.pre_project,
+            'assign_asset': member.assign_asset,
+            'sent_note': member.sent_note,
+            'recv_note': member.recv_note,
+            'rank': member.rank
+            }
 
-        for member in Member.objects:
-            member_detail[str(member)] = {
-                'username': member.username,
-                'email': member.email,
-                'user_image': member.user_image,
-                'first_name': member.first_name,
-                'last_name': member.last_name,
-                'start_date': member.start_date,
-                'cakeday': member.cakeday,
-                'role': member.role,
-                'rank': member.rank,
-                'holiday': member.holiday,
-                'med_provider': member.med_provider,
-                'med_plan': member.med_plan,
-                'dent_provider': member.dent_provider,
-                'dent_plan': member.dent_plan,
-                'curr_project': member.curr_project,
-                'pre_project': member.pre_project,
-                'sent_note': member.sent_note,
-                'recv_note': member.recv_note,
-                'assign_asset': member.assign_asset
-                }
-
-        return member_detail
+        return logged_member
 
 
     def assign_asset():

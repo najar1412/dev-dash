@@ -2,6 +2,11 @@
 {% load staticfiles %}
 {% block content %}
 
+
+
+
+
+
 <div class="panel panel-default">
 
     <div class="panel-heading">
@@ -31,73 +36,74 @@
 
 
 
-<b>NY</b> | LN | MI | LA | ALL
+Filter:&emsp; NY | LN | MI | LA | <b>ALL</b>
 <br>
 <br>
-
-<div class="panel panel-default">
-
-    <div class="panel-heading">
-        <h3 class="panel-title">Current Projects</h3>
-    </div>
-    <div class="panel-body">
-
 
 
 {% for project in project.items %}
+<h2><a href="/project?query_name={{ project.0|urlencode }}">{{ project.1.name }}</a></h2>
+<div class="divTable">
+<div class="divTableBody">
+<div class="divTableRow">
+<div class="divTableCell" style="width:150px;"/>
+  <small>
+  Project Code:<br>
+  Project Increment:<br>
+  Project Start: <br>
+  Project End:<br>
+  Created by:<br>
+  Members:<br>
+  Directory:<br>
+  </small>
 
-<h2><a href="/project?query_name={{ project.0|urlencode }}">{{ project.1.name }}</a></h2><br>
 
-
-<div>
-
-
-  <div  style="float: left; width: 30%;">
-    <small>
-    Project Code:<br>
-    Project Increment:<br>
-    Project Start: <br>
-    Project End:<br>
-    Created by:<br>
-    Members:<br>
-    Directory:<br>
-    </small>
-  </div>
-<div sytle="float: right">
-<small>
-
-{{ project.1.code }}<br>
-{{ project.1.inc }}<br>
-{{ project.1.start }}<br>
-{{ project.1.end }}<br>
-{{ project.1.creator_id }}<br>
-{{ project.1.assigned_user_id }}<br>
-{{ project.1.location }}<br>
-</small>
-  </div>
 </div>
+<div class="divTableCell" style="width:200px;">
+
+  <small>
+
+  {{ project.1.code }}<br>
+  {{ project.1.inc }}<br>
+  {{ project.1.start }}<br>
+  {{ project.1.end }}<br>
+  {{ project.1.creator_id }}<br>
+  {{ project.1.assigned_user_id }}<br>
+  {{ project.1.location }}<br>
+  </small>
+
+
+</div>
+<div class="divTableCell">
+
+
+  {% if project.1.asset != 'Not Set' %}
+  {% for x in project.1.asset %}
+  {% endfor %}
+  <small>Project Assets:</small><br><br>
+  <a href="/asset?query_name={{ project.1.asset|urlencode }}">
+  <img src="{% static 'ico/user.jpg' %}" width="100px" height="100px"/>
+  </a>
+
+  {% endif %}
 
 
 
-{% if project.1.asset != 'Not Set' %}
-{% for x in project.1.asset %}
+
+</div>
+</div>
+</div>
+</div>
+  <hr>
+<!-- DivTable.com -->
 {% endfor %}
-<hr>
-
-<a href="/asset?query_name={{ project.1.asset|urlencode }}">
-<img src="{% static 'ico/user.jpg' %}" width="100px" height="100px"/>
-</a>
-
-{% endif %}
-<hr>
 
 
 
 
-{% endfor %}
 
-</div>
-</div>
+
+
 
 
 

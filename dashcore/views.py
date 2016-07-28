@@ -16,6 +16,7 @@ from dashcore.dash_asset import DashAsset
 from dashcore.models import Member, Project, Asset
 
 
+
 # TODO: Refactor register to Member db
 @csrf_protect
 def register(request):
@@ -83,13 +84,9 @@ def update_member(request):
 
 @login_required
 def dash(request):
-    member_id = DashMember.get_id(str(request.user))
-    logged_member = DashMember.find(member_id)
+    logged_member = DashMember.find(request.user)
 
-    return render_to_response(
-        'dash.html', {
-            'logged_member': logged_member
-            }
+    return render_to_response('dash.html', {'logged_member': logged_member}
         )
 
 def setting(request):
@@ -130,7 +127,6 @@ def project(request):
         })
 
 
-
 def project_new(request):
 
 
@@ -169,6 +165,8 @@ def project_del(request):
 def project_asset(request):
     # TODO: Refactor to DashAsset
     # TODO: Figure out list fields within django models
+
+
 
     """
     Project.objects(id=request.POST['project_id']).update_one(push__asset='nosql')

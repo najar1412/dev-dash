@@ -1,63 +1,62 @@
 from django.db import models
-from mongoengine import *
+# from mongoengine import *
 
 # Create your models here.
 
-
-class Member(Document):
+class Member(models.Model):
     # member
-    username = StringField(required=True)
-    email = StringField(required=True)
-    user_image = StringField(max_length=255)
-    first_name = StringField(max_length=50)
-    last_name = StringField(max_length=50)
-    start_date = StringField(max_length=50)
-    cakeday = StringField(max_length=50)
-    role = StringField(max_length=50)
-    rank = StringField(max_length=50)
+    username = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    user_image = models.CharField(max_length=255)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    start_date = models.CharField(max_length=50)
+    cakeday = models.CharField(max_length=50)
+    role = models.CharField(max_length=50)
+    rank = models.CharField(max_length=50)
 
     # Benifit
-    holiday = StringField(max_length=50)
+    holiday = models.CharField(max_length=50)
 
     # Health
-    med_provider = StringField(max_length=50)
-    med_plan = StringField(max_length=50)
-    dent_provider = StringField(max_length=50)
-    dent_plan = StringField(max_length=50)
+    med_provider = models.CharField(max_length=50)
+    med_plan = models.CharField(max_length=50)
+    dent_provider = models.CharField(max_length=50)
+    dent_plan = models.CharField(max_length=50)
 
     # Project
-    curr_project = StringField(max_length=50)
-    pre_project = StringField(max_length=50)
+    curr_project = models.CharField(max_length=50)
+    pre_project = models.CharField(max_length=50)
 
     # asset
-    assign_asset = StringField(max_length=1000)
+    assign_asset = models.CharField(max_length=1000)
 
     # Comment
-    sent_note = StringField(max_length=200)
-    recv_note = StringField(max_length=200)
+    sent_note = models.CharField(max_length=200)
+    recv_note = models.CharField(max_length=200)
 
-class Project(Document):
+class Project(models.Model):
     # Project
-    code = StringField(required=True, max_length=50)
-    inc = StringField(required=True, max_length=50)
-    name = StringField(required=True, max_length=255)
-    start = StringField(required=True, max_length=255)
-    end = StringField(required=True, max_length=255)
+    code = models.CharField(max_length=50)
+    inc = models.CharField(max_length=50)
+    name = models.CharField(max_length=255)
+    start = models.CharField(max_length=255)
+    end = models.CharField(max_length=255)
 
-    creator_id = StringField(max_length=255, default='0')
-    assigned_user_id = StringField(max_length=500)
-    asset = StringField(max_length=500)
+    creator_id = models.CharField(max_length=255, default='0')
+    assigned_user_id = models.CharField(max_length=500)
+    asset = models.CharField(max_length=500)
 
-    location = StringField(max_length=1000, default='')
-    signedoff = BooleanField(default=False)
-    flagdelete = BooleanField(default=False)
+    location = models.CharField(max_length=1000, default='')
+    signedoff = models.BooleanField(default=False)
+    flagdelete = models.BooleanField(default=False)
 
-class Asset(Document):
+class Asset(models.Model):
     # Asset
-    collection = StringField(required=False, max_length=100, default='False')
-    project_id = StringField(required=False, max_length=100)
-    name = StringField(required=False, max_length=100)
-    item = StringField(required=False, max_length=100)
-    item_thumb = StringField(required=False, max_length=100)
-    tag = StringField(required=False, max_length=100)
-    member_id = StringField(required=False, max_length=1000)
+    collection = models.CharField(max_length=100, default='False')
+    project_id = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    item = models.CharField(max_length=100)
+    item_thumb = models.CharField(max_length=100)
+    tag = models.CharField(max_length=100)
+    member_id = models.CharField(max_length=1000)

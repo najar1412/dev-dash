@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 import django.contrib.auth
-from mongoengine import connect
+# from mongoengine import connect
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,7 +32,6 @@ SECRET_KEY = '5=qrg+tb5xn0gkvk1@kmdqbt5ko3k8ce1u-nlqe^(4^q@%o)xv'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -81,17 +80,32 @@ WSGI_APPLICATION = 'dash.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'dashcore.sqlite'),
     }
 }
+"""
 
-"""CONNECT TO MONGODB"""
+DATABASES = {
+    'default': {
+        'NAME': 'member',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'USER': 'vhrender',
+        'PASSWORD': 'vhrender2011',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+
+"""
+'''CONNECT TO MONGODB'''
 # TODO: Enable authentication for db connection
 connect('dash_db')
-
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
