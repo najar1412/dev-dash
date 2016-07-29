@@ -21,7 +21,6 @@
         Project Increment:<br>
         Project Start: <br>
         Project End:<br>
-        Assets:<br>
         Created by:<br>
         Users:<br>
         Directory:<br>
@@ -36,9 +35,6 @@
         {{ project.1.inc }}<br>
         {{ project.1.start }}<br>
         {{ project.1.end }}<br>
-          {% for asset in project.1.asset %}
-            <a href="/asset?query_name={{ asset|urlencode }}">{{ asset }}</a>
-          {% endfor %}<br>
         {{ project.1.creator_id }}<br>
         {{ project.1.assigned_user_id }}<br>
         {{ project.1.location }}<br>
@@ -49,19 +45,22 @@
     </div>
     <br>
     <div>
+
        <button type="button" class="btn btn-primary btn-sm">Update</button>
-       <button type="button" class="btn btn-primary btn-sm">Assign Personal</button>
+       <button type="button" class="btn btn-primary btn-sm">Assign Member</button>
 
        <form action="/project_asset/" method="post">{% csrf_token %}
          <input type="hidden" name="collection" value="True" />
          <input type="hidden" name="project_id" value="{{ project.0 }}" />
-         <button type="submit" class="btn btn-primary btn-sm" name="addasset" value="{{ project.0 }}" />Add Asset</button>
+         <button type="submit" class="btn btn-primary btn-sm" name="addasset" value="{{ project.0 }}" />Assign Asset</button>
        </form>
        <button type="button" class="btn btn-primary btn-sm">Sign off</button><br><br>
        <form action="/project_del/" method="post">{% csrf_token %}
          <button type="submit" class="btn btn-danger" name="delete" value="{{ project.0 }}" />Delete</button>
        </form>
+
      </div>
+
 
 
 <br>
@@ -72,7 +71,6 @@
 <img src="{% static 'ico/user.jpg' %}" width="100px" height="100px"/>
 </a>
 {% endif %}
-
 {% endfor %}
 
 <hr>

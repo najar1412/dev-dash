@@ -5,7 +5,6 @@ from django.db import models
 
 class Member(models.Model):
     # member
-
     username = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     user_image = models.CharField(max_length=255)
@@ -14,7 +13,7 @@ class Member(models.Model):
     start_date = models.CharField(max_length=50)
     cakeday = models.CharField(max_length=50)
     role = models.CharField(max_length=50)
-    rank = models.CharField(max_length=50)
+    rank = models.CharField(max_length=50, default=1)
 
     # Benifit
     holiday = models.CharField(max_length=50)
@@ -36,6 +35,10 @@ class Member(models.Model):
     sent_note = models.CharField(max_length=200)
     recv_note = models.CharField(max_length=200)
 
+    def __str__(self):
+        return 'Member Object: {} {}'.format(self.first_name, self.last_name)
+
+
 class Project(models.Model):
     # Project
     code = models.CharField(max_length=50)
@@ -52,6 +55,9 @@ class Project(models.Model):
     signedoff = models.BooleanField(default=False, blank=True)
     flagdelete = models.BooleanField(default=False, blank=True)
 
+    def __str__(self):
+        return 'Project Object: {}: {}, {}'.format(self.code, self.inc, self.name)
+
 class Asset(models.Model):
     # Asset
     collection = models.CharField(max_length=100, default='False')
@@ -61,3 +67,6 @@ class Asset(models.Model):
     item_thumb = models.CharField(max_length=100)
     tag = models.CharField(max_length=100)
     member_id = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return 'Asset Object: {}'.format(self.name)
