@@ -86,16 +86,22 @@ class DashAsset:
     def delete(asset_id):
         project_id = Asset.objects.get(id=asset_id).project_id
 
-        asset_list = Project.objects.get(id=project_id).asset[1:-1].split(',')
-        if asset_id in asset_list:
-            asset_list.remove(asset_id)
+        try:
+            asset_list = Project.objects.get(id=project_id).asset[1:-1].split(',')
+            if asset_id in asset_list:
+                asset_list.remove(asset_id)
+        except:
+            pass
 
         asset = Asset.objects.get(id=asset_id)
 
         if asset.project_id:
-            project = Project.objects.get(id=asset.project_id)
-            project.asset = asset_list
-            project.save()
+            try:
+                project = Project.objects.get(id=asset.project_id)
+                project.asset = asset_list
+                project.save()
+            except:
+                pass
 
             asset.delete()
 

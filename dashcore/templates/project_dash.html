@@ -8,7 +8,12 @@ Filter:&emsp; NY | LN | MI | LA &emsp;| &emsp;<b>ALL</b>
 
 
 {% for project in project.items %}
-<h2><a href="/project?query_name={{ project.0|urlencode }}">{{ project.1.name }}</a></h2>
+<h3>
+<a href="/project?query_name={{ project.0|urlencode }}">
+<div class="well well-sm">{{ project.1.name }}</div>
+</a>
+</h3>
+
 <div class="divTable">
 <div class="divTableBody">
 <div class="divTableRow">
@@ -43,16 +48,17 @@ Filter:&emsp; NY | LN | MI | LA &emsp;| &emsp;<b>ALL</b>
 <div class="divTableCell">
 
 
-  {% if project.1.asset != '{}' %}
-  {% for x in project.1.asset %}
-  {% endfor %}
+
   <small>Project Assets:</small><br><br>
-  <a href="/asset?query_name={{ project.1.asset|urlencode }}">
-  <img src="{% static 'ico/user.jpg' %}" width="100px" height="100px"/>
+
+
+  {% for x in project.1.asset %}
+  {% if x != '' %}
+  <a href="/asset?query_name={{ x|urlencode }}">
+  <img src="{% static 'ico/user.jpg' %}" width="50px" height="50px"/>
   </a>
-
   {% endif %}
-
+  {% endfor %}
 
 
 
@@ -63,14 +69,6 @@ Filter:&emsp; NY | LN | MI | LA &emsp;| &emsp;<b>ALL</b>
   <hr>
 <!-- DivTable.com -->
 {% endfor %}
-
-
-
-
-
-
-
-
 
 
 
