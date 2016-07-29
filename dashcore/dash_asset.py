@@ -23,7 +23,8 @@ class DashAsset:
         return asset.id
 
     def to_project(project_id):
-        asset = Asset.objects.create(
+        listy = []
+        asset = Asset(
             collection='False',
             project_id=project_id,
             name='Not Set',
@@ -31,30 +32,74 @@ class DashAsset:
             item_thumb='user.jpg',
             tag='Not Set',
             member_id='Not Sec'
-            )
-
+                )
         asset.save()
 
-        Project.objects(pk=project_id).update(
-            **{'asset': str(asset.id)
-            })
 
-        return project_id
+        project = Project.objects.get(pk=project_id)
+
+        if project.asset != '{}':
+            string_clean = str(project.asset)[1:-1].split(',')
+            string_clean.append(asset.id)
+            project.asset = string_clean
+        else:
+            project.asset = [asset.id]
+
+        project.save()
+
+        return asset
 
 
     def find(asset_id):
         asset = {}
 
-        asset_items = Asset.objects(id=asset_id)
-        for item in asset_items:
-            asset[item['id']] = {
-                'collection': item['collection'],
-                'project_id': item['project_id'],
-                'name': item['name'],
-                'item': item['item'],
-                'item_thumb': item['item_thumb'],
-                'tag': item['tag'],
-                'member_id':item['member_id']
-                }
+        item = Asset.objects.get(id=asset_id)
+        asset[item.id] = {
+            'collection': item.collection,
+            'project_id': item.project_id,
+            'name': item.name,
+            'item': item.item,
+            'item_thumb': item.item_thumb,
+            'tag': item.tag,
+            'member_id':item.member_id
+            }
 
         return asset
+
+    def find_all():
+        asset_collect = {}
+
+        asset = Asset.objects.all()
+        for item in range(len(asset)):
+            asset_collect[asset[item].pk] = {
+                'collection': asset[item].collection,
+                'project_id': asset[item].project_id,
+                'name': asset[item].name,
+                'item': asset[item].item,
+                'item_thumb': asset[item].item_thumb,
+                'tag': asset[item].tag,
+                'member_id': asset[item].member_id
+                }
+        return asset_collect
+
+
+    def delete(asset_id):
+        project_id = Asset.objects.get(id=asset_id).project_id
+
+        asset_list = Project.objects.get(id=project_id).asset[1:-1].split(',')
+        if asset_id in asset_list:
+            asset_list.remove(asset_id)
+
+        asset = Asset.objects.get(id=asset_id)
+
+        if asset.project_id:
+            project = Project.objects.get(id=asset.project_id)
+            project.asset = asset_list
+            project.save()
+
+            asset.delete()
+
+        else:
+            asset.delete()
+
+        return True

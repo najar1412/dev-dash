@@ -47,7 +47,9 @@
   <br>
 
 </div>
-
+<form method="post" action="/asset_del/">{% csrf_token %}
+<button type="submit" class="btn btn-secondary btn-sm" name="delete" value="{{ detail.0 }}" />Delete</button>
+</form>
 <img src="{% static 'ico/user.jpg' %}" width="600px" height="600px"/>
 
 

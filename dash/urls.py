@@ -37,5 +37,6 @@ urlpatterns = patterns('',
     url(r'^asset/$', asset),
     url(r'^asset_new/$', asset_new),
     url(r'^asset_dash/$', asset_dash),
+    url(r'^asset_del/$', asset_del)
 
 )

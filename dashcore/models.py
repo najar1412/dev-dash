@@ -1,10 +1,11 @@
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
-# from mongoengine import *
 
 # Create your models here.
 
 class Member(models.Model):
     # member
+
     username = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     user_image = models.CharField(max_length=255)
@@ -39,17 +40,17 @@ class Project(models.Model):
     # Project
     code = models.CharField(max_length=50)
     inc = models.CharField(max_length=50)
-    name = models.CharField(max_length=255)
-    start = models.CharField(max_length=255)
-    end = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, default='No Name')
+    start = models.CharField(max_length=255, blank=True)
+    end = models.CharField(max_length=255, blank=True)
+    creator_id = models.CharField(max_length=255, blank=True)
+    assigned_user_id = models.CharField(max_length=500, blank=True)
 
-    creator_id = models.CharField(max_length=255, default='0')
-    assigned_user_id = models.CharField(max_length=500)
-    asset = models.CharField(max_length=500)
+    asset = ArrayField(models.CharField(max_length=100), blank=True, default=list)
 
-    location = models.CharField(max_length=1000, default='')
-    signedoff = models.BooleanField(default=False)
-    flagdelete = models.BooleanField(default=False)
+    location = models.CharField(max_length=1000, blank=True)
+    signedoff = models.BooleanField(default=False, blank=True)
+    flagdelete = models.BooleanField(default=False, blank=True)
 
 class Asset(models.Model):
     # Asset

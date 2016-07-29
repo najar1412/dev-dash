@@ -89,9 +89,10 @@ DATABASES = {
 }
 """
 
+
 DATABASES = {
     'default': {
-        'NAME': 'member',
+        'NAME': 'dash',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'USER': 'vhrender',
         'PASSWORD': 'vhrender2011',

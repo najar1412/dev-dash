@@ -17,7 +17,7 @@ class DashProject:
             end='Not Set',
             creator_id='Not Set',
             assigned_user_id='Not Set',
-            asset='Not Set',
+            asset=[],
             location='Not Set',
             signedoff = False,
             flagdelete = False
@@ -30,21 +30,22 @@ class DashProject:
     def find(project_id):
         project = {}
 
-        project_items = Project.objects(id=project_id)
-        for item in project_items:
-            project[item['id']] = {
-                'code': item['code'],
-                'inc': item['inc'],
-                'name': item['name'],
-                'start': item['start'],
-                'end': item['end'],
-                'creator_id': item['creator_id'],
-                'assigned_user_id': item['assigned_user_id'],
-                'asset': item['asset'],
-                'location': item['location'],
-                'signedoff': item['signedoff'],
-                'flagdelete': item['flagdelete'],
-                }
+        asset_list = Project.objects.get(id=project_id).asset[1:-1].split(',')
+
+        item = Project.objects.get(id=project_id)
+        project[item.id] = {
+            'code': item.code,
+            'inc': item.inc,
+            'name': item.name,
+            'start': item.start,
+            'end': item.end,
+            'creator_id': item.creator_id,
+            'assigned_user_id': item.assigned_user_id,
+            'asset': asset_list,
+            'location': item.location,
+            'signedoff': item.signedoff,
+            'flagdelete': item.flagdelete,
+            }
 
         return project
 

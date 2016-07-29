@@ -82,6 +82,7 @@ def update_member(request):
                 'logged_member': logged_member
                 })
 
+
 @login_required
 def dash(request):
     # Member information
@@ -112,18 +113,14 @@ def project_dash(request):
 
 
 def project(request):
-
-    # Get asset details using id
-    # project_detail = DashProject.find(request.GET.get('query_name'))
-    print(request.POST['query_name'])
-
-    # project = Project.objects.get(pk=request.POST['query_name'])
-    # print(project)
-
+    # Asset information
+    project = DashProject.find(request.GET.get('query_name'))
     # Member information
     logged_member = DashMember.find(request.user)
-    return render_to_response('project.html', {
-        'logged_member': logged_member
+
+    return render(request, 'project.html', {
+        'logged_member': logged_member,
+        'project': project
         })
 
 
@@ -161,25 +158,15 @@ def project_del(request):
 
         return HttpResponseRedirect('/project_dash/')
 
+
 def project_asset(request):
     # TODO: Refactor to DashAsset
     # TODO: Figure out list fields within django models
 
-
-
-    """
-    Project.objects(id=request.POST['project_id']).update_one(push__asset='nosql')
-
-    # DashAsset.to_project(request.POST['project_id'])
-    """
-
-    if request.method == 'POST':
-        form = AssetForm(request.POST)
-
-        if form.is_valid():
-            asset = DashAsset.to_project(request.POST['project_id'])
-
-            return HttpResponseRedirect('/project?query_name={}'.format(request.POST['project_id']))
+    asset = DashAsset.to_project(request.POST['project_id'])
+    # Member information
+    logged_member = DashMember.find(request.user)
+    return HttpResponseRedirect('/project?query_name={}'.format(request.POST['project_id']))
 
 
 def rank(request):
@@ -191,11 +178,13 @@ def rank(request):
 
 
 def asset_dash(request):
-
+    # Asset Information
+    asset_collect = DashAsset.find_all()
     # Member information
     logged_member = DashMember.find(request.user)
-    return render_to_response('asset_dash.html', {
-        'logged_member': logged_member
+    return render(request, 'asset_dash.html', {
+        'logged_member': logged_member,
+        'asset_collect': asset_collect
         })
 
 
@@ -204,16 +193,13 @@ def asset(request):
 
     # Get asset details using id
     asset_detail = DashAsset.find(request.GET.get('query_name'))
-
-    # Get member details using request.user
-    # TODO: remove request.user call, and member id from somewhere
-    member_id = DashMember.get_id(str(request.user))
-    logged_member = DashMember.find(member_id)
-
+    # Member information
+    logged_member = DashMember.find(request.user)
     return render(request, 'asset.html', {
         'logged_member': logged_member,
         'asset_detail': asset_detail
         })
+
 
 @csrf_exempt
 def asset_new(request):
@@ -234,3 +220,17 @@ def asset_new(request):
         return render(request, 'asset.html', {
             'logged_member': logged_member
             })
+
+
+def asset_del(request):
+    # Asset to delete
+    print(request.POST)
+    DashAsset.delete(request.POST['delete'])
+    # Asset Information
+    asset_collect = DashAsset.find_all()
+    # Member information
+    logged_member = DashMember.find(request.user)
+    return render(request, 'asset_dash.html', {
+        'logged_member': logged_member,
+        'asset_collect': asset_collect
+        })
