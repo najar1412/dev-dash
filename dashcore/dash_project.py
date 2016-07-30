@@ -30,7 +30,7 @@ class DashProject:
     def find(project_id):
         project = {}
 
-        asset_list = Project.objects.get(id=project_id).asset[1:-1].split(',')
+        #asset_list = Project.objects.get(id=project_id).asset[1:-1].split(',')
 
         item = Project.objects.get(id=project_id)
         project[item.id] = {
@@ -41,7 +41,7 @@ class DashProject:
             'end': item.end,
             'creator_id': item.creator_id,
             'assigned_user_id': item.assigned_user_id,
-            'asset': asset_list,
+            'asset': item.asset,
             'location': item.location,
             'signedoff': item.signedoff,
             'flagdelete': item.flagdelete,
@@ -52,7 +52,6 @@ class DashProject:
     def find_all():
         project_all = {}
 
-        project = Project.objects.all()
 
         project = Project.objects.all()
         for item in range(len(project)):
@@ -64,7 +63,7 @@ class DashProject:
                 'end': project[item].end,
                 'creator_id': project[item].creator_id,
                 'assigned_user_id': project[item].assigned_user_id,
-                'asset': project[item].asset[1:-1].split(','),
+                'asset': project[item].asset,
                 'location': project[item].location,
                 'signedoff': project[item].signedoff,
                 'flagdelete': project[item].flagdelete

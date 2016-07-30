@@ -49,7 +49,7 @@ class Project(models.Model):
     creator_id = models.CharField(max_length=255, blank=True)
     assigned_user_id = models.CharField(max_length=500, blank=True)
 
-    asset = ArrayField(models.CharField(max_length=100), blank=True, default=list)
+    asset = ArrayField(models.CharField(max_length=100), blank=True, default=None)
 
     location = models.CharField(max_length=1000, blank=True)
     signedoff = models.BooleanField(default=False, blank=True)

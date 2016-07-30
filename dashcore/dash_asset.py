@@ -23,7 +23,6 @@ class DashAsset:
         return asset.id
 
     def to_project(project_id):
-        listy = []
         asset = Asset(
             collection='False',
             project_id=project_id,
@@ -35,17 +34,10 @@ class DashAsset:
                 )
         asset.save()
 
-
         project = Project.objects.get(pk=project_id)
-
-        if project.asset != '{}':
-            string_clean = str(project.asset)[1:-1].split(',')
-            string_clean.append(asset.id)
-            project.asset = string_clean
-        else:
-            project.asset = [asset.id]
-
+        project.asset.append(str(asset.id))
         project.save()
+
 
         return asset
 
@@ -84,24 +76,27 @@ class DashAsset:
 
 
     def delete(asset_id):
-        project_id = Asset.objects.get(id=asset_id).project_id
-
-        try:
-            asset_list = Project.objects.get(id=project_id).asset[1:-1].split(',')
-            if asset_id in asset_list:
-                asset_list.remove(asset_id)
-        except:
-            pass
-
-        asset = Asset.objects.get(id=asset_id)
+        """delete('')
+        Removes Asset from library.
+        If Asset is assigned to a project, that reference is removed also.
+        Aug:
+            '', str - Asset Primary Key
+        Note:
+            Would using a foreign key, database relationship remove the step of
+            having to remove the entry from the project?
+        """
+        asset = Asset.objects.get(pk=asset_id)
 
         if asset.project_id:
-            try:
-                project = Project.objects.get(id=asset.project_id)
-                project.asset = asset_list
+            project = Project.objects.get(pk=asset.project_id)
+            print(project.asset)
+
+            if asset_id in project.asset:
+                print('----')
+                print(asset_id)
+                project.asset.remove(asset_id)
                 project.save()
-            except:
-                pass
+                print(project.asset)
 
             asset.delete()
 
