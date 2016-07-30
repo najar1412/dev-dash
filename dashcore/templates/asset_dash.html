@@ -13,9 +13,9 @@
     </div>
     <div class="panel-body">
       {% for asset in asset_collect.items %}
-        {% if asset.1.project_id != 'Not Set' %}
+        {% if asset.1.project_id != '' %}
           <a href="/asset?query_name={{ asset.0|urlencode }}">
-          <img src="{% static 'ico/user.jpg' %}" width="150px" height="150px"/>
+          <img src="{% static 'ico/user.jpg' %}" width="167px" height="167px"/>
           </a>
         {% endif %}
       {% endfor %}
@@ -32,9 +32,9 @@
     </div>
     <div class="panel-body">
       {% for asset in asset_collect.items %}
-        {% if asset.1.project_id == 'Not Set' %}
+        {% if asset.1.project_id == '' %}
           <a href="/asset?query_name={{ asset.0|urlencode }}">
-          <img src="{% static 'ico/user.jpg' %}" width="150px" height="150px"/>
+          <img src="{% static 'ico/user.jpg' %}" width="167px" height="167px"/>
           </a>
         {% endif %}
       {% endfor %}
@@ -49,6 +49,20 @@
 
 
 
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <h3 class="panel-title">New Asset</h3>
+    </div>
+    <div class="panel-body">
+      <form action="/asset_new/" method="post">{% csrf_token %}
+        <input type="hidden" name="collection" value="True" />
+        <input type="hidden" name="project_id" value="{{ project.0 }}" />
+        <button type="submit" class="btn btn-primary btn-sm" name="addasset" value="{{ project.0 }}" />Assign Asset</button>
+      </form>
+
+</div>
+</div>
 
 
 

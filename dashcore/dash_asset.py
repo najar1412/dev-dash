@@ -8,6 +8,8 @@ class DashAsset:
     def __init__(self, collection):
         collection = self.collection
 
+    """
+
     def new(collection, project_id='Not Set', member_id='Not Sec'):
         asset = Asset.objects.create(
             collection=collection,
@@ -20,6 +22,14 @@ class DashAsset:
             )
         asset.save()
 
+        return asset.id
+    """
+
+    def new():
+
+        asset = Asset.objects.create()
+        print(asset.id)
+        
         return asset.id
 
     def to_project(project_id):

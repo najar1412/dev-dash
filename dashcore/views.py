@@ -201,25 +201,19 @@ def asset(request):
         })
 
 
-@csrf_exempt
 def asset_new(request):
-
-    if request.method == 'POST':
-        form = AssetForm(request.POST)
-
-        if form.is_valid():
-            asset = DashAsset.new(
-                collection=form.cleaned_data['collection']
-            )
-
-
-        # Get member details
-        member_id = DashMember.get_id(str(request.user))
-        logged_member = DashMember.find(member_id)
-
-        return render(request, 'asset.html', {
-            'logged_member': logged_member
-            })
+    # TODO: DashAsset.new() should return asset dict.
+    # To avoid second DB hit at asset_detail
+    asset = DashAsset.new()
+    # Get asset details using id
+    asset_detail = DashAsset.find(asset)
+    print(asset_detail)
+    # Member information
+    logged_member = DashMember.find(request.user)
+    return render(request, 'asset.html', {
+        'logged_member': logged_member,
+        'asset_detail': asset_detail
+        })
 
 
 def asset_del(request):
