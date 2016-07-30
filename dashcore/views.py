@@ -85,10 +85,22 @@ def update_member(request):
 
 @login_required
 def dash(request):
+
+    #Get members current assets
+    current_asset = []
+    member_id = DashMember.get_id(request.user)
+    cur_asset = Asset.objects.all()
+    for x in cur_asset:
+        if str(member_id) in x.member_id:
+            current_asset.append(x.pk)
     # Member information
     logged_member = DashMember.find(request.user)
-    return render_to_response('dash.html', {'logged_member': logged_member}
-        )
+
+    return render_to_response('dash.html', {
+        'logged_member': logged_member,
+        'current_asset': current_asset
+            })
+
 
 def setting(request):
     member_id = DashMember.get_id(str(request.user))
@@ -160,9 +172,11 @@ def project_del(request):
 
 
 def project_asset(request):
+    """
     asset = DashAsset.to_project(request.POST['project_id'])
     # Member information
     logged_member = DashMember.find(request.user)
+    """
     return HttpResponseRedirect('/project?query_name={}'.format(request.POST['project_id']))
 
 
@@ -200,7 +214,6 @@ def asset(request):
 
 def asset_new(request):
     if 'project_id' in request.POST:
-        print('theres a project id')
         asset = DashAsset.to_project(request.POST['project_id'], request.POST['member_id'])
 
     else:
@@ -222,7 +235,6 @@ def asset_del(request):
     if 'delete' in request.POST:
         DashAsset.delete(request.POST['delete'])
     elif 'contri' in request.POST:
-        print(request.POST)
         asset = Asset.objects.get(pk=request.POST['asset_id'])
         asset.member_id.append(request.POST['contri'])
         asset.save()

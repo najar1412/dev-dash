@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Welcome to Django{% endblock %}
-{% block head %}Welcome to Django{% endblock %}
+{% load staticfiles %}
 {% block content %}
 
 {% for attri in logged_member.items %}
@@ -12,6 +11,32 @@ User assigned Images<br>
 User Assigned project<br>
  - project overview charts<br>
 <br>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+          Assigned Assets</h3>
+    </div>
+
+
+
+    <div class="panel-body">
+
+{% for asset in current_asset %}
+
+
+      <a href="/asset?query_name={{ asset|urlencode }}">
+      <img src="{% static 'ico/user.jpg' %}" width="167px" height="167px"/>
+
+      </a>
+{% endfor %}
+    </div>
+
+</div>
+
+
+
+
 
 
 <div class="panel panel-default">

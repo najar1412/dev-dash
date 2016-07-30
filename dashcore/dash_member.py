@@ -78,5 +78,5 @@ class DashMember:
 
     # Helper Methods
     def get_id(member):
-        for member in Member.objects(username=member):
-            return member.pk
+        member_id = Member.objects.get(username=member)
+        return member.pk

@@ -19,15 +19,10 @@ class DashAsset:
     def to_project(project_id, member_id):
         asset = Asset(
             collection='False',
-            project_id=project_id,
-            name='Not Set',
-            item='Not Set',
-            item_thumb='Not Set',
-            tag='Not Set',
+            project_id=project_id
                 )
         asset.member_id.append(member_id)
         asset.save()
-
 
         project = Project.objects.get(pk=project_id)
         project.asset.append(str(asset.id))
