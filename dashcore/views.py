@@ -16,7 +16,6 @@ from dashcore.dash_asset import DashAsset
 from dashcore.models import Member, Project, Asset
 
 
-
 # TODO: Refactor register to Member db
 @csrf_protect
 def register(request):
@@ -85,7 +84,6 @@ def update_member(request):
 
 @login_required
 def dash(request):
-
     #Get members current assets
     current_asset = []
     member_id = DashMember.get_id(request.user)
@@ -106,18 +104,17 @@ def setting(request):
     member_id = DashMember.get_id(str(request.user))
     logged_member = DashMember.find(member_id)
 
-
     return render(request, 'setting.html', {
         'logged_member': logged_member
         })
 
-def project_dash(request):
 
+def project_dash(request):
     # Current project information
     project_all = DashProject.find_all()
-
     # Member information
     logged_member = DashMember.find(request.user)
+
     return render_to_response('project_dash.html', {
         'logged_member': logged_member,
         'project': project_all
@@ -137,16 +134,13 @@ def project(request):
 
 
 def project_new(request):
-
     if request.method == 'POST':
         form = ProjectNewForm(request.POST)
-
         if form.is_valid():
             project = DashProject.new(
             code=form.cleaned_data['code'],
             inc=form.cleaned_data['inc']
                 )
-
             # Get member details
             member_id = DashMember.get_id(str(request.user))
             logged_member = DashMember.find(member_id)
@@ -183,6 +177,7 @@ def project_asset(request):
 def rank(request):
     # Member information
     logged_member = DashMember.find(request.user)
+
     return render_to_response('rank.html', {
         'logged_member': logged_member
         })
@@ -193,6 +188,7 @@ def asset_dash(request):
     asset_collect = DashAsset.find_all()
     # Member information
     logged_member = DashMember.find(request.user)
+
     return render(request, 'asset_dash.html', {
         'logged_member': logged_member,
         'asset_collect': asset_collect
@@ -201,11 +197,11 @@ def asset_dash(request):
 
 @csrf_exempt
 def asset(request):
-
     # Get asset details using id
     asset_detail = DashAsset.find(request.GET.get('query_name'))
     # Member information
     logged_member = DashMember.find(request.user)
+
     return render(request, 'asset.html', {
         'logged_member': logged_member,
         'asset_detail': asset_detail
@@ -223,6 +219,7 @@ def asset_new(request):
     asset_detail = DashAsset.find(asset.pk)
     # Member information
     logged_member = DashMember.find(request.user)
+
     return render(request, 'asset.html', {
         'logged_member': logged_member,
         'asset_detail': asset_detail
@@ -238,8 +235,6 @@ def asset_del(request):
         asset = Asset.objects.get(pk=request.POST['asset_id'])
         asset.member_id.append(request.POST['contri'])
         asset.save()
-
-
         # Asset Information
         asset_detail = DashAsset.find(request.POST['asset_id'])
         # Member information
@@ -253,6 +248,7 @@ def asset_del(request):
     asset_collect = DashAsset.find_all()
     # Member information
     logged_member = DashMember.find(request.user)
+
     return render(request, 'asset_dash.html', {
         'logged_member': logged_member,
         'asset_collect': asset_collect
