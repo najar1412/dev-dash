@@ -76,8 +76,6 @@ class DashAsset:
         """
         asset = Asset.objects.get(pk=asset_id)
 
-
-
         if asset.project_id:
             try:
                 project = Project.objects.get(pk=asset.project_id)

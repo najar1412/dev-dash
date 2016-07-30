@@ -6,8 +6,18 @@
 <br>
 <br>
 
+
+
+
+
 <div class="loginbanner">
     <form method="post" action=".">{% csrf_token %}
+
+      {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+          Nah.
+        </div>
+      {% endif %}
 
         <div class="form-group">
             <input class="form-control" id="id_username" max_length="30" name="username" type="text" placeholder="Username" required />
