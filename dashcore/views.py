@@ -160,9 +160,6 @@ def project_del(request):
 
 
 def project_asset(request):
-    # TODO: Refactor to DashAsset
-    # TODO: Figure out list fields within django models
-
     asset = DashAsset.to_project(request.POST['project_id'])
     # Member information
     logged_member = DashMember.find(request.user)
@@ -202,12 +199,15 @@ def asset(request):
 
 
 def asset_new(request):
-    # TODO: DashAsset.new() should return asset dict.
-    # To avoid second DB hit at asset_detail
-    asset = DashAsset.new()
-    # Get asset details using id
-    asset_detail = DashAsset.find(asset)
-    print(asset_detail)
+    if 'project_id' in request.POST:
+        print('theres a project id')
+        asset = DashAsset.to_project(request.POST['project_id'], request.POST['member_id'])
+
+    else:
+        asset = DashAsset.new(request.POST['member_id'])
+
+    # Get asset details using asset id
+    asset_detail = DashAsset.find(asset.pk)
     # Member information
     logged_member = DashMember.find(request.user)
     return render(request, 'asset.html', {
@@ -217,9 +217,26 @@ def asset_new(request):
 
 
 def asset_del(request):
+    #TODO: Need to remove asset id from project/datbase. if asset has project_id
     # Asset to delete
-    print(request.POST)
-    DashAsset.delete(request.POST['delete'])
+    if 'delete' in request.POST:
+        DashAsset.delete(request.POST['delete'])
+    elif 'contri' in request.POST:
+        print(request.POST)
+        asset = Asset.objects.get(pk=request.POST['asset_id'])
+        asset.member_id.append(request.POST['contri'])
+        asset.save()
+
+
+        # Asset Information
+        asset_detail = DashAsset.find(request.POST['asset_id'])
+        # Member information
+        logged_member = DashMember.find(request.user)
+        return render(request, 'asset.html', {
+            'logged_member': logged_member,
+            'asset_detail': asset_detail
+            })
+
     # Asset Information
     asset_collect = DashAsset.find_all()
     # Member information

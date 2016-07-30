@@ -47,14 +47,21 @@
   <br>
 
 </div>
+{% for member in logged_member.items %}
 <form method="post" action="/asset_del/">{% csrf_token %}
+<input type="hidden" name="asset_id" value="{{ detail.0 }}" />
 <button type="submit" class="btn btn-secondary btn-sm" name="delete" value="{{ detail.0 }}" />Delete</button>
+<button type="submit" class="btn btn-secondary btn-sm" name="contri" value="{{ member.0 }}" />Contribute</button>
 </form>
+{% endfor %}
 <img src="{% static 'ico/user.jpg' %}" width="600px" height="600px"/>
 
 
 <hr>
 <br>
+
+
+
 
 
 </div>

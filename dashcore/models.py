@@ -47,9 +47,9 @@ class Project(models.Model):
     start = models.CharField(max_length=255, blank=True)
     end = models.CharField(max_length=255, blank=True)
     creator_id = models.CharField(max_length=255, blank=True)
-    assigned_user_id = models.CharField(max_length=500, blank=True)
+    assigned_user_id = ArrayField(models.CharField(max_length=100), blank=True, default=list)
 
-    asset = ArrayField(models.CharField(max_length=100), blank=True, default=None)
+    asset = ArrayField(models.CharField(max_length=100), blank=True, default=list)
 
     location = models.CharField(max_length=1000, blank=True)
     signedoff = models.BooleanField(default=False, blank=True)
@@ -66,7 +66,7 @@ class Asset(models.Model):
     item = models.CharField(max_length=100)
     item_thumb = models.CharField(max_length=100)
     tag = models.CharField(max_length=100)
-    member_id = models.CharField(max_length=1000)
+    member_id = ArrayField(models.CharField(max_length=100), blank=True, default=list)
 
     def __str__(self):
         return 'Asset Object: {}'.format(self.name)

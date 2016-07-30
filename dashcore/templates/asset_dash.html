@@ -48,7 +48,7 @@
 
 
 
-
+{% for attri in logged_member.items %}
 <div class="panel panel-default">
 
     <div class="panel-heading">
@@ -56,18 +56,13 @@
     </div>
     <div class="panel-body">
       <form action="/asset_new/" method="post">{% csrf_token %}
-        <input type="hidden" name="collection" value="True" />
-        <input type="hidden" name="project_id" value="{{ project.0 }}" />
-        <button type="submit" class="btn btn-primary btn-sm" name="addasset" value="{{ project.0 }}" />Assign Asset</button>
+        <button type="submit" class="btn btn-primary btn-sm" name="member_id" value="{{ attri.0 }}" />Assign Asset</button>
       </form>
 
 </div>
 </div>
 
-
-
-
-
+{% endfor %}
 
 
 

@@ -48,23 +48,25 @@
 
        <button type="button" class="btn btn-primary btn-sm">Update</button>
        <button type="button" class="btn btn-primary btn-sm">Assign Member</button>
+       {% for member in logged_member.items %}
 
-       <form action="/project_asset/" method="post">{% csrf_token %}
-         <input type="hidden" name="collection" value="True" />
+       <form action="/asset_new/" method="post">{% csrf_token %}
+         <input type="hidden" name="collection" value="False" />
          <input type="hidden" name="project_id" value="{{ project.0 }}" />
+         <input type="hidden" name="member_id" value=" {{ member.0 }}" />
          <button type="submit" class="btn btn-primary btn-sm" name="addasset" value="{{ project.0 }}" />Assign Asset</button>
        </form>
        <button type="button" class="btn btn-primary btn-sm">Sign off</button><br><br>
        <form action="/project_del/" method="post">{% csrf_token %}
          <button type="submit" class="btn btn-danger" name="delete" value="{{ project.0 }}" />Delete</button>
        </form>
+       {% endfor %}
 
      </div>
 
 
 
 <br>
-
 {% for x in project.1.asset %}
 {% if x != '' %}
 <a href="/asset?query_name={{ x|urlencode }}">

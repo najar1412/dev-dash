@@ -8,46 +8,30 @@ class DashAsset:
     def __init__(self, collection):
         collection = self.collection
 
-    """
-
-    def new(collection, project_id='Not Set', member_id='Not Sec'):
-        asset = Asset.objects.create(
-            collection=collection,
-            project_id=project_id,
-            name='Not Set',
-            item='Not Set',
-            item_thumb='user.jpg',
-            tag='Not Set',
-            member_id=member_id
-            )
-        asset.save()
-
-        return asset.id
-    """
-
-    def new():
+    def new(member_id):
 
         asset = Asset.objects.create()
-        print(asset.id)
-        
-        return asset.id
+        asset.member_id.append(member_id)
+        asset.save()
 
-    def to_project(project_id):
+        return asset
+
+    def to_project(project_id, member_id):
         asset = Asset(
             collection='False',
             project_id=project_id,
             name='Not Set',
-            item='user.jpg',
-            item_thumb='user.jpg',
+            item='Not Set',
+            item_thumb='Not Set',
             tag='Not Set',
-            member_id='Not Sec'
                 )
+        asset.member_id.append(member_id)
         asset.save()
+
 
         project = Project.objects.get(pk=project_id)
         project.asset.append(str(asset.id))
         project.save()
-
 
         return asset
 
@@ -97,16 +81,20 @@ class DashAsset:
         """
         asset = Asset.objects.get(pk=asset_id)
 
-        if asset.project_id:
-            project = Project.objects.get(pk=asset.project_id)
-            print(project.asset)
 
-            if asset_id in project.asset:
-                print('----')
-                print(asset_id)
-                project.asset.remove(asset_id)
-                project.save()
-                print(project.asset)
+
+        if asset.project_id:
+            try:
+                project = Project.objects.get(pk=asset.project_id)
+
+                if asset_id in project.asset:
+                    project.asset.remove(asset_id)
+                    project.save()
+
+            except:
+                print('ERR: project_id in asset, cannot be located in DB')
+                print('ERR: Deleting Asset Anyway')
+                asset.delete()
 
             asset.delete()
 
