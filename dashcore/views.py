@@ -16,7 +16,7 @@ from dashcore.dash_asset import DashAsset
 from dashcore.models import Member, Project, Asset
 
 
-# TODO: Refactor register to Member db
+# TODO: Refactor register to Member DB
 @csrf_protect
 def register(request):
     if request.method == 'POST':
