@@ -29,11 +29,9 @@
 {{ detail.0 }}<br>
 {{ detail.1.collection }}<br>
 
-
 <a href="/project?query_name={{ detail.1.project_id|urlencode }}">
 {{ detail.1.project_id }}<br>
 </a>
-
 
 {{ detail.1.name }}<br>
 {{ detail.1.item }}<br>
@@ -43,10 +41,7 @@
 </small>
   </div>
 </div>
-<div>
-  <br>
 
-</div>
 {% for member in logged_member.items %}
 <form method="post" action="/asset_del/">{% csrf_token %}
 <input type="hidden" name="asset_id" value="{{ detail.0 }}" />
@@ -56,22 +51,12 @@
 {% endfor %}
 <img src="{% static 'ico/user.jpg' %}" width="600px" height="600px"/>
 
-
 <hr>
 <br>
-
-
-
-
 
 </div>
 </div>
 {% endfor %}
-
-
-
-
-
 
 
 {% endblock %}

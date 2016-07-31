@@ -195,22 +195,49 @@ def asset_dash(request):
         })
 
 
-@csrf_exempt
 def asset(request):
     # Get asset details using id
     asset_detail = DashAsset.find(request.GET.get('query_name'))
-    # Member information
-    logged_member = DashMember.find(request.user)
 
-    return render(request, 'asset.html', {
-        'logged_member': logged_member,
-        'asset_detail': asset_detail
-        })
+    for detail in asset_detail.keys():
+        if asset_detail[detail]['collection'] == 'False':
+
+            # Member information
+            logged_member = DashMember.find(request.user)
+
+            return render(request, 'asset.html', {
+                'logged_member': logged_member,
+                'asset_detail': asset_detail
+                })
+
+        else:
+
+            # Member information
+            logged_member = DashMember.find(request.user)
+
+            return render(request, 'collection.html', {
+                'logged_member': logged_member,
+                'asset_detail': asset_detail
+                })
 
 
 def asset_new(request):
+    print(request.POST)
     if 'project_id' in request.POST:
         asset = DashAsset.to_project(request.POST['project_id'], request.POST['member_id'])
+
+    elif 'member_id_collection' in request.POST:
+        asset = DashAsset.new_collection(request.POST['member_id_collection'])
+
+        # Get asset details using asset id
+        asset_detail = DashAsset.find(asset.pk)
+        # Member information
+        logged_member = DashMember.find(request.user)
+
+        return render(request, 'collection.html', {
+            'logged_member': logged_member,
+            'asset_detail': asset_detail
+            })
 
     else:
         asset = DashAsset.new(request.POST['member_id'])

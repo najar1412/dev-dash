@@ -16,6 +16,16 @@ class DashAsset:
 
         return asset
 
+    def new_collection(member_id):
+
+        asset = Asset.objects.create(
+            collection= 'True'
+            )
+        asset.member_id.append(member_id)
+        asset.save
+
+        return asset
+
     def to_project(project_id, member_id):
         asset = Asset(
             collection='False',
