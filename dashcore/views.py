@@ -222,7 +222,6 @@ def asset(request):
 
 
 def asset_new(request):
-    print(request.POST)
     if 'project_id' in request.POST:
         asset = DashAsset.to_project(request.POST['project_id'], request.POST['member_id'])
 
