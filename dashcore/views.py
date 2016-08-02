@@ -85,12 +85,12 @@ def update_member(request):
 @login_required
 def dash(request):
     #Get members current assets
-    current_asset = []
+    current_asset = {}
     member_id = DashMember.get_id(request.user)
     cur_asset = Asset.objects.all()
     for x in cur_asset:
         if str(member_id) in x.member_id:
-            current_asset.append(x.pk)
+            current_asset[x.pk] = x.item_thumb
     # Member information
     logged_member = DashMember.find(request.user)
 
@@ -110,8 +110,17 @@ def setting(request):
 
 
 def project_dash(request):
+
+    """
+    project_all = DashProject.find_all()
+    for project in project_all:
+        for asset in project_all[project]['asset']:
+            project_all[project]['asset'] = {project: asset}
+    print(project_all)
+    """
     # Current project information
     project_all = DashProject.find_all()
+
     # Member information
     logged_member = DashMember.find(request.user)
 

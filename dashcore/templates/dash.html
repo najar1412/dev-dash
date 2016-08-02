@@ -22,12 +22,10 @@ User Assigned project<br>
 
     <div class="panel-body">
 
+{% for asset in current_asset.items %}
 
-{% for asset in current_asset %}
-
-
-      <a href="/asset?query_name={{ asset|urlencode }}">
-      <img src="{% static 'ico/user.jpg' %}" width="167px" height="167px"/>
+      <a href="/asset?query_name={{ asset.0|urlencode }}">
+      <img src="{% static 'ico/'|add:asset.1 %}" width="167px" height="167px"/>
 
       </a>
 {% endfor %}

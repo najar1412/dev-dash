@@ -11,6 +11,8 @@ class DashAsset:
     def new(member_id):
 
         asset = Asset.objects.create()
+        asset.item = 'asset_.jpg'
+        asset.item_thumb = 'asset_.jpg'
         asset.member_id.append(member_id)
         asset.save()
 
@@ -19,7 +21,9 @@ class DashAsset:
     def new_collection(member_id):
 
         asset = Asset.objects.create(
-            collection= 'True'
+            collection= 'True',
+            item='asset_collection.jpg',
+            item_thumb='asset_collection.jpg'
             )
         asset.member_id.append(member_id)
         asset.save
@@ -29,7 +33,9 @@ class DashAsset:
     def to_project(project_id, member_id):
         asset = Asset(
             collection='False',
-            project_id=project_id
+            project_id=project_id,
+            item='asset_project.jpg',
+            item_thumb='asset_project.jpg'
                 )
         asset.member_id.append(member_id)
         asset.save()

@@ -51,11 +51,11 @@ Filter:&emsp; NY | LN | MI | LA &emsp;| &emsp;<b>ALL</b>
 
   <small>Project Assets:</small><br><br>
 
-
+{{ project }}
   {% for x in project.1.asset %}
   {% if x != '' %}
   <a href="/asset?query_name={{ x|urlencode }}">
-  <img src="{% static 'ico/user.jpg' %}" width="50px" height="50px"/>
+  <img src="{% static 'ico/' %}" width="50px" height="50px"/>
   </a>
   {% endif %}
   {% endfor %}

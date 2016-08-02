@@ -49,7 +49,7 @@
 <button type="submit" class="btn btn-secondary btn-sm" name="contri" value="{{ member.0 }}" />Contribute</button>
 </form>
 {% endfor %}
-<img src="{% static 'ico/user.jpg' %}" width="600px" height="600px"/>
+<img src="{% static 'ico/'|add:detail.1.item %}" width="600px" height="600px"/>
 
 <hr>
 <br>
