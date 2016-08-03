@@ -111,13 +111,6 @@ def setting(request):
 
 def project_dash(request):
 
-    """
-    project_all = DashProject.find_all()
-    for project in project_all:
-        for asset in project_all[project]['asset']:
-            project_all[project]['asset'] = {project: asset}
-    print(project_all)
-    """
     # Current project information
     project_all = DashProject.find_all()
 

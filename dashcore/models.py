@@ -58,9 +58,11 @@ class Project(models.Model):
     def __str__(self):
         return 'Project Object: {}: {}, {}'.format(self.code, self.inc, self.name)
 
+
 class Asset(models.Model):
     # Asset
     collection = models.CharField(max_length=100, default='False')
+    collect_asset = ArrayField(models.CharField(max_length=100), blank=True, default=list)
     project_id = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     item = models.CharField(max_length=100)

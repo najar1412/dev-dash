@@ -74,12 +74,6 @@ class DashProject:
                 asset = Asset.objects.get(id=asset_id)
                 project_all[project.pk]['asset']['{}'.format(asset_id)] = asset.item_thumb
 
-
-        print(project_all)
-
-
-
-
         return project_all
 
 

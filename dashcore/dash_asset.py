@@ -11,6 +11,7 @@ class DashAsset:
     def new(member_id):
 
         asset = Asset.objects.create()
+        asset.name = 'Not Set'
         asset.item = 'asset_.jpg'
         asset.item_thumb = 'asset_.jpg'
         asset.member_id.append(member_id)
@@ -22,6 +23,7 @@ class DashAsset:
 
         asset = Asset.objects.create(
             collection= 'True',
+            name='Not Set',
             item='asset_collection.jpg',
             item_thumb='asset_collection.jpg'
             )
@@ -33,6 +35,7 @@ class DashAsset:
     def to_project(project_id, member_id):
         asset = Asset(
             collection='False',
+            name='Not Set',
             project_id=project_id,
             item='asset_project.jpg',
             item_thumb='asset_project.jpg'
@@ -53,6 +56,7 @@ class DashAsset:
         item = Asset.objects.get(id=asset_id)
         asset[item.id] = {
             'collection': item.collection,
+            'collect_asset': item.collect_asset,
             'project_id': item.project_id,
             'name': item.name,
             'item': item.item,
@@ -70,6 +74,7 @@ class DashAsset:
         for item in range(len(asset)):
             asset_collect[asset[item].pk] = {
                 'collection': asset[item].collection,
+                'collect_asset': asset[item].collect_asset,
                 'project_id': asset[item].project_id,
                 'name': asset[item].name,
                 'item': asset[item].item,

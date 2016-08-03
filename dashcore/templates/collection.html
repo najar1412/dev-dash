@@ -1,7 +1,61 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block content %}
+<br>
 
-Collections
+{% for detail in asset_detail.items %}
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <h3 class="panel-title">Collection :: {{ detail.1.name }}</h3>
+    </div>
+    <div class="panel-body">
+
+<div>
+  <div  style="float: left; width: 30%;">
+    <small>
+    asset_id:<br>
+    collection:<br>
+    collect_asset:<br>
+    name: <br>
+    item_thumb:<br>
+    tag:<br>
+    member_id:<br>
+    </small>
+  </div>
+<div sytle="float: right">
+<small>
+{{ detail.0 }}<br>
+{{ detail.1.collection }}<br>
+{{ detail.1.collect_asset }}<br>
+{{ detail.1.name }}<br>
+{{ detail.1.item_thumb }}<br>
+{{ detail.1.tag }}<br>
+{{ detail.1.member_id }}<br>
+</small>
+  </div>
+</div>
+<br>
+
+{% for member in logged_member.items %}
+<form method="post" action="/asset_del/">{% csrf_token %}
+<input type="hidden" name="asset_id" value="{{ detail.0 }}" />
+<button type="submit" class="btn btn-secondary btn-sm" name="addasset" value="{{ detail.0 }}" />Add Asset</button>
+<button type="submit" class="btn btn-secondary btn-sm" name="delete" value="{{ detail.0 }}" />Delete</button>
+<button type="submit" class="btn btn-secondary btn-sm" name="contri" value="{{ member.0 }}" />Contribute</button>
+</form>
+{% endfor %}
+
+{% if detail.1.collect_asset == '[]' %}
+<img src="{% static 'ico/'|add:detail.1.collect_asset %}" width="167px" height="167px"/>
+{% endif %}
+
+<hr>
+<br>
+
+</div>
+</div>
+{% endfor %}
+
 
 {% endblock %}
