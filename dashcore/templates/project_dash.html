@@ -47,15 +47,13 @@ Filter:&emsp; NY | LN | MI | LA &emsp;| &emsp;<b>ALL</b>
 </div>
 <div class="divTableCell">
 
-
-
   <small>Project Assets:</small><br><br>
 
-{{ project }}
-  {% for x in project.1.asset %}
+  {% for x in project.1.asset.items %}
   {% if x != '' %}
-  <a href="/asset?query_name={{ x|urlencode }}">
-  <img src="{% static 'ico/' %}" width="50px" height="50px"/>
+  <a href="/asset?query_name={{ x.0|urlencode }}">
+  <img src="{% static 'ico/'|add:x.1 %}" width="50px" height="50px"/>
+
   </a>
   {% endif %}
   {% endfor %}
