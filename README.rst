@@ -1,7 +1,7 @@
-Dash: Object driven intranet for creatives
+Dash
 ============
 
-...
+Is an object driven intranet for collaborative projects.
 
 **...:** ...
 
