@@ -1,6 +1,7 @@
 from django.utils import timezone
 
 from dashcore.models import Asset, Project
+from dashcore.dash_rank import DashRank
 # Classes and methods for accessing Member info
 
 class DashAsset:
@@ -17,6 +18,8 @@ class DashAsset:
         asset.member_id.append(member_id)
         asset.save()
 
+        DashRank.add(member_id)
+
         return asset
 
     def new_collection(member_id):
@@ -29,6 +32,8 @@ class DashAsset:
             )
         asset.member_id.append(member_id)
         asset.save
+
+        DashRank.add(member_id, 'new_collection')
 
         return asset
 
@@ -47,6 +52,8 @@ class DashAsset:
         project.asset.append(str(asset.id))
         project.save()
 
+        DashRank.add(member_id)
+
         return asset
 
     def to_collection(collection_id, member_id):
@@ -62,6 +69,8 @@ class DashAsset:
         collection = Asset.objects.get(pk=collection_id)
         collection.collect_asset.append(asset.id)
         collection.save()
+
+        DashRank.add(member_id)
 
         return collection
 

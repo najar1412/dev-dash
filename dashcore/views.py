@@ -13,6 +13,7 @@ from dashcore.forms import RegistrationForm, UpdateRegistrationForm, AssetForm
 from dashcore.dash_member import DashMember
 from dashcore.dash_project import DashProject
 from dashcore.dash_asset import DashAsset
+from dashcore.dash_rank import DashRank
 from dashcore.models import Member, Project, Asset
 
 
@@ -84,6 +85,9 @@ def update_member(request):
 
 @login_required
 def dash(request):
+    member_id = DashMember.get_id(str(request.user))
+    rank = DashRank.add(member_id, 'new_collection')
+
     #Get members current assets
     current_asset = {}
     member_id = DashMember.get_id(request.user)
@@ -250,7 +254,7 @@ def asset_new(request):
         # Member information
         logged_member = DashMember.find(request.user)
 
-        return render(request, 'asset.html', {
+        return render(request, 'collection.html', {
             'logged_member': logged_member,
             'asset_detail': asset_detail
             })
@@ -263,7 +267,7 @@ def asset_new(request):
     # Member information
     logged_member = DashMember.find(request.user)
 
-    return render(request, 'project.html', {
+    return render(request, 'asset.html', {
         'logged_member': logged_member,
         'asset_detail': asset_detail
         })

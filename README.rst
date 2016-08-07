@@ -1,11 +1,11 @@
 Dash
 ============
 
-Is an object driven intranet for collaborative projects.
+Is an pro morale, modular framework for collaborative projects.
 
 **...:** ...
 
-Features
+Core Features
 ------------
 
 ...
