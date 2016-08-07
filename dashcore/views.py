@@ -85,8 +85,6 @@ def update_member(request):
 
 @login_required
 def dash(request):
-    member_id = DashMember.get_id(str(request.user))
-    rank = DashRank.add(member_id, 'new_collection')
 
     #Get members current assets
     current_asset = {}

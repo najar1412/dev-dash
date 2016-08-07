@@ -31,7 +31,7 @@ class DashAsset:
             item_thumb='asset_collection.jpg'
             )
         asset.member_id.append(member_id)
-        asset.save
+        asset.save()
 
         DashRank.add(member_id, 'new_collection')
 

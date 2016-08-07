@@ -34,7 +34,22 @@ User Assigned project<br>
 </div>
 
 
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+          Your Recent Assets</h3>
+    </div>
+    <div class="panel-body">
+{% for asset in current_asset.items %}
+{% if asset.1.1 == '' %}
+      <a href="/asset?query_name={{ asset.0|urlencode }}">
+      <img src="{% static 'ico/'|add:asset.1.0 %}" width="89px" height="89px"/>
+      </a>
+{% endif %}
+{% endfor %}
+    </div>
 
+</div>
 
 
 
