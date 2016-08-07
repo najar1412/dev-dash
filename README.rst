@@ -1,12 +1,12 @@
-Dash: Object driven intranet
-=========================
+Dash: Object driven intranet for creatives
+============
 
 ...
 
 **...:** ...
 
 Features
----------------
+------------
 
 ...
 
@@ -25,6 +25,6 @@ To install Dash:
 
 
 Documentation
--------------
+------------
 
 ...

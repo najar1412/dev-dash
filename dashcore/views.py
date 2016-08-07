@@ -231,6 +231,17 @@ def asset_new(request):
     if 'project_id' in request.POST:
         asset = DashAsset.to_project(request.POST['project_id'], request.POST['member_id'])
 
+        # Asset information
+        project = DashProject.find(request.POST['project_id'])
+        # Member information
+        logged_member = DashMember.find(request.user)
+
+        return render(request, 'project.html', {
+            'logged_member': logged_member,
+            'project': project
+            })
+
+
     elif 'member_id_collection' in request.POST:
         asset = DashAsset.new_collection(request.POST['member_id_collection'])
 
@@ -239,7 +250,7 @@ def asset_new(request):
         # Member information
         logged_member = DashMember.find(request.user)
 
-        return render(request, 'collection.html', {
+        return render(request, 'asset.html', {
             'logged_member': logged_member,
             'asset_detail': asset_detail
             })
