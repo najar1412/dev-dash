@@ -49,6 +49,21 @@ class DashAsset:
 
         return asset
 
+    def to_collection(collection_id, member_id):
+        asset = Asset(
+            collection='False',
+            name='Not Set',
+            item='asset_.jpg',
+            item_thumb='asset_.jpg'
+            )
+        asset.member_id.append(member_id)
+        asset.save()
+
+        collection = Asset.objects.get(pk=collection_id)
+        collection.collect_asset.append(asset.id)
+        collection.save()
+
+        return collection
 
     def find(asset_id):
         asset = {}

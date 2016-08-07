@@ -90,7 +90,11 @@ def dash(request):
     cur_asset = Asset.objects.all()
     for x in cur_asset:
         if str(member_id) in x.member_id:
-            current_asset[x.pk] = x.item_thumb
+            current_asset[x.pk] = [
+                x.item_thumb,
+                x.project_id
+                ]
+
     # Member information
     logged_member = DashMember.find(request.user)
 
@@ -248,7 +252,7 @@ def asset_new(request):
     # Member information
     logged_member = DashMember.find(request.user)
 
-    return render(request, 'asset.html', {
+    return render(request, 'project.html', {
         'logged_member': logged_member,
         'asset_detail': asset_detail
         })
@@ -267,7 +271,18 @@ def asset_del(request):
         asset_detail = DashAsset.find(request.POST['asset_id'])
         # Member information
         logged_member = DashMember.find(request.user)
-        return render(request, 'asset.html', {
+        return render(request, 'collection.html', {
+            'logged_member': logged_member,
+            'asset_detail': asset_detail
+            })
+    elif 'addasset' in request.POST:
+
+        DashAsset.to_collection(request.POST['asset_id'], request.POST['addasset'])
+        # Asset Information
+        asset_detail = DashAsset.find(request.POST['asset_id'])
+        # Member information
+        logged_member = DashMember.find(request.user)
+        return render(request, 'collection.html', {
             'logged_member': logged_member,
             'asset_detail': asset_detail
             })

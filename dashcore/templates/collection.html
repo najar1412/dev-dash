@@ -27,7 +27,13 @@
 <small>
 {{ detail.0 }}<br>
 {{ detail.1.collection }}<br>
-{{ detail.1.collect_asset }}<br>
+
+{% for asset_items in asset_detail.items %}
+{% for asset in asset_items.1.collect_asset %}
+<a href="/asset?query_name={{ asset|urlencode }}">{{ asset }}</a>
+{% endfor %}
+{% endfor %}<br>
+
 {{ detail.1.name }}<br>
 {{ detail.1.item_thumb }}<br>
 {{ detail.1.tag }}<br>
@@ -40,21 +46,38 @@
 {% for member in logged_member.items %}
 <form method="post" action="/asset_del/">{% csrf_token %}
 <input type="hidden" name="asset_id" value="{{ detail.0 }}" />
-<button type="submit" class="btn btn-secondary btn-sm" name="addasset" value="{{ detail.0 }}" />Add Asset</button>
+<button type="submit" class="btn btn-secondary btn-sm" name="addasset" value="{{ member.0 }}" />Add Asset</button>
 <button type="submit" class="btn btn-secondary btn-sm" name="delete" value="{{ detail.0 }}" />Delete</button>
 <button type="submit" class="btn btn-secondary btn-sm" name="contri" value="{{ member.0 }}" />Contribute</button>
 </form>
 {% endfor %}
 
-{% if detail.1.collect_asset == '[]' %}
-<img src="{% static 'ico/'|add:detail.1.collect_asset %}" width="167px" height="167px"/>
-{% endif %}
+
+{% for asset_items in asset_detail.items %}
+{% for asset in asset_items.1.collect_asset %}
+<img src="{% static 'ico/'|add:'asset_.jpg' %}" width="167px" height="167px"/>
+{% endfor %}
+{% endfor %}<br>
 
 <hr>
 <br>
 
 </div>
 </div>
+
+
+
+
+
+
+{% for x in project.1.asset %}
+{% if x != '' %}
+<a href="/asset?query_name={{ x|urlencode }}">
+<img src="{% static 'ico/user.jpg' %}" width="100px" height="100px"/>
+</a>
+{% endif %}
+{% endfor %}
+
 {% endfor %}
 
 

@@ -12,22 +12,22 @@ User Assigned project<br>
  - project overview charts<br>
 <br>
 
+
+
+
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-          Assigned Assets</h3>
+          Assigned Project Items</h3>
     </div>
-
-
-
     <div class="panel-body">
-
 {% for asset in current_asset.items %}
-
+{% if asset.1.1 != '' %}
       <a href="/asset?query_name={{ asset.0|urlencode }}">
-      <img src="{% static 'ico/'|add:asset.1 %}" width="167px" height="167px"/>
-
+      <img src="{% static 'ico/'|add:asset.1.0 %}" width="167px" height="167px"/>
       </a>
+{% endif %}
 {% endfor %}
     </div>
 
