@@ -89,12 +89,15 @@ def dash(request):
     #Get members current assets
     current_asset = {}
     member_id = DashMember.get_id(request.user)
+
     cur_asset = Asset.objects.all()
+
     for x in cur_asset:
         if str(member_id) in x.member_id:
             current_asset[x.pk] = [
                 x.item_thumb,
-                x.project_id
+                x.project_id,
+                x.collection
                 ]
 
     # Member information
@@ -279,6 +282,7 @@ def asset_del(request):
         asset = Asset.objects.get(pk=request.POST['asset_id'])
         asset.member_id.append(request.POST['contri'])
         asset.save()
+        print('contri')
         # Asset Information
         asset_detail = DashAsset.find(request.POST['asset_id'])
         # Member information

@@ -32,7 +32,7 @@
       {% for asset in asset_collect.items %}
         {% if asset.1.project_id != '' %}
           <a href="/asset?query_name={{ asset.0|urlencode }}">
-          <img src="{% static 'ico/'|add:asset.1.item_thumb %}" width="167px" height="167px"/>
+          <img src="{% static 'ico/'|add:asset.1.item_thumb %}" width="89px" height="89px"/>
           </a>
         {% endif %}
       {% endfor %}
