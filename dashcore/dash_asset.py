@@ -75,6 +75,7 @@ class DashAsset:
         return collection
 
     def find(asset_id):
+
         asset = {}
 
         item = Asset.objects.get(id=asset_id)

@@ -66,12 +66,12 @@
 
 
 <br>
-{% for x in project.1.asset %}
-{% if x != '' %}
-<a href="/asset?query_name={{ x|urlencode }}">
-<img src="{% static 'ico/user.jpg' %}" width="100px" height="100px"/>
+<br>
+<br>
+{% for x in project.1.asset.items %}
+<a href="/asset?query_name={{ x.0|urlencode }}">
+<img src="{% static 'ico/'|add:x.1 %}" width="100px" height="100px"/>
 </a>
-{% endif %}
 {% endfor %}
 
 <hr>

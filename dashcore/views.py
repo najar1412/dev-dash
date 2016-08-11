@@ -134,7 +134,6 @@ def project(request):
     project = DashProject.find(request.GET.get('query_name'))
     # Member information
     logged_member = DashMember.find(request.user)
-
     return render(request, 'project.html', {
         'logged_member': logged_member,
         'project': project

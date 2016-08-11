@@ -2,6 +2,7 @@ from collections import defaultdict
 from django.utils import timezone
 
 from dashcore.models import Project, Asset
+from dashcore.dash_asset import *
 # Classes and methods for accessing Project info
 
 class DashProject:
@@ -33,6 +34,11 @@ class DashProject:
         project = {}
 
         item = Project.objects.get(id=project_id)
+
+        collect = {}
+        for x in item.asset:
+            collect[x] = DashAsset.find(x)[int(x)]['item_thumb']
+
         project[item.id] = {
             'code': item.code,
             'inc': item.inc,
@@ -41,7 +47,7 @@ class DashProject:
             'end': item.end,
             'creator_id': item.creator_id,
             'assigned_user_id': item.assigned_user_id,
-            'asset': item.asset,
+            'asset': collect,
             'location': item.location,
             'signedoff': item.signedoff,
             'flagdelete': item.flagdelete
