@@ -79,9 +79,13 @@ class DashAsset:
         asset = {}
 
         item = Asset.objects.get(id=asset_id)
+        thumbnails = {}
+        for x in item.collect_asset:
+            thumbnails[x] = Asset.objects.get(id=x).item_thumb
+
         asset[item.id] = {
             'collection': item.collection,
-            'collect_asset': item.collect_asset,
+            'collect_asset': thumbnails,
             'project_id': item.project_id,
             'name': item.name,
             'item': item.item,

@@ -53,9 +53,11 @@
 {% endfor %}
 
 
-{% for asset_items in asset_detail.items %}
-{% for asset in asset_items.1.collect_asset %}
-<img src="{% static 'ico/'|add:'asset_.jpg' %}" width="167px" height="167px"/>
+<br>
+{% for x in asset_detail.items %}
+{% for y in x.1.collect_asset.items %}
+<a href="/asset?query_name={{ y.0|urlencode }}">
+<img src="{% static 'ico/'|add:y.1 %}" width="167px" height="167px"/>
 {% endfor %}
 {% endfor %}<br>
 
@@ -66,17 +68,6 @@
 </div>
 
 
-
-
-
-
-{% for x in project.1.asset %}
-{% if x != '' %}
-<a href="/asset?query_name={{ x|urlencode }}">
-<img src="{% static 'ico/user.jpg' %}" width="100px" height="100px"/>
-</a>
-{% endif %}
-{% endfor %}
 
 {% endfor %}
 
