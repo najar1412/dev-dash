@@ -6,43 +6,62 @@
     <p>Welcome {{ attri.1.first_name }}.</p>
 {% endfor %}
 
+<div class="blended_grid_test">
+<div class="pageColumnLeft_test">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">
+            Assigned Project Items</h3>
+      </div>
+      <div class="panel-body">
+  {% for asset in current_asset.items %}
+  {% if asset.1.1 != '' %}
+        <a href="/asset?query_name={{ asset.0|urlencode }}">
+        <img src="{% static 'ico/'|add:asset.1.0 %}" width="74px" height="74px"/>
+        </a>
+  {% endif %}
+  {% endfor %}
+      </div>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-          Assigned Project Items</h3>
-    </div>
-    <div class="panel-body">
-{% for asset in current_asset.items %}
-{% if asset.1.1 != '' %}
-      <a href="/asset?query_name={{ asset.0|urlencode }}">
-      <img src="{% static 'ico/'|add:asset.1.0 %}" width="89px" height="89px"/>
-      </a>
-{% endif %}
-{% endfor %}
-    </div>
+  </div>
 
+
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">
+            Followed Collections</h3>
+      </div>
+      <div class="panel-body">
+  {% for asset in current_asset.items %}
+  {% if asset.1.2 == 'True' %}
+        <a href="/asset?query_name={{ asset.0|urlencode }}">
+        <img src="{% static 'ico/'|add:asset.1.0 %}" width="74px" height="74px"/>
+        </a>
+  {% endif %}
+  {% endfor %}
+      </div>
+
+  </div>
+
+
+</div>
+<div class="pageColumnRight_test">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">
+            New stuff?</h3>
+      </div>
+      <div class="panel-body">
+        announcements, projects, winners of comps, pools etc?
+      </div>
+
+  </div>
+
+</div>
 </div>
 
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-          Followed Collections</h3>
-    </div>
-    <div class="panel-body">
-{% for asset in current_asset.items %}
-{% if asset.1.2 == 'True' %}
-      <a href="/asset?query_name={{ asset.0|urlencode }}">
-      <img src="{% static 'ico/'|add:asset.1.0 %}" width="89px" height="89px"/>
-      </a>
-{% endif %}
-{% endfor %}
-    </div>
-
-</div>
-
-
+<hr>
 
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -83,5 +102,8 @@
 </div>
 
 </div>
+
+
+
 
 {% endblock %}

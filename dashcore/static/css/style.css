@@ -119,3 +119,29 @@ text-align : right;
 	height : 100%;
 	width : 300px;
 }
+
+
+
+
+.blended_grid_test{
+display : block;
+width : 1050px;
+overflow : auto;
+margin : 0 auto;
+}
+.pageColumnLeft_test{
+background-color : rgba(0, 0, 0, 0);
+margin: 6px;
+float : left;
+clear : none;
+height : auto;
+width : 650px;
+}
+.pageColumnRight_test{
+background-color : rgba(0, 0, 0, 0);
+margin: 6px;
+float : left;
+clear : none;
+height : auto;
+width : 375px;
+}
