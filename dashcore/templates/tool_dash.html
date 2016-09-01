@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <h3 class="panel-title">Render Farm</h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="tool_render_left">
+        <b>Configure Nodes</b><br>
+        <hr>
+        <b>Farm Information</b><br>
+        Erm... IP address of render storage (map drive) - \\[managerip]\vh_rf_render_store\<br>
+        IP of manager (to send to)<br>
+        Farm uptime<br>
+        <br>
+
+        <b>Troubleshoot</b><br>
+
+        1) check that you have mapped drive letter R: to the render store on all machines (aws manager, aws nodes, local machine). Server address located under 'Farm information' above.<br>
+        <br>
+        2) ensure the correct ip is being used to submit rendering to. Located under 'Farm information' above. And output files are being saved to the R: mapped drive.<br>
+        <br>
+        3) check that all aws nodes are using aws managers ip address in backburner server. Located under 'Farm Information' above.
+        <br>
+        If vray lisences cannot be obtained.<br>
+        <br>
+        Check if ngrok is running on internal manager. If not cmd c:\ngrok tcp 30304 copy forwarding address and port from cmd to 'Change V-Ray client license settings' located on the desktop of aws manager and aws nodes.<br>
+
+
+      </div>
+
+      <div class="tool_render_right">
+        <b>Render Nodes</b> | <a href="/tool_dash/">refresh</a><br>
+        <hr>
+        <b>Create Nodes</b><br>
+        <form action="/tool_new/" method="post">{% csrf_token %}
+          <button type="submit" class="btn btn-primary btn-sm" name="new_man" value="new_man">New Manager</button><button type="submit" class="btn btn-primary btn-sm" name="new_node" value="new_node">New Node</button>
+        </form><br>
+        <small>
+        <b>Running</b>
+
+        {% for x in render_node.items %}
+        {% if x.1.status == 'running' %}
+        <form action="/tool_del/" method="post">{% csrf_token %}
+          {{ x.0 }} | {{ x.1.ids }} - <i>{{ x.1.pubip }}</i><br>
+          <button type="submit" class="btn btn-primary btn-sm" name="remote" value="{{ x.1.pdns }}">
+            <span class="glyphicon glyphicon-wrench"></span>
+          </button> | <button type="submit" class="btn btn-primary btn-sm" name="stop" value="{{ x.1.ids }}">
+            <span class="glyphicon glyphicon-pause"></span>
+          </button><button type="submit" class="btn btn-primary btn-sm" name="terminate" value="{{ x.1.ids }}">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+          </button>
+        </form>
+        {% endif %}
+        {% endfor %}
+
+        <br>
+        <b>Stopped</b>
+
+        {% for x in render_node.items %}
+        {% if x.1.status == 'stopped' %}
+        <form action="/tool_del/" method="post">{% csrf_token %}
+          {{ x.0 }} | {{ x.1.ids }} - <i>{{ x.1.pubip }}</i><br>
+          <button type="submit" class="btn btn-primary btn-sm" name="start" value="{{ x.1.ids }}">
+            <span class="glyphicon glyphicon-play"></span>
+          </button><button type="submit" class="btn btn-primary btn-sm" name="terminate" value="{{ x.1.ids }}">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+          </button>
+        </form>
+        {% endif %}
+        {% endfor %}
+
+      </small>
+
+
+      </div>
+
+
+</div>
+</div>
+
+
+{% endblock %}

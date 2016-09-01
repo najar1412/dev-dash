@@ -14,6 +14,7 @@ from dashcore.dash_member import DashMember
 from dashcore.dash_project import DashProject
 from dashcore.dash_asset import DashAsset
 from dashcore.dash_rank import DashRank
+import dashcore.dash_aws as aws
 from dashcore.models import Member, Project, Asset
 
 
@@ -282,7 +283,6 @@ def asset_del(request):
         asset = Asset.objects.get(pk=request.POST['asset_id'])
         asset.member_id.append(request.POST['contri'])
         asset.save()
-        print('contri')
         # Asset Information
         asset_detail = DashAsset.find(request.POST['asset_id'])
         # Member information
@@ -311,4 +311,56 @@ def asset_del(request):
     return render(request, 'asset_dash.html', {
         'logged_member': logged_member,
         'asset_collect': asset_collect
+        })
+
+def tool_dash(request):
+
+    # Render Nodes
+    render_node = aws.list_instance()
+
+    # Member information
+    logged_member = DashMember.find(request.user)
+    return render(request, 'tool_dash.html', {
+        'logged_member': logged_member,
+        'render_node': render_node
+        })
+
+def tool_del(request):
+
+    if 'stop' in request.POST:
+        aws.stop_instance(request.POST['stop'])
+    elif 'terminate' in request.POST:
+        aws.term_instance(request.POST['terminate'])
+    elif 'start' in request.POST:
+        aws.start_instance(request.POST['start'])
+    elif 'remote' in request.POST:
+        my_data = "auto connect:i:1\nfull address:s:{}\nusername:s:Administrator".format(request.POST['remote'])
+        response = HttpResponse(my_data, content_type='application/rdp')
+        response['Content-Disposition'] = 'attachment; filename="{}.rdp"'.format(request.POST['remote'])
+
+        return response
+
+    # Render Nodes
+    render_node = aws.list_instance()
+    # Member information
+    logged_member = DashMember.find(request.user)
+    return render(request, 'tool_dash.html', {
+        'logged_member': logged_member,
+        'render_node': render_node
+        })
+
+
+def tool_new(request):
+    if 'new_man' in request.POST:
+        aws.mk_manager()
+    elif 'new_node' in request.POST:
+        aws.mk_node()
+
+    # Render Nodes
+    render_node = aws.list_instance()
+    # Member information
+    logged_member = DashMember.find(request.user)
+    return render(request, 'tool_dash.html', {
+        'logged_member': logged_member,
+        'render_node': render_node
         })

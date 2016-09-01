@@ -37,6 +37,8 @@ urlpatterns = patterns('',
     url(r'^asset/$', asset),
     url(r'^asset_new/$', asset_new),
     url(r'^asset_dash/$', asset_dash),
-    url(r'^asset_del/$', asset_del)
-
+    url(r'^asset_del/$', asset_del),
+    url(r'^tool_dash/$', tool_dash),
+    url(r'^tool_del/$', tool_del),
+    url(r'^tool_new/$', tool_new)
 )

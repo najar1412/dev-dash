@@ -4,7 +4,9 @@ dependencies:
 - python=3.5.2=0
 - setuptools=23.0.0=py35_0
 - wheel=0.29.0=py35_0
+- boto3
 - pip:
   - django==1.9.8
   - psycopg2==2.6.2
   - gunicorn==19.6.0
+  - awscli==1.10.57
