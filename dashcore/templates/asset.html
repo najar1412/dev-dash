@@ -41,18 +41,18 @@
 </small>
   </div>
 </div>
-
+<br>
 {% for member in logged_member.items %}
 <form method="post" action="/asset_del/">{% csrf_token %}
 <input type="hidden" name="asset_id" value="{{ detail.0 }}" />
-<button type="submit" class="btn btn-secondary btn-sm" name="delete" value="{{ detail.0 }}" />Request Delete</button>
-<button type="submit" class="btn btn-secondary btn-sm" name="contri" value="{{ member.0 }}" />Worked On</button>
-<button type="submit" class="btn btn-secondary btn-sm" name="follow" value="{{ member.0 }}" />Follow</button>
+<button type="submit" class="btn btn-primary btn-sm" name="follow" value="{{ member.0 }}" />Follow</button>
+<button type="submit" class="btn btn-secondary btn-sm" name="upload" value="{{ member.0 }}" />Update Asset</button>
+<button type="submit" class="btn btn-secondary btn-sm" name="contri" value="{{ member.0 }}" />Worked On</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button type="submit" class="btn btn-danger btn-sm" name="delete" value="{{ detail.0 }}" />Delete Request</button>
 </form>
 {% endfor %}
 <img src="{% static 'ico/'|add:detail.1.item %}" width="600px" height="600px"/>
 
-<hr>
 <br>
 
 </div>
