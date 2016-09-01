@@ -14,7 +14,7 @@ from dashcore.dash_member import DashMember
 from dashcore.dash_project import DashProject
 from dashcore.dash_asset import DashAsset
 from dashcore.dash_rank import DashRank
-import dashcore.dash_aws as aws
+# import dashcore.dash_aws as aws
 from dashcore.models import Member, Project, Asset
 
 
