@@ -24,8 +24,9 @@
         <br>
         2) ensure the correct ip is being used to submit rendering to. Located under 'Farm information' above. And output files are being saved to the R: mapped drive.<br>
         <br>
-        3) check that all aws nodes are using aws managers ip address in backburner server. Located under 'Farm Information' above.
+        3) check that all aws nodes are using aws managers ip address in backburner server. Located under 'Farm Information' above.<br>
         <br>
+        4) For newly created nodes, each node must render a single frame as a server from backburner before they can be used as DR nodes.<br>
         If vray lisences cannot be obtained.<br>
         <br>
         Check if ngrok is running on internal manager. If not cmd c:\ngrok tcp 30304 copy forwarding address and port from cmd to 'Change V-Ray client license settings' located on the desktop of aws manager and aws nodes.<br>
