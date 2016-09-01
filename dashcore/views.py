@@ -326,6 +326,7 @@ def asset_del(request):
         'asset_collect': asset_collect
         })
 
+"""
 def tool_dash(request):
 
     # Render Nodes
@@ -377,3 +378,4 @@ def tool_new(request):
         'logged_member': logged_member,
         'render_node': render_node
         })
+"""
