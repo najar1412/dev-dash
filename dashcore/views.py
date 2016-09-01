@@ -111,12 +111,13 @@ def dash(request):
 
 
 def setting(request):
-    member_id = DashMember.get_id(str(request.user))
-    logged_member = DashMember.find(member_id)
 
-    return render(request, 'setting.html', {
+    # Member information
+    logged_member = DashMember.find(request.user)
+
+    return render_to_response('setting.html', {
         'logged_member': logged_member
-        })
+            })
 
 
 def project_dash(request):
@@ -287,7 +288,7 @@ def asset_del(request):
         asset_detail = DashAsset.find(request.POST['asset_id'])
         # Member information
         logged_member = DashMember.find(request.user)
-        return render(request, 'collection.html', {
+        return render(request, 'asset.html', {
             'logged_member': logged_member,
             'asset_detail': asset_detail
             })
@@ -299,6 +300,18 @@ def asset_del(request):
         # Member information
         logged_member = DashMember.find(request.user)
         return render(request, 'collection.html', {
+            'logged_member': logged_member,
+            'asset_detail': asset_detail
+            })
+    elif 'follow' in request.POST:
+
+        # TODO: IMP follow logic
+        print('TODO: IMP follow logic')
+        # Asset Information
+        asset_detail = DashAsset.find(request.POST['asset_id'])
+        # Member information
+        logged_member = DashMember.find(request.user)
+        return render(request, 'asset.html', {
             'logged_member': logged_member,
             'asset_detail': asset_detail
             })

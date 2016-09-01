@@ -5,180 +5,218 @@
 {% for attri in logged_member.items %}
 
 
+<div class="blended_grid_test">
+<div class="pageColumnLeft_test">
 
-
-<form action="/update_member/" method="post">{% csrf_token %}
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-[<a title="show/hide" id="exp09823745_link" href="javascript: void(0);" onclick="toggle(this, 'exp09823745');"  style="text-decoration: none; color: #000000; ">−</a>]
-          Personal information</h3>
-    </div>
-    <div class="panel-body">
-
-  <div id="exp09823745" style="padding: 3px;">
-
-
-        <div style="width:48%; float:left;">
-
-                <div class="form-group">
-
-                      <small>Change User Image:</small><br>
-                      <div style="float:right; width:90%;">
-                        <input class="form-control" id="id_email" maxlength="100" name="email" type="text" placeholder="{{ attri.1.user_image }}" /><br>
-                      </div><br>
-                        <small>Username:</small><br>
-                        <fieldset disabled>
-                          <div style="float:right; width:90%;">
-                          <input class="form-control" id="id_username" maxlength="100" name="username" type="text" placeholder="{{ attri.1.username }}" /><br>
-                        </div><br><br>
-                          <small>Email:</small><br>
-                          <div style="float:right; width:90%;">
-                          <input class="form-control" id="id_email" maxlength="100" name="email" type="text" placeholder="{{ attri.1.email }}" /><br>
-                        </div><br><br>
-                      </fieldset>
-
-                    <div>
-                        <small>First Name:</small><br>
-                        <div style="float:right; width:90%;">
-                        <input class="form-control" id="id_first_name" maxlength="100" name="first_name" type="text" placeholder="{{ attri.1.first_name }}" /><br>
-                        </div><br><br>
-                        <small>Last Name:</small><br>
-                        <div style="float:right; width:90%;">
-                        <input class="form-control" id="id_last_name" maxlength="100" name="last_name" type="text" placeholder="{{ attri.1.last_name }}" /><br>
-                        </div><br><br>
-                        <small>Cakeday:</small><br>
-                        <div style="float:right; width:90%;">
-                        <input class="form-control" id="datepicker_start" maxlength="100" name="cakeday" type="text" placeholder="{{ attri.1.cakeday }}" /><br>
-                        </div><br><br>
-                    </div>
-                </div>
-                        <button type="submit" class="btn btn-default" value="Submit" />Update</button>
-        </div>
-
-        <div style="width:48%; float:right;">
-            <div>
-                <small>Medical Provider:</small><br>
-                <div style="float:right; width:90%;">
-                <input class="form-control" id="id_med_provider" maxlength="100" name="med_provider" type="text" placeholder="{{ attri.1.med_provider }}" /><br>
-                </div><br><br>
-                <small>Medical Plan:</small><br>
-                <div style="float:right; width:90%;">
-                <input class="form-control" id="id_med_plan" maxlength="100" name="med_plan" type="text" placeholder="{{ attri.1.med_plan }}" /><br>
-                </div><br><br>
-
-                <small>Dental/Vision Provider:</small><br>
-                <div style="float:right; width:90%;">
-                <input class="form-control" id="id_dent_provider" maxlength="100" name="dent_provider" type="text" placeholder="{{ attri.1.dent_provider }}" /><br>
-                </div><br><br>
-
-                <div style="float:right; width:90%;">
-                <small>Dental/Vision Plan:</small><br>
-                <input class="form-control" id="id_dent_plan" maxlength="100" name="dent_plan" type="text" placeholder="{{ attri.1.dent_plan }}" /><br>
-                </div><br>
-
-            </div>
-
-        </div>
-
+  <form action="/update_member/" method="post">{% csrf_token %}
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">
+  [<a title="show/hide" id="exp09823745_link" href="javascript: void(0);" onclick="toggle(this, 'exp09823745');"  style="text-decoration: none; color: #000000; ">−</a>]
+            Personal information</h3>
       </div>
-    </div>
-</div>
-    </form>
+      <div class="panel-body">
+
+    <div id="exp09823745" style="padding: 3px;">
 
 
-    <div class="panel panel-danger">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-[<a title="show/hide" id="exp1468505650_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505650');"  style="text-decoration: none; color: #000000; ">−</a>]
-              Warning</h3>
-        </div>
-        <div class="panel-body">
-          <div id="exp1468505650" style="padding: 3px;">
-            change email<br>
-            change password<br>
-            delete account<br>
-            <script language="javascript">toggle(getObject('exp1468505650_link'), 'exp1468505650');</script>
+          <div style="width:48%; float:left;">
+
+                  <div class="form-group">
+
+                        <small>Change User Image:</small><br>
+                        <div style="float:right; width:90%;">
+                          <input class="form-control" id="id_email" maxlength="100" name="email" type="text" placeholder="{{ attri.1.user_image }}" /><br>
+                        </div><br>
+                          <small>Username:</small><br>
+                          <fieldset disabled>
+                            <div style="float:right; width:90%;">
+                            <input class="form-control" id="id_username" maxlength="100" name="username" type="text" placeholder="{{ attri.1.username }}" /><br>
+                          </div><br><br>
+                            <small>Email:</small><br>
+                            <div style="float:right; width:90%;">
+                            <input class="form-control" id="id_email" maxlength="100" name="email" type="text" placeholder="{{ attri.1.email }}" /><br>
+                          </div><br><br>
+                        </fieldset>
+
+                      <div>
+                          <small>First Name:</small><br>
+                          <div style="float:right; width:90%;">
+                          <input class="form-control" id="id_first_name" maxlength="100" name="first_name" type="text" placeholder="{{ attri.1.first_name }}" /><br>
+                          </div><br><br>
+                          <small>Last Name:</small><br>
+                          <div style="float:right; width:90%;">
+                          <input class="form-control" id="id_last_name" maxlength="100" name="last_name" type="text" placeholder="{{ attri.1.last_name }}" /><br>
+                          </div><br><br>
+                          <small>Cakeday:</small><br>
+                          <div style="float:right; width:90%;">
+                          <input class="form-control" id="datepicker_start" maxlength="100" name="cakeday" type="text" placeholder="{{ attri.1.cakeday }}" /><br>
+                          </div><br><br>
+                      </div>
+                  </div>
+                          <button type="submit" class="btn btn-default" value="Submit" />Update</button>
           </div>
-        </div>
-    </div>
 
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-          [<a title="show/hide" id="exp1468505690_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505690');"  style="text-decoration: none; color: #000000; ">−</a>]
-
-Projects</h3>
-    </div>
-    <div class="panel-body">
-      <div id="exp1468505690" style="padding: 3px;">
-        Assign user to project<br>
-        <script language="javascript">toggle(getObject('exp1468505690_link'), 'exp1468505690');</script>
-      </div>
-    </div>
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-          [<a title="show/hide" id="exp1468505100_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505100');"  style="text-decoration: none; color: #000000; ">−</a>]
-
-          Dash</h3>
-    </div>
-    <div class="panel-body">
-      <div id="exp1468505100" style="padding: 3px;">
-        Enable/disable modules<br>
-        Rearrange modules<br>
-        Theme<br>
-        <script language="javascript">toggle(getObject('exp1468505100_link'), 'exp1468505100');</script>
-
-      </div>
-    </div>
-</div>
-
-
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-[<a title="show/hide" id="exp1468505667_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505667');"  style="text-decoration: none; color: #000000; ">−</a>]
-          Request Hoilday</h3>
-    </div>
-    <div class="panel-body">
-      <div id="exp1468505667" style="padding: 3px;">
-
-
-      <form action="" method="post">{% csrf_token %}
-          <div class="form-group">
-            <div>
-              Remaining Hoilday: <b>{{ attri.1.holiday }}</b>
-              <br>
-              <br>
-            </div>
+          <div style="width:48%; float:right;">
               <div>
-                <small>Start Date:</small><br>
+                  <small>Medical Provider:</small><br>
                   <div style="float:right; width:90%;">
-                  <input class="form-control" id="id_start_date" maxlength="100" name="start_date" type="text" placeholder="datepicker" /><br>
-                </div><br><br>
-                  <small>End Date:</small><br>
-                    <div style="float:right; width:90%;">
-                    <input class="form-control" id="id_end_date" maxlength="100" name="end_date" type="text" placeholder="datepicker" /><br>
+                  <input class="form-control" id="id_med_provider" maxlength="100" name="med_provider" type="text" placeholder="{{ attri.1.med_provider }}" /><br>
+                  </div><br><br>
+                  <small>Medical Plan:</small><br>
+                  <div style="float:right; width:90%;">
+                  <input class="form-control" id="id_med_plan" maxlength="100" name="med_plan" type="text" placeholder="{{ attri.1.med_plan }}" /><br>
                   </div><br><br>
 
-                  <button type="submit" class="btn btn-default" value="Submit" />Upload</button>
+                  <small>Dental/Vision Provider:</small><br>
+                  <div style="float:right; width:90%;">
+                  <input class="form-control" id="id_dent_provider" maxlength="100" name="dent_provider" type="text" placeholder="{{ attri.1.dent_provider }}" /><br>
+                  </div><br><br>
 
+                  <div style="float:right; width:90%;">
+                  <small>Dental/Vision Plan:</small><br>
+                  <input class="form-control" id="id_dent_plan" maxlength="100" name="dent_plan" type="text" placeholder="{{ attri.1.dent_plan }}" /><br>
+                  </div><br>
 
-                </div>
-            </div>
+              </div>
+
+          </div>
+
+        </div>
+      </div>
+  </div>
       </form>
 
-      <!-- Make Box init hidden -->
-      <script language="javascript">toggle(getObject('exp1468505667_link'), 'exp1468505667');</script>
+
+
+
+
+
+
+
+
+          <div class="panel panel-danger">
+              <div class="panel-heading">
+                  <h3 class="panel-title">
+      [<a title="show/hide" id="exp1468505650_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505650');"  style="text-decoration: none; color: #000000; ">−</a>]
+                    Warning</h3>
+              </div>
+              <div class="panel-body">
+                <div id="exp1468505650" style="padding: 3px;">
+                  change email<br>
+                  change password<br>
+                  delete account<br>
+                  <script language="javascript">toggle(getObject('exp1468505650_link'), 'exp1468505650');</script>
+                </div>
+              </div>
+          </div>
+
+
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              <h3 class="panel-title">
+                [<a title="show/hide" id="exp1468505690_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505690');"  style="text-decoration: none; color: #000000; ">−</a>]
+
+      Projects</h3>
+          </div>
+          <div class="panel-body">
+            <div id="exp1468505690" style="padding: 3px;">
+              Assign user to project<br>
+              <script language="javascript">toggle(getObject('exp1468505690_link'), 'exp1468505690');</script>
+            </div>
+          </div>
+      </div>
+
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              <h3 class="panel-title">
+                [<a title="show/hide" id="exp1468505100_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505100');"  style="text-decoration: none; color: #000000; ">−</a>]
+
+                Dash</h3>
+          </div>
+          <div class="panel-body">
+            <div id="exp1468505100" style="padding: 3px;">
+              Enable/disable modules<br>
+              Rearrange modules<br>
+              Theme<br>
+              <script language="javascript">toggle(getObject('exp1468505100_link'), 'exp1468505100');</script>
+
+            </div>
+          </div>
+      </div>
+
+
+
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              <h3 class="panel-title">
+      [<a title="show/hide" id="exp1468505667_link" href="javascript: void(0);" onclick="toggle(this, 'exp1468505667');"  style="text-decoration: none; color: #000000; ">−</a>]
+                Request Hoilday</h3>
+          </div>
+          <div class="panel-body">
+            <div id="exp1468505667" style="padding: 3px;">
+
+
+            <form action="" method="post">{% csrf_token %}
+                <div class="form-group">
+                  <div>
+                    Remaining Hoilday: <b>{{ attri.1.holiday }}</b>
+                    <br>
+                    <br>
+                  </div>
+                    <div>
+                      <small>Start Date:</small><br>
+                        <div style="float:right; width:90%;">
+                        <input class="form-control" id="id_start_date" maxlength="100" name="start_date" type="text" placeholder="datepicker" /><br>
+                      </div><br><br>
+                        <small>End Date:</small><br>
+                          <div style="float:right; width:90%;">
+                          <input class="form-control" id="id_end_date" maxlength="100" name="end_date" type="text" placeholder="datepicker" /><br>
+                        </div><br><br>
+
+                        <button type="submit" class="btn btn-default" value="Submit" />Upload</button>
+
+
+                      </div>
+                  </div>
+            </form>
+
+            <!-- Make Box init hidden -->
+            <script language="javascript">toggle(getObject('exp1468505667_link'), 'exp1468505667');</script>
+      </div>
+      </div>
+
+      </div>
+
+
+
+
+
+
+
+
+</div>
+<div class="pageColumnRight_test">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">
+            Settings</h3>
+      </div>
+      <div class="panel-body">
+        <strong>Setting #01</strong><br>
+        <hr>
+        bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla<br>
+        <hr>
+        <strong>Setting #02</strong><br>
+        <hr>
+        bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+      </div>
+
+  </div>
+
 </div>
 </div>
 
-</div>
 
 
 
